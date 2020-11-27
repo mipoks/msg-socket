@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 
 public class ClientStart extends Application {
+    public TextField textField;
     public static void main(String[] args) throws IOException, IllegalAccessException {
 
 
@@ -64,5 +65,9 @@ public class ClientStart extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        textField = (TextField)scene.lookup("#roomID1");//Селектор для id и fx:id , берёт первое вхождение, если совпадений несколько
+        textField.setText("SomeText");
+        System.out.println(""+ textField.toString());
     }
 }

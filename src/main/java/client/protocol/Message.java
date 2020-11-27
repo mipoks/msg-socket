@@ -2,13 +2,14 @@ package client.protocol;
 
 
 import javafx.util.Pair;
+import lombok.Data;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
+@Data
 public class Message {
 
     protected static final byte[] START_BYTES = new byte[]{0xA, 0xB};
