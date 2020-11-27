@@ -12,12 +12,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    @FXML
-    private TextField roomID; //Верхний TextField
     @Setter
     private Client client;
-    @FXML
-    private TextField textField;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -29,7 +25,6 @@ public class Controller implements Initializable {
         try {
             Message message = MessageCreater.createRoomCreateMsg();
             client.sendMessage(message);
-            roomID.setText(message.toString());
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (Exception e) {

@@ -61,7 +61,7 @@ public class Client {
 //        System.out.println("New message:");
 //        System.out.println(Message.toString(message));
         for(Handler listener : listeners){
-            if((message.getType() & listener.getType()) == 1/*message.getType() == listener.getType()*/){
+            if((message.getType() & listener.getType()) != 0/*message.getType() == listener.getType()*/){
                 // One by one! Another left listeners will wait current
                 // Another thread could be created here or before for every Listener
                 listener.handleMessage(message);

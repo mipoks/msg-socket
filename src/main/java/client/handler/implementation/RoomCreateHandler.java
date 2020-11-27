@@ -27,11 +27,12 @@ public class RoomCreateHandler implements Handler {
     @Override
     public void handleMessage(Message message) {
         try(ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(message.getData())) {
-            System.out.println(Arrays.toString(message.getData()));
+
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
             if (object instanceof String) {
                 String text = (String) object;
+                System.out.println(text);
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(text);
                 }

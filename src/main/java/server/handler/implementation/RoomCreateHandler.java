@@ -10,6 +10,7 @@ import server.protocol.Room;
 import server.protocol.Type;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
@@ -24,13 +25,17 @@ public class RoomCreateHandler implements Handler {
 
     @Override
     public void handleMessage(Client client, Message message) {
+
+        System.out.println("ALELELE");
         System.out.println(new String(message.getData()));
         try {
+            System.out.println("ALELELE");
             messageTransform.handleMessage(client, message);
             Room room = new Room(Room.createRoomUniqueString());
             room.addClient(client);
 
             byte[] bytes = ByteArrayGiver.toByteArray(room.getRoomUniqueString());
+            System.out.println(Arrays.toString(bytes));
 
             Message answer = Message.createMessage(Type.ROOM_CREATE_ANSWER, bytes);
             server.sendMessage(client, answer);

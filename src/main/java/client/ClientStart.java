@@ -22,11 +22,6 @@ import java.net.InetAddress;
 public class ClientStart extends Application {
     public TextField textField;
     public static void main(String[] args) throws IOException, IllegalAccessException {
-
-
-
-
-
         launch(args);
         Object object;
 
@@ -34,8 +29,6 @@ public class ClientStart extends Application {
         System.out.println();
     }
 
-    @FXML
-    TextField roomID;
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -46,28 +39,28 @@ public class ClientStart extends Application {
         controller.setClient(client);
         client.connect();
 
-        TextHandler textHandler = new TextHandler(client);
+        RoomCreateHandler roomCreateHandler = new RoomCreateHandler(client);
 
 
-        client.registerListener(textHandler);
-        client.registerListener(new RoomCreateHandler(client));
+        client.registerListener(roomCreateHandler);
         client.start();
 
 
 
 
         Scene scene = new Scene(root );
-//         = (TextField)scene.lookup("#roomID");
-        RoomCodePrinter roomCodePrinter = new RoomCodePrinter(roomID);
-        textHandler.addEventListener(roomCodePrinter);
-        System.out.println("TEXTETXETXTE" + roomID);
-
-
         primaryStage.setScene(scene);
         primaryStage.show();
 
         textField = (TextField)scene.lookup("#roomID1");//Селектор для id и fx:id , берёт первое вхождение, если совпадений несколько
         textField.setText("SomeText");
+        RoomCodePrinter roomCodePrinter = new RoomCodePrinter(textField);
+        roomCreateHandler.addEventListener(roomCodePrinter);
+
+
+
+
+
         System.out.println(""+ textField.toString());
     }
 }
