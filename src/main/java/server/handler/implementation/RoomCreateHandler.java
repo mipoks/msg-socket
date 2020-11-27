@@ -8,6 +8,7 @@ import server.protocol.Message;
 import server.protocol.Room;
 import server.protocol.Type;
 
+import java.io.*;
 import java.nio.ByteBuffer;
 
 public class RoomCreateHandler implements Handler {
@@ -26,10 +27,21 @@ public class RoomCreateHandler implements Handler {
             messageTransform.handleMessage(client, message);
             Room room = new Room(Room.createRoomUniqueString());
             room.addClient(client);
-            Message answer = Message.createMessage(Type.ROOM_CREATE_ANSWER, room.getRoomUniqueString().getBytes());
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream= new ObjectOutputStream(out);
+            objectOutputStream.write(room.getRoomUniqueString().getBytes());
+            objectOutputStream.flush();
+
+
+
+
+            Message answer = Message.createMessage(Type.ROOM_CREATE_ANSWER, out.toByteArray());
             server.sendMessage(client, answer);
         } catch (ServerException ex) {
             //Add some catch implementation
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

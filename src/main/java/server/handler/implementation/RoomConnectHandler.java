@@ -27,6 +27,7 @@ public class RoomConnectHandler implements Handler {
             if (room == null)
                 return;
             room.addClient(client);
+            client.setRoom(room);
 
             message.setType(message.getType() * -1);
             message.setData(("connected to room").getBytes());
