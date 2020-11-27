@@ -22,7 +22,7 @@ public class MessageCreater {
         }
         return bytes;
     }
-    public static Message createTextMsg(Text text) throws IOException, IllegalAccessException {
+    public static Message createTextMsg(Text text) {
 //        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 //        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
 //        objectOutputStream.writeObject(text);
@@ -32,10 +32,14 @@ public class MessageCreater {
 //        byteArrayOutputStream.close();
         //ToDo проверить, что так работает
         byte[] bytes = serialize(text);
-        return Message.createMessage(Type.TEXT, bytes);
+        try {
+            return Message.createMessage(Type.TEXT, bytes);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
-    public static Message createStateMsg(State state) throws IOException, IllegalAccessException {
+    public static Message createStateMsg(State state) {
 //        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 //        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
 //        objectOutputStream.writeObject(state);
@@ -45,7 +49,11 @@ public class MessageCreater {
 //        byteArrayOutputStream.close();
         //ToDo проверить, что так работает
         byte[] bytes = serialize(state);
-        return Message.createMessage(Type.STATE, bytes);
+        try {
+            return Message.createMessage(Type.STATE, bytes);
+        } catch (IllegalAccessException e) {
+            throw  new IllegalStateException(e);
+        }
     }
 
 
