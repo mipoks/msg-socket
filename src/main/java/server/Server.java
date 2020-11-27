@@ -71,8 +71,7 @@ public class Server {
                         System.out.println(Message.toString(message));
 
                         for (Handler listener : listeners) {
-                            System.out.println(listener.getType() + " AND: " + (message.getType() & listener.getType()));
-                            if ((message.getType() & listener.getType()) != 0) {
+                            if (message.getType() == listener.getType()) {
                                 listener.handleMessage(client, message);
                             }
                         }

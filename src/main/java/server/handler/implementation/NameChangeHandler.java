@@ -12,11 +12,9 @@ import java.io.IOException;
 
 public class NameChangeHandler implements Handler {
     private Server server;
-    private Handler messageTransform;
 
     public NameChangeHandler(Server server) {
         this.server = server;
-        this.messageTransform = new MessageTransform();
     }
 
     @Override
@@ -26,7 +24,6 @@ public class NameChangeHandler implements Handler {
             client.setName(new String(message.getData()));
 
             message.setType(message.getType() * -1);
-            messageTransform.handleMessage(client, message);
             server.sendMessage(client, message);
 
             if (client.getRoom() != null) {

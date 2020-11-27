@@ -10,30 +10,26 @@ import server.protocol.Room;
 import server.protocol.Type;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 
-public class TextHandler implements Handler {
-
+public class RoomOpenHandler implements Handler {
     private Server server;
-    private Handler messageTransform;
 
-    public TextHandler(Server server) {
+    public RoomOpenHandler(Server server) {
         this.server = server;
-        this.messageTransform = new MessageTransform();
     }
 
     @Override
     public void handleMessage(Client client, Message message) {
-        //ToDo удалить нахрен этот класс + MessageTransform. Мы пишем НЕ чат.
-        System.out.println(new String(message.getData()));
         try {
-
-            messageTransform.handleMessage(client, message);
             Room room = client.getRoom();
-            if (room != null) {
-                room.sendMessage(client, message);
-            }
-            Message answer = Message.createMessage(Type.TEXT_ANSWER, ByteArrayGiver.toByteArray("accepted"));
+            if (room == null)
+                return;
+
+            byte[] bytes = ByteArrayGiver.toByteArray(room.getRoomUniqueString());
+
+            room.setPublicity(true);
+            Message answer = Message.createMessage(Type.ROOM_OPEN, bytes);
+
             server.sendMessage(client, answer);
         } catch (ServerException ex) {
             //Add some catch implementation
@@ -44,6 +40,6 @@ public class TextHandler implements Handler {
 
     @Override
     public int getType() {
-        return Type.TEXT;
+        return Type.ROOM_OPEN;
     }
 }

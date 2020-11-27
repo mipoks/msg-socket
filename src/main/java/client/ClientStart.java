@@ -1,19 +1,22 @@
 package client;
 
 import client.controllers.Controller;
+import client.handler.implementation.RoomConnectHandler;
 import client.handler.implementation.RoomCreateHandler;
 import client.handler.implementation.TextHandler;
 import client.logic.Client;
 import client.message.MessageCreater;
-import client.message.Text;
 import client.protocol.Message;
 import client.visualizer.RoomCodePrinter;
+import client.visualizer.RoomConnectPrinter;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,12 +24,10 @@ import java.net.InetAddress;
 
 public class ClientStart extends Application {
     public TextField textField;
+    public Text textStatus;
+
     public static void main(String[] args) throws IOException, IllegalAccessException {
         launch(args);
-        Object object;
-
-        Message msg = MessageCreater.createTextMsg(new Text("Hello world"));
-        System.out.println();
     }
 
     @Override
@@ -40,24 +41,26 @@ public class ClientStart extends Application {
         client.connect();
 
         RoomCreateHandler roomCreateHandler = new RoomCreateHandler(client);
+        RoomConnectHandler roomConnectHandler = new RoomConnectHandler(client);
 
 
+        client.registerListener(roomConnectHandler);
         client.registerListener(roomCreateHandler);
         client.start();
 
 
-
-
-        Scene scene = new Scene(root );
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        textStatus = (Text) scene.lookup("#textStatus");
         textField = (TextField)scene.lookup("#roomID1");//Селектор для id и fx:id , берёт первое вхождение, если совпадений несколько
         textField.setText("SomeText");
         RoomCodePrinter roomCodePrinter = new RoomCodePrinter(textField);
         roomCreateHandler.addEventListener(roomCodePrinter);
 
-
+        RoomConnectPrinter roomConnectPrinter = new RoomConnectPrinter(textStatus);
+        roomConnectHandler.addEventListener(roomConnectPrinter);
 
 
 

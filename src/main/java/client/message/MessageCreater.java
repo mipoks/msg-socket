@@ -57,8 +57,11 @@ public class MessageCreater {
     }
 
     public static Message createRoomCreateMsg() throws IllegalAccessException {
-        byte[] bytes = new byte[5];
+        byte[] bytes = new byte[1];
         return Message.createMessage(Type.ROOM_CREATE, bytes);
      }
 
+     public static Message createRoomConnectMsg(String room) throws IllegalAccessException {
+        return Message.createMessage(Type.ROOM_CONNECT, serialize(room));
+     }
 }

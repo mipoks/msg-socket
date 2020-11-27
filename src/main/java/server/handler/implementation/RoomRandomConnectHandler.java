@@ -13,17 +13,14 @@ import java.io.IOException;
 public class RoomRandomConnectHandler implements Handler {
 
     private Server server;
-    private Handler messageTransform;
 
     public RoomRandomConnectHandler(Server server) {
         this.server = server;
-        this.messageTransform = new MessageTransform();
     }
 
     public void handleMessage(Client client, Message message) {
         try {
             Room room = Room.getOpenRoom();
-            messageTransform.handleMessage(client, message);
             room.addClient(client);
             client.setRoom(room);
 

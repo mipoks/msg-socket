@@ -24,7 +24,7 @@ public class Main {
 //        client.start();
 
         Message c = MessageCreater.createRoomCreateMsg();
-        System.out.println(c.getType() & Type.ROOM_CREATE);
+        System.out.println(32 & -4);
 //            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
 //            Object object = objectInputStream.readObject();
 //        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ff"));

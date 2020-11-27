@@ -16,21 +16,15 @@ import java.util.Arrays;
 
 public class RoomCreateHandler implements Handler {
     private Server server;
-    private Handler messageTransform;
 
     public RoomCreateHandler(Server server) {
         this.server = server;
-        this.messageTransform = new MessageTransform();
     }
 
     @Override
     public void handleMessage(Client client, Message message) {
-
-        System.out.println("ALELELE");
         System.out.println(new String(message.getData()));
         try {
-            System.out.println("ALELELE");
-            messageTransform.handleMessage(client, message);
             Room room = new Room(Room.createRoomUniqueString());
             room.addClient(client);
 

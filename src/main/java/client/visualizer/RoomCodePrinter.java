@@ -13,7 +13,6 @@ public class RoomCodePrinter implements EventListener<String> {
 
     @Override
     public void onEventAction(String object) {
-        System.out.println("I GOT : " + object);
         textField.setText(object);
     }
 }

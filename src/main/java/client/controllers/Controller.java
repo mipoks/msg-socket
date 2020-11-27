@@ -6,12 +6,15 @@ import client.protocol.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import lombok.Setter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    @FXML
+    TextField roomCode;
     @Setter
     private Client client;
     @Override
@@ -33,4 +36,14 @@ public class Controller implements Initializable {
     }
 
 
+    public void sendConnect(MouseEvent mouseEvent) {
+        try {
+            Message message = MessageCreater.createRoomConnectMsg(roomCode.getText());
+            client.sendMessage(message);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public class Room {
     public static final int ROOM_UNIQUE_LENGTH = 4;
-    public static final int MAX_CLIENT = 4;
+    public static final int MAX_CLIENT = 1000;
 
     private static ArrayList<Pair<String, Room>> uniqueString = new ArrayList<>();
     private static final String CHARACTERS = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
