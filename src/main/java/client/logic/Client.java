@@ -3,6 +3,9 @@ package client.logic;
 import client.handler.Handler;
 import client.listener.ServerMessageListener;
 import client.protocol.Message;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -10,6 +13,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+@Data
 public class Client {
 
     protected final InetAddress address;

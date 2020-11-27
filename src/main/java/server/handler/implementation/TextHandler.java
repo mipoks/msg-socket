@@ -26,11 +26,11 @@ public class TextHandler implements Handler {
         try {
 
             messageTransform.handleMessage(client, message);
-            Room room = Room.getRoomByUnique(message.getRoomUnique());
+            Room room =/* Room.getRoomByUnique(message.getRoomUnique())*/null;
             if (room != null) {
                 room.sendMessage(client, message);
             }
-            Message answer = Message.createMessage(Type.TEXT_ANSWER, ByteBuffer.allocate(4).putInt(message.getData().length).array(), message.getRoomUnique());
+            Message answer = Message.createMessage(Type.TEXT_ANSWER, ByteBuffer.allocate(4).putInt(message.getData().length).array()/*, message.getRoomUnique()*/);
             server.sendMessage(client, answer);
         } catch (ServerException ex) {
             //Add some catch implementation

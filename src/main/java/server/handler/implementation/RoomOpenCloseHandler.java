@@ -1,13 +1,18 @@
 package server.handler.implementation;
 
 import server.Server;
+import server.exception.ServerException;
+import server.handler.Handler;
+import server.protocol.Client;
+import server.protocol.Message;
+import server.protocol.Room;
 import server.protocol.Type;
 
-public class RoomOpenCloseHandler {
+public class RoomOpenCloseHandler implements Handler {
     private Server server;
     private Handler messageTransform;
 
-    public RoomCreateHandler(Server server) {
+    public RoomOpenCloseHandler(Server server) {
         this.server = server;
         this.messageTransform = new MessageTransform();
     }
