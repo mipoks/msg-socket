@@ -1,5 +1,6 @@
 package client.controllers;
 
+import client.handler.EventListener;
 import client.logic.Client;
 import client.message.MessageCreater;
 import client.protocol.Message;
@@ -17,6 +18,16 @@ public class Controller implements Initializable {
     TextField roomCode;
     @Setter
     private Client client;
+    private EventListener<String> listener = x ->{
+
+
+
+
+
+    };
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
