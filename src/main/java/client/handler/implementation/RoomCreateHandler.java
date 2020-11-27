@@ -12,6 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RoomCreateHandler implements Handler {
 
@@ -26,6 +27,7 @@ public class RoomCreateHandler implements Handler {
     @Override
     public void handleMessage(Message message) {
         try(ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(message.getData())) {
+            System.out.println(Arrays.toString(message.getData()));
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
             if (object instanceof String) {

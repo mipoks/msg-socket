@@ -3,7 +3,9 @@ package client;
 import client.handler.implementation.RoomCreateHandler;
 import client.handler.implementation.TextHandler;
 import client.logic.Client;
-
+import client.message.MessageCreater;
+import client.protocol.Message;
+import server.protocol.Type;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -21,13 +23,8 @@ public class Main {
 //        client.registerListener(new RoomCreateHandler(client, clientWindow));
 //        client.start();
 
-        byte[] buffer = new byte[]{-84,-19,0,5};
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream= new ObjectOutputStream(out);
-        objectOutputStream.write(buffer);
-        objectOutputStream.flush();
-
-        ObjectInputStream input = new ObjectInputStream(new ByteArrayInputStream(out.toByteArray()));
+        Message c = MessageCreater.createRoomCreateMsg();
+        System.out.println(c.getType() & Type.ROOM_CREATE);
 //            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
 //            Object object = objectInputStream.readObject();
 //        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ff"));

@@ -10,6 +10,7 @@ import java.util.Collection;
 
 public class Room {
     public static final int ROOM_UNIQUE_LENGTH = 4;
+    public static final int MAX_CLIENT = 4;
 
     private static ArrayList<Pair<String, Room>> uniqueString = new ArrayList<>();
     private static final String CHARACTERS = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
@@ -34,6 +35,20 @@ public class Room {
         return room;
     }
 
+    public static Room getOpenRoom() {
+        for (int i = 0; i < uniqueString.size(); i++) {
+            Room room = uniqueString.get(i).getValue();
+            if (room.isPublicity() == true && room.getClientsCount() < Room.MAX_CLIENT) {
+                return room;
+            }
+        }
+        return new Room(Room.createRoomUniqueString());
+    }
+
+    public int getClientsCount() {
+        return clients.size();
+    }
+
     private String roomUniqueString;
     private Collection<Client> clients;
     private boolean publicity;
@@ -41,7 +56,7 @@ public class Room {
     public Room(String roomUniqueString) {
         this.roomUniqueString = roomUniqueString;
         this.clients = new ArrayList<>();
-        this.publicity = false;
+        this.publicity = true;
         uniqueString.add(new Pair<>(roomUniqueString, this));
     }
 
@@ -60,9 +75,14 @@ public class Room {
         this.publicity = publicity;
     }
 
-    public void addClient(Client client) {
-        if (!clients.contains(client))
-            clients.add(client);
+    public synchronized boolean addClient(Client client) {
+        if (getClientsCount() < Room.MAX_CLIENT) {
+            if (!clients.contains(client)) {
+                clients.add(client);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void removeClient(Client client) {

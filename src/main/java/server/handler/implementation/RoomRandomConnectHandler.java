@@ -7,33 +7,34 @@ import server.handler.implementation.helper.ByteArrayGiver;
 import server.protocol.Client;
 import server.protocol.Message;
 import server.protocol.Room;
-import server.protocol.Type;
 
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
+import java.io.IOException;
 
-public class RoomCreateHandler implements Handler {
+public class RoomRandomConnectHandler implements Handler {
+
     private Server server;
     private Handler messageTransform;
 
-    public RoomCreateHandler(Server server) {
+    public RoomRandomConnectHandler(Server server) {
         this.server = server;
         this.messageTransform = new MessageTransform();
     }
 
-    @Override
     public void handleMessage(Client client, Message message) {
-        System.out.println(new String(message.getData()));
         try {
+            Room room = Room.getOpenRoom();
             messageTransform.handleMessage(client, message);
-            Room room = new Room(Room.createRoomUniqueString());
             room.addClient(client);
+            client.setRoom(room);
 
-            byte[] bytes = ByteArrayGiver.toByteArray(room.getRoomUniqueString());
+            byte[] bytes = ByteArrayGiver.toByteArray("connected to room");
+            message.setType(message.getType() * -1);
+            message.setData(bytes);
+            server.sendMessage(client, message);
 
-            Message answer = Message.createMessage(Type.ROOM_CREATE_ANSWER, bytes);
-            server.sendMessage(client, answer);
+            bytes = ByteArrayGiver.toByteArray(client.getName() + " connected to room");
+            message.setData(bytes);
+            room.sendMessage(message);
         } catch (ServerException ex) {
             //Add some catch implementation
         } catch (IOException e) {
@@ -43,6 +44,6 @@ public class RoomCreateHandler implements Handler {
 
     @Override
     public int getType() {
-        return Type.ROOM_CREATE;
+        return 0;
     }
 }

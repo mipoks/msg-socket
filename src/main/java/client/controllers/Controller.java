@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import lombok.Setter;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,7 +19,10 @@ public class Controller implements Initializable {
 
     }
     @FXML
+    TextField roomID;
+    @FXML
     public void createRoom(){
+        System.out.println(roomID);
         System.out.println("Комнта создана");
         try {
             Message message = MessageCreater.createRoomCreateMsg();

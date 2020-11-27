@@ -7,7 +7,9 @@ import client.logic.Client;
 import client.message.MessageCreater;
 import client.message.Text;
 import client.protocol.Message;
+import client.visualizer.RoomCodePrinter;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,6 +33,8 @@ public class ClientStart extends Application {
         System.out.println();
     }
 
+    @FXML
+    TextField roomID;
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -40,17 +44,23 @@ public class ClientStart extends Application {
         Client client = new Client(InetAddress.getByName("127.0.0.1"),4888);
         controller.setClient(client);
         client.connect();
-        client.registerListener(new TextHandler(client));
+
+        TextHandler textHandler = new TextHandler(client);
+
+
+        client.registerListener(textHandler);
         client.registerListener(new RoomCreateHandler(client));
         client.start();
 
 
 
 
-
-
         Scene scene = new Scene(root );
-        TextField textField = (TextField)scene.lookup("roomID");
+//         = (TextField)scene.lookup("#roomID");
+        RoomCodePrinter roomCodePrinter = new RoomCodePrinter(roomID);
+        textHandler.addEventListener(roomCodePrinter);
+        System.out.println("TEXTETXETXTE" + roomID);
+
 
         primaryStage.setScene(scene);
         primaryStage.show();
