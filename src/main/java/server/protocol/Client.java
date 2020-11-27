@@ -2,6 +2,7 @@ package server.protocol;
 
 import java.net.Socket;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Client {
     private String name;
@@ -23,8 +24,8 @@ public class Client {
         this.socket = socket;
     }
 
-    public Room getRoom() {
-        return room;
+    public Optional<Room> getRoom() {
+        return Optional.ofNullable(room);
     }
 
     public void setRoom(Room room) {

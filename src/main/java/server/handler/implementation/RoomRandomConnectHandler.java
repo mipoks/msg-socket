@@ -7,6 +7,7 @@ import server.handler.implementation.helper.ByteArrayGiver;
 import server.protocol.Client;
 import server.protocol.Message;
 import server.protocol.Room;
+import server.protocol.Type;
 
 import java.io.IOException;
 
@@ -25,7 +26,7 @@ public class RoomRandomConnectHandler implements Handler {
             client.setRoom(room);
 
             byte[] bytes = ByteArrayGiver.toByteArray("connected to room");
-            message.setType(message.getType() * -1);
+            message.setType(Type.ROOM_CONNECT_RAND_ANSWER);
             message.setData(bytes);
             server.sendMessage(client, message);
 
@@ -41,6 +42,6 @@ public class RoomRandomConnectHandler implements Handler {
 
     @Override
     public int getType() {
-        return 0;
+        return Type.ROOM_CONNECT_RAND;
     }
 }

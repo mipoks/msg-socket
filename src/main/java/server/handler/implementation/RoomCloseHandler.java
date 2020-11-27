@@ -21,9 +21,9 @@ public class RoomCloseHandler implements Handler {
     @Override
     public void handleMessage(Client client, Message message) {
         try {
-            Room room = client.getRoom();
-            if (room == null)
+            if (!client.getRoom().isPresent())
                 return;
+            Room room = client.getRoom().get();
 
             byte[] bytes = ByteArrayGiver.toByteArray(room.getRoomUniqueString());
 

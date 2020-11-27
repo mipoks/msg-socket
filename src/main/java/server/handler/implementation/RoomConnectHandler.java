@@ -11,6 +11,7 @@ import server.protocol.Room;
 import server.protocol.Type;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class RoomConnectHandler implements Handler {
 
@@ -26,17 +27,18 @@ public class RoomConnectHandler implements Handler {
         try {
             //ToDo обернуть new String() в try catch
 
-            Room room = Room.getRoomByUnique((String)(ObjectDeserializer.deserialize(message.getData())));
-            if (room == null)
+            String roomName = (String)(ObjectDeserializer.deserialize(message.getData()));
+            Optional<Room> room = Room.getRoomByUnique(roomName);
+            if (!room.isPresent())
                 return;
-            room.addClient(client);
-            client.setRoom(room);
+            room.get().addClient(client);
+            client.setRoom(room.get());
 
             message.setType(Type.ROOM_CONNECT_ANSWER);
             message.setData(ByteArrayGiver.toByteArray("connected to room"));
             server.sendMessage(client, message);
             message.setData(ByteArrayGiver.toByteArray(client.getName() + " connected to room"));
-            room.sendMessage(message);
+            room.get().sendMessage(message);
         } catch (ServerException ex) {
             //Add some catch implementation
         } catch (IOException e) {

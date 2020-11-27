@@ -1,14 +1,7 @@
 package client;
 
-import client.handler.implementation.RoomCreateHandler;
-import client.handler.implementation.TextHandler;
-import client.logic.Client;
 import client.message.MessageCreater;
 import client.protocol.Message;
-import server.protocol.Type;
-
-import java.io.*;
-import java.net.InetAddress;
 
 public class Main {
 

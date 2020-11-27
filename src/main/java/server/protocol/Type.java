@@ -37,5 +37,15 @@ public class Type {
     public static final int ROOM_CLOSE_ANSWER = -7;
     public static final int ROOM_CLOSE_ANSWER_MAX_SIZE = 1000;
 
+    public static final int GAME_START = 8;
+    public static final int GAME_START_MAX_SIZE = 60;
+    public static final int GAME_START_ANSWER = -8;
+    public static final int GAME_START_ANSWER_MAX_SIZE = 1000;
+
+    public static final int ROOM_CONNECT_RAND = 9;
+    public static final int ROOM_CONNECT_RAND_MAX_SIZE = 60;
+    public static final int ROOM_CONNECT_RAND_ANSWER = -9;
+    public static final int ROOM_CONNECT_RAND_ANSWER_MAX_SIZE = 1000;
+
    //ToDo получить победителя,
 }

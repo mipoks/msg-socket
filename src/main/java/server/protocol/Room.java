@@ -4,9 +4,11 @@ import javafx.util.Pair;
 import server.exception.ServerException;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 public class Room {
     public static final int ROOM_UNIQUE_LENGTH = 4;
@@ -25,14 +27,14 @@ public class Room {
         return new String(text);
     }
 
-    public static Room getRoomByUnique(String roomUnique) {
+    public static Optional<Room> getRoomByUnique(String roomUnique) {
         Room room = null;
         for (Pair<String, Room> pair : uniqueString) {
             if (pair.getKey().equals(roomUnique)) {
                 room = pair.getValue();
             }
         }
-        return room;
+        return Optional.ofNullable(room);
     }
 
     public static Room getOpenRoom() {
@@ -50,7 +52,7 @@ public class Room {
     }
 
     private String roomUniqueString;
-    private Collection<Client> clients;
+    private ArrayList<Client> clients;
     private boolean publicity;
 
     public Room(String roomUniqueString) {
@@ -65,6 +67,14 @@ public class Room {
         this.clients = new ArrayList<>();
         this.publicity = publicity;
         uniqueString.add(new Pair<>(roomUniqueString, this));
+    }
+
+    public Optional<Client> getRoomOwner() {
+        Client client = null;
+        if (clients.size() > 0) {
+            client = clients.get(0);
+        }
+        return Optional.ofNullable(client);
     }
 
     public boolean isPublicity() {
@@ -89,7 +99,7 @@ public class Room {
         clients.remove(client);
     }
 
-    public void sendMessage(Message message) throws ServerException {
+    public void sendMessage(Message message) {
 
         byte[] rawMessage = Message.getBytes(message);
         for (Client client : clients) {

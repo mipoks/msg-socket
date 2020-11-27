@@ -27,10 +27,10 @@ public class NameChangeHandler implements Handler {
             message.setType(Type.NAME_CHANGE_ANSWER);
             server.sendMessage(client, message);
 
-            if (client.getRoom() != null) {
+            if (client.getRoom().isPresent()) {
                 String msg = oldName + " changed nickname to " + (String)(ObjectDeserializer.deserialize(message.getData()));
                 message.setData(ByteArrayGiver.toByteArray(msg));
-                client.getRoom().sendMessage(message);
+                client.getRoom().get().sendMessage(message);
             }
         } catch (ServerException e) {
             e.printStackTrace();
