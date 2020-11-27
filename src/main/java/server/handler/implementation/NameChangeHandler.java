@@ -4,6 +4,7 @@ import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
 import server.handler.implementation.helper.ByteArrayGiver;
+import server.handler.implementation.helper.ObjectDeserializer;
 import server.protocol.Client;
 import server.protocol.Message;
 import server.protocol.Type;
@@ -21,13 +22,13 @@ public class NameChangeHandler implements Handler {
     public void handleMessage(Client client, Message message) {
         try {
             String oldName = client.getName();
-            client.setName(new String(message.getData()));
+            client.setName((String)(ObjectDeserializer.deserialize(message.getData())));
 
-            message.setType(message.getType() * -1);
+            message.setType(Type.NAME_CHANGE_ANSWER);
             server.sendMessage(client, message);
 
             if (client.getRoom() != null) {
-                String msg = oldName + " changed nickname to " + new String(message.getData());
+                String msg = oldName + " changed nickname to " + (String)(ObjectDeserializer.deserialize(message.getData()));
                 message.setData(ByteArrayGiver.toByteArray(msg));
                 client.getRoom().sendMessage(message);
             }

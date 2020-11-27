@@ -11,10 +11,10 @@ import server.protocol.Type;
 
 import java.io.IOException;
 
-public class RoomOpenHandler implements Handler {
+public class RoomCloseHandler implements Handler {
     private Server server;
 
-    public RoomOpenHandler(Server server) {
+    public RoomCloseHandler(Server server) {
         this.server = server;
     }
 
@@ -27,8 +27,8 @@ public class RoomOpenHandler implements Handler {
 
             byte[] bytes = ByteArrayGiver.toByteArray(room.getRoomUniqueString());
 
-            room.setPublicity(true);
-            Message answer = Message.createMessage(Type.ROOM_OPEN_ANSWER, bytes);
+            room.setPublicity(false);
+            Message answer = Message.createMessage(Type.ROOM_CLOSE_ANSWER, bytes);
 
             server.sendMessage(client, answer);
         } catch (ServerException ex) {
@@ -40,6 +40,6 @@ public class RoomOpenHandler implements Handler {
 
     @Override
     public int getType() {
-        return Type.ROOM_OPEN;
+        return Type.ROOM_CLOSE;
     }
 }
