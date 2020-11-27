@@ -1,7 +1,14 @@
 package client.message;
 
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+@Data
+@Builder
+@NoArgsConstructor
 public class Text implements Serializable {
     private String text;
 
