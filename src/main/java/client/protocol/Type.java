@@ -27,6 +27,11 @@ public class Type {
     public static final int NAME_CHANGE_ANSWER = -5;
     public static final int NAME_CHANGE_ANSWER_MAX_SIZE = 1000;
 
+    public static final int ROOM_OPEN = 6;
+    public static final int ROOM_OPEN_MAX_SIZE = 60;
+    public static final int ROOM_OPEN_ANSWER = -6;
+    public static final int ROOM_OPEN_ANSWER_MAX_SIZE = 1000;
+
 
    //ToDo получить победителя,
 }
