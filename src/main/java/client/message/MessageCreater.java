@@ -56,5 +56,9 @@ public class MessageCreater {
         }
     }
 
+    public static Message createRoomCreateMsg() throws IllegalAccessException {
+        byte[] bytes = new byte[5];
+        return Message.createMessage(Type.ROOM_CREATE, bytes);
+     }
 
 }
