@@ -11,6 +11,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -48,7 +49,8 @@ public class ClientStart extends Application {
 
 
 
-        Scene scene = new Scene(root, 400,400 );
+        Scene scene = new Scene(root );
+        TextField textField = (TextField)scene.lookup("roomID");
 
         primaryStage.setScene(scene);
         primaryStage.show();

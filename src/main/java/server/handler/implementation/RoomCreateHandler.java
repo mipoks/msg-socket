@@ -30,7 +30,7 @@ public class RoomCreateHandler implements Handler {
 
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream= new ObjectOutputStream(out);
-            objectOutputStream.write(room.getRoomUniqueString().getBytes());
+            objectOutputStream.writeObject(room.getRoomUniqueString().getBytes());
             objectOutputStream.flush();
 
 
