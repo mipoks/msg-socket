@@ -1,12 +1,13 @@
 package server.handler.implementation;
 
+import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
 import server.handler.implementation.helper.GameTexter;
 import server.handler.implementation.helper.ObjectSerializer;
 import server.protocol.*;
-
+@Slf4j
 public class GameStartHandler implements Handler {
     private Server server;
 

@@ -1,13 +1,14 @@
 package server.protocol;
 
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
+@Slf4j
 public class Message {
 
     protected static final byte[] START_BYTES = new byte[]{0xA, 0xB};

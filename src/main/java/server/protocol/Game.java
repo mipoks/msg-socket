@@ -1,9 +1,11 @@
 package server.protocol;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Optional;
-
+@Slf4j
 public class Game {
     private String gameText;
     private Client winner;

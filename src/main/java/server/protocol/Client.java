@@ -1,9 +1,11 @@
 package server.protocol;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.net.Socket;
 import java.util.Objects;
 import java.util.Optional;
-
+@Slf4j
 public class Client {
     private String name;
     private static int idCounter = 1;

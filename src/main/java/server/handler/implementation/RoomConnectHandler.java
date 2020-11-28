@@ -1,6 +1,7 @@
 package server.handler.implementation;
 
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
@@ -13,7 +14,7 @@ import server.protocol.Type;
 
 import java.io.IOException;
 import java.util.Optional;
-
+@Slf4j
 public class RoomConnectHandler implements Handler {
 
     private Server server;
@@ -23,8 +24,8 @@ public class RoomConnectHandler implements Handler {
     }
 
     public void handleMessage(Client client, Message message) {
-        System.out.println("BLABALBAL");
-        System.out.println("KAKAKA" + (String)(ObjectDeserializer.fromByteArray(message.getData())));
+        log.info("BLABALBAL");
+        log.info("string res : {}", (String)(ObjectDeserializer.fromByteArray(message.getData())));
         try {
             //ToDo обернуть new String() в try catch
 

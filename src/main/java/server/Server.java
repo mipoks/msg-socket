@@ -1,5 +1,6 @@
 package server;
 
+import lombok.extern.slf4j.Slf4j;
 import server.exception.ServerException;
 import server.handler.Handler;
 import server.handler.implementation.helper.ObjectSerializer;
@@ -16,7 +17,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
+@Slf4j
 public class Server {
     protected ServerSocket serverSocket;
     protected int port;
@@ -71,8 +72,8 @@ public class Server {
                     try {
                         message = Message.readMessage(socket.getInputStream());
 
-                        System.out.println("New message:");
-                        System.out.println(Message.toString(message));
+                        log.info("New message: {}",Message.toString(message));
+
 
                         for (Handler listener : listeners) {
                             if (message.getType() == listener.getType()) {

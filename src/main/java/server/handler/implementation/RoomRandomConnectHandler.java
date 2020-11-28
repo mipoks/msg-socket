@@ -1,5 +1,6 @@
 package server.handler.implementation;
 
+import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
@@ -10,7 +11,7 @@ import server.protocol.Room;
 import server.protocol.Type;
 
 import java.io.IOException;
-
+@Slf4j
 public class RoomRandomConnectHandler implements Handler {
 
     private Server server;

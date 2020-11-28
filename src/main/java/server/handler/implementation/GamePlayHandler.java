@@ -1,6 +1,7 @@
 package server.handler.implementation;
 
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.handler.Handler;
 import server.handler.implementation.helper.ObjectDeserializer;
@@ -8,7 +9,7 @@ import server.handler.implementation.helper.ObjectSerializer;
 import server.protocol.*;
 
 import java.util.Optional;
-
+@Slf4j
 public class GamePlayHandler implements Handler {
 
     private Server server;

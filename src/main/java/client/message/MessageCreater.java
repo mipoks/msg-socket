@@ -3,9 +3,10 @@ package client.message;
 import client.message.Text;
 import client.protocol.Message;
 import client.protocol.Type;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
-
+@Slf4j
 public class MessageCreater {
 
     private static byte[] serialize(Object object) {

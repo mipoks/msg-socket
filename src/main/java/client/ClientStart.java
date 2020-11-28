@@ -13,10 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.InetAddress;
-
+@Slf4j
 public class ClientStart extends Application {
     public TextField textField;
     public Text textStatus;

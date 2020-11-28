@@ -2,6 +2,7 @@ package client.handler.implementation;
 
 import client.handler.EventListener;
 import client.logic.Client;
+import lombok.extern.slf4j.Slf4j;
 import server.handler.Handler;
 import server.protocol.Message;
 import server.protocol.Type;
@@ -10,7 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-
+@Slf4j
 public class GameStartHandler implements Handler {
     private Client client;
     private ArrayList<EventListener> listeners;

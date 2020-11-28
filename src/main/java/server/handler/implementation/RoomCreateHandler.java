@@ -1,5 +1,6 @@
 package server.handler.implementation;
 
+import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
@@ -11,7 +12,7 @@ import server.protocol.Type;
 
 import java.io.*;
 import java.util.Arrays;
-
+@Slf4j
 public class RoomCreateHandler implements Handler {
     private Server server;
 
@@ -21,17 +22,17 @@ public class RoomCreateHandler implements Handler {
 
     @Override
     public void handleMessage(Client client, Message message) {
-        System.out.println("WE ARE CREATING ROOM");
+        log.info("WE ARE CREATING ROOM");
         try {
-            System.out.println("WE ARE CREATING ROOM2");
+            log.info("WE ARE CREATING ROOM2");
             Room room = new Room(Room.createRoomUniqueString());
-            System.out.println("WE ARE CREATING ROOM3");
+            log.info("WE ARE CREATING ROOM3");
             room.addClient(client);
-            System.out.println("WE ARE CREATING ROOM4");
+            log.info("WE ARE CREATING ROOM4");
 
-            System.out.println(room.getRoomUniqueString());
+            log.info("room.getRoomUniqueString() result :  {}",room.getRoomUniqueString());
             byte[] bytes = ObjectSerializer.toByteArray(room.getRoomUniqueString());
-            System.out.println(Arrays.toString(bytes));
+            log.info("Array bytes{}",Arrays.toString(bytes));
 
             Message answer = Message.createMessage(Type.ROOM_CREATE_ANSWER, bytes);
             server.sendMessage(client, answer);

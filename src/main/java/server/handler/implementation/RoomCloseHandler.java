@@ -1,5 +1,6 @@
 package server.handler.implementation;
 
+import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
@@ -10,7 +11,7 @@ import server.protocol.Room;
 import server.protocol.Type;
 
 import java.io.IOException;
-
+@Slf4j
 public class RoomCloseHandler implements Handler {
     private Server server;
 
@@ -32,7 +33,7 @@ public class RoomCloseHandler implements Handler {
 
             server.sendMessage(client, answer);
         } catch (ServerException ex) {
-            //Add some catch implementation
+            throw new IllegalStateException(ex);
         }
     }
 

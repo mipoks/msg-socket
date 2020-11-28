@@ -1,7 +1,7 @@
 package client.controllers;
 
 import client.handler.EventListener;
-import client.handler.implementation.TextHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -10,12 +10,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+@Slf4j
 @Data
 public class MainGameController implements Initializable {
     private int n;
@@ -26,7 +28,7 @@ public class MainGameController implements Initializable {
     private List<Text> textList = new ArrayList<>();
 
 
-    private TextHandler textHandler;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -53,19 +55,19 @@ public class MainGameController implements Initializable {
             gameScreen.getChildren().remove(n);
             utillText =new Text(keyEvent.getCharacter().toLowerCase());
             utillText.setFont(Font.font(35));
-            utillText.setStyle("-fx-stroke: red");
+            utillText.setStyle("-fx-stroke: #ff00c8");
             gameScreen.getChildren().add(n,utillText);
 
             n++;
 
-            System.out.println("Совпадение символа" + n);
+            log.info("Совпадение символа {}",  n);
         }
         if (textArray[n].equals(" ") && keyEvent.getCharacter().toString().toLowerCase().equals("space")) {
 
             n++;
-            System.out.println("Совпадение пробела" + n);
+            log.info("Совпадение пробела {}",  n);
         }
-        System.out.println("Следующая буква" +textArray[n]);
+        log.info("Следующая буква {}" ,textArray[n]);
 
     }
 

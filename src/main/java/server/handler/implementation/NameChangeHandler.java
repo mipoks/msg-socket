@@ -1,6 +1,7 @@
 package server.handler.implementation;
 
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
@@ -11,7 +12,7 @@ import server.protocol.Message;
 import server.protocol.Type;
 
 import java.io.IOException;
-
+@Slf4j
 public class NameChangeHandler implements Handler {
     private Server server;
 

@@ -7,12 +7,13 @@ import client.handler.Handler;
 import client.handler.EventListener;
 import client.protocol.Message;
 import client.protocol.Type;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-
+@Slf4j
 public class RoomConnectHandler implements Handler {
 
     private Client client;

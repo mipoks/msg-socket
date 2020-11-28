@@ -6,12 +6,13 @@ import client.logic.Client;
 import client.protocol.Message;
 import client.protocol.Type;
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-
+@Slf4j
 public class RivalNameChangeHandler implements Handler {
     private Client client;
     private ArrayList<EventListener> listeners;

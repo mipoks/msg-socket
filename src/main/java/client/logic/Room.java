@@ -1,7 +1,9 @@
 package client.logic;
 
-import java.io.Serializable;
+import lombok.extern.slf4j.Slf4j;
 
+import java.io.Serializable;
+@Slf4j
 public class Room implements Serializable {
     private String roomUnique;
     private boolean publicity;

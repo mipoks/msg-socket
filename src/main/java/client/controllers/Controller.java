@@ -9,10 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+@Slf4j
 public class Controller implements Initializable {
     @FXML
     TextField roomCode;
@@ -35,7 +36,7 @@ public class Controller implements Initializable {
     @FXML
     public void createRoom(){
 
-        System.out.println("Комнта создана");
+        log.info("Комнта создана");
         try {
             Message message = MessageCreater.createRoomCreateMsg();
             client.sendMessage(message);

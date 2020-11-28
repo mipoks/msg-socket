@@ -1,5 +1,8 @@
 package server.handler.implementation.helper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class GameTexter {
     public static String getText() {
         //ToDo возвращать текст рандомно
