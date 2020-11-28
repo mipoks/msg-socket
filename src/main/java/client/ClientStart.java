@@ -29,10 +29,12 @@ public class ClientStart extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/socketSemestr.fxml"));
-        Parent root = loader.load();
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/MainGame.fxml"));
+        Parent root = loader2.load();
+
         Controller controller =(Controller) loader.getController();
         Client client = new Client(InetAddress.getByName("127.0.0.1"),4888);
-        controller.setClient(client);
+        /*controller.setClient(client);*/
         client.connect();
 
         RoomCreateHandler roomCreateHandler = new RoomCreateHandler(client);
@@ -47,7 +49,7 @@ public class ClientStart extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-
+/*
         textStatus = (Text) scene.lookup("#textStatus");
         textField = (TextField)scene.lookup("#roomID1");//Селектор для id и fx:id , берёт первое вхождение, если совпадений несколько
         textField.setText("SomeText");
@@ -55,10 +57,10 @@ public class ClientStart extends Application {
         roomCreateHandler.addEventListener(roomCodePrinter);
 
         RoomConnectPrinter roomConnectPrinter = new RoomConnectPrinter(textStatus);
-        roomConnectHandler.addEventListener(roomConnectPrinter);
+        roomConnectHandler.addEventListener(roomConnectPrinter);*/
 
 
-
-        System.out.println(""+ textField.toString());
+/*
+        System.out.println(""+ textField.toString());*/
     }
 }
