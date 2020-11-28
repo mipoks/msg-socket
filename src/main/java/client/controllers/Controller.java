@@ -40,8 +40,6 @@ public class Controller implements Initializable {
         try {
             Message message = MessageCreater.createRoomCreateMsg();
             client.sendMessage(message);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,8 +50,6 @@ public class Controller implements Initializable {
         try {
             Message message = MessageCreater.createRoomConnectMsg(roomCode.getText());
             client.sendMessage(message);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -2,6 +2,7 @@ package client;
 
 import client.message.MessageCreater;
 import client.protocol.Message;
+import server.handler.implementation.helper.GameTexter;
 
 public class Main {
 
@@ -16,8 +17,7 @@ public class Main {
 //        client.registerListener(new RoomCreateHandler(client, clientWindow));
 //        client.start();
 
-        Message c = MessageCreater.createRoomCreateMsg();
-        System.out.println(32 & -4);
+//        System.out.println(GameTexter.getText());
 //            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
 //            Object object = objectInputStream.readObject();
 //        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("ff"));
