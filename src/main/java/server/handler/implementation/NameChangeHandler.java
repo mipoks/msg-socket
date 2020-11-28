@@ -1,9 +1,10 @@
 package server.handler.implementation;
 
+import javafx.util.Pair;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
-import server.handler.implementation.helper.ByteArrayGiver;
+import server.handler.implementation.helper.ObjectSerializer;
 import server.handler.implementation.helper.ObjectDeserializer;
 import server.protocol.Client;
 import server.protocol.Message;
@@ -21,20 +22,17 @@ public class NameChangeHandler implements Handler {
     @Override
     public void handleMessage(Client client, Message message) {
         try {
-            String oldName = client.getName();
-            client.setName((String)(ObjectDeserializer.deserialize(message.getData())));
+            client.setName((String)(ObjectDeserializer.fromByteArray(message.getData())));
 
-            message.setType(Type.NAME_CHANGE_ANSWER);
-            server.sendMessage(client, message);
+            Message msgAns = Message.createMessage(Type.NAME_CHANGE_ANSWER, message.getData());
+            server.sendMessage(client, msgAns);
 
             if (client.getRoom().isPresent()) {
-                String msg = oldName + " changed nickname to " + (String)(ObjectDeserializer.deserialize(message.getData()));
-                message.setData(ByteArrayGiver.toByteArray(msg));
+                msgAns.setData(ObjectSerializer.toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
+                msgAns.setType(Type.NAME_CHANGE);
                 client.getRoom().get().sendMessage(message);
             }
         } catch (ServerException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }

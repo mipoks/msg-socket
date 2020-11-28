@@ -2,9 +2,11 @@ package server;
 
 import server.exception.ServerException;
 import server.handler.Handler;
+import server.handler.implementation.helper.ObjectSerializer;
 import server.protocol.Client;
 import server.protocol.Message;
 import server.protocol.Room;
+import server.protocol.Type;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -59,6 +61,8 @@ public class Server {
 
     protected void handleConnection(Socket socket) throws ServerException{
         Client client = new Client(Client.generateName(), socket);
+        Message msgId = Message.createMessage(Type.CLIENT_ID, ObjectSerializer.toByteArray(new Integer(client.getId())));
+        sendMessage(client, msgId);
         threadPool.execute(new Runnable() {
             @Override
             public void run() {

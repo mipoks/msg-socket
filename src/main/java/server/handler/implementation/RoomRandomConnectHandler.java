@@ -3,7 +3,7 @@ package server.handler.implementation;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
-import server.handler.implementation.helper.ByteArrayGiver;
+import server.handler.implementation.helper.ObjectSerializer;
 import server.protocol.Client;
 import server.protocol.Message;
 import server.protocol.Room;
@@ -25,18 +25,16 @@ public class RoomRandomConnectHandler implements Handler {
             room.addClient(client);
             client.setRoom(room);
 
-            byte[] bytes = ByteArrayGiver.toByteArray("connected to room");
+            byte[] bytes = ObjectSerializer.toByteArray("connected to room");
             message.setType(Type.ROOM_CONNECT_RAND_ANSWER);
             message.setData(bytes);
             server.sendMessage(client, message);
 
-            bytes = ByteArrayGiver.toByteArray(client.getName() + " connected to room");
+            bytes = ObjectSerializer.toByteArray(client.getName() + " connected to room");
             message.setData(bytes);
             room.sendMessage(message);
         } catch (ServerException ex) {
             //Add some catch implementation
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

@@ -3,10 +3,9 @@ package server.handler.implementation;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
-import server.protocol.Client;
-import server.protocol.Message;
-import server.protocol.Room;
-import server.protocol.Type;
+import server.handler.implementation.helper.GameTexter;
+import server.handler.implementation.helper.ObjectSerializer;
+import server.protocol.*;
 
 public class GameStartHandler implements Handler {
     private Server server;
@@ -19,13 +18,21 @@ public class GameStartHandler implements Handler {
     public void handleMessage(Client client, Message message) {
         if (client.getRoom().isPresent()) {
             Room room = client.getRoom().get();
-            if (room.getRoomOwner().isPresent()) {
-                if (room.getRoomOwner().get() == client) {
+            if (room.getRoomOwner().isPresent() && room.getRoomOwner().get() == client) {
+                Game game = null;
+                if (Game.findByRoom(room).isPresent()) {
+                    Client winner = Game.findByRoom(room).get().getWinner();
+                    if (winner != null) {
+                        game = new Game(GameTexter.getText(), room);
+                    }
 
-                    //ToDo начать игру
-                    room.sendMessage(message);
-//                    message.setType(Type.GAME_START_ANSWER);
+                } else {
+                    game = new Game(GameTexter.getText(), room);
                 }
+                game.setStarted(true);
+                Message msg = Message.createMessage(Type.GAME_START_ANSWER,
+                        ObjectSerializer.toByteArray(game.getGameText()));
+                room.sendMessage(msg);
             }
         }
     }

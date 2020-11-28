@@ -3,7 +3,7 @@ package server.handler.implementation;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
-import server.handler.implementation.helper.ByteArrayGiver;
+import server.handler.implementation.helper.ObjectSerializer;
 import server.protocol.Client;
 import server.protocol.Message;
 import server.protocol.Room;
@@ -25,7 +25,7 @@ public class RoomCloseHandler implements Handler {
                 return;
             Room room = client.getRoom().get();
 
-            byte[] bytes = ByteArrayGiver.toByteArray(room.getRoomUniqueString());
+            byte[] bytes = ObjectSerializer.toByteArray(room.getRoomUniqueString());
 
             room.setPublicity(false);
             Message answer = Message.createMessage(Type.ROOM_CLOSE_ANSWER, bytes);
@@ -33,8 +33,6 @@ public class RoomCloseHandler implements Handler {
             server.sendMessage(client, answer);
         } catch (ServerException ex) {
             //Add some catch implementation
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

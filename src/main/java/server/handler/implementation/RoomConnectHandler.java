@@ -1,9 +1,10 @@
 package server.handler.implementation;
 
+import javafx.util.Pair;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
-import server.handler.implementation.helper.ByteArrayGiver;
+import server.handler.implementation.helper.ObjectSerializer;
 import server.handler.implementation.helper.ObjectDeserializer;
 import server.protocol.Client;
 import server.protocol.Message;
@@ -23,26 +24,28 @@ public class RoomConnectHandler implements Handler {
 
     public void handleMessage(Client client, Message message) {
         System.out.println("BLABALBAL");
-        System.out.println("KAKAKA" + (String)(ObjectDeserializer.deserialize(message.getData())));
+        System.out.println("KAKAKA" + (String)(ObjectDeserializer.fromByteArray(message.getData())));
         try {
             //ToDo обернуть new String() в try catch
 
-            String roomName = (String)(ObjectDeserializer.deserialize(message.getData()));
+            String roomName = (String)(ObjectDeserializer.fromByteArray(message.getData()));
             Optional<Room> room = Room.getRoomByUnique(roomName);
             if (!room.isPresent())
                 return;
             room.get().addClient(client);
             client.setRoom(room.get());
 
-            message.setType(Type.ROOM_CONNECT_ANSWER);
-            message.setData(ByteArrayGiver.toByteArray("connected to room"));
-            server.sendMessage(client, message);
-            message.setData(ByteArrayGiver.toByteArray(client.getName() + " connected to room"));
-            room.get().sendMessage(message);
+
+
+            Message msg = Message.createMessage(Type.ROOM_CONNECT, ObjectSerializer.toByteArray(
+                    new Pair<Integer, String>(client.getId(), client.getName())));
+            room.get().sendMessageExcept(client, msg);
+
+            msg.setType(Type.ROOM_CONNECT_ANSWER);
+            msg.setData(ObjectSerializer.toByteArray(new Integer(client.getId())));
+            server.sendMessage(client, msg);
         } catch (ServerException ex) {
             //Add some catch implementation
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

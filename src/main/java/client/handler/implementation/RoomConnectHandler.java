@@ -28,10 +28,10 @@ public class RoomConnectHandler implements Handler {
         try(ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(message.getData())) {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
-            if (object instanceof String) {
-                String text = (String) object;
+            if (object instanceof Integer) {
+                Integer id = (Integer) object; //you get your id after connecting the room
                 for (EventListener eventListener : listeners) {
-                    eventListener.onEventAction(text);
+                    eventListener.onEventAction(id);
                 }
             }
             objectInputStream.close();

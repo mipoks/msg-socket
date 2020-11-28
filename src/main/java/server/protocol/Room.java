@@ -6,15 +6,14 @@ import server.exception.ServerException;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
+import java.util.*;
 
 public class Room {
     public static final int ROOM_UNIQUE_LENGTH = 4;
     public static final int MAX_CLIENT = 1000;
 
-    private static ArrayList<Pair<String, Room>> uniqueString = new ArrayList<>();
+    //    private static ArrayList<Pair<String, Room>> uniqueString = new ArrayList<>();
+    private static HashMap<String, Room> uniqueString = new HashMap<>();
     private static final String CHARACTERS = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
 
     public synchronized static String createRoomUniqueString() {
@@ -23,24 +22,26 @@ public class Room {
             for (int i = 0; i < ROOM_UNIQUE_LENGTH; i++) {
                 text[i] = CHARACTERS.charAt((int) (Math.random() * CHARACTERS.length()));
             }
-        } while (getRoomByUnique(new String(text)) != null);
+        } while (getRoomByUnique(new String(text)).isPresent());
         return new String(text);
     }
 
     public static Optional<Room> getRoomByUnique(String roomUnique) {
         Room room = null;
-        for (Pair<String, Room> pair : uniqueString) {
-            if (pair.getKey().equals(roomUnique)) {
-                room = pair.getValue();
+        Set<String> keys = uniqueString.keySet();
+        for (String roomCode : keys) {
+            if (roomCode.equals(roomUnique)) {
+                room = uniqueString.get(roomCode);
+                break;
             }
         }
         return Optional.ofNullable(room);
     }
 
     public static Room getOpenRoom() {
-        for (int i = 0; i < uniqueString.size(); i++) {
-            Room room = uniqueString.get(i).getValue();
-            if (room.isPublicity() == true && room.getClientsCount() < Room.MAX_CLIENT) {
+        Collection<Room> rooms = uniqueString.values();
+        for (Room room : rooms) {
+            if (room.isPublicity() && room.getClientsCount() < Room.MAX_CLIENT) {
                 return room;
             }
         }
@@ -59,14 +60,14 @@ public class Room {
         this.roomUniqueString = roomUniqueString;
         this.clients = new ArrayList<>();
         this.publicity = true;
-        uniqueString.add(new Pair<>(roomUniqueString, this));
+        uniqueString.put(roomUniqueString, this);
     }
 
     public Room(String roomUniqueString, boolean publicity) {
         this.roomUniqueString = roomUniqueString;
         this.clients = new ArrayList<>();
         this.publicity = publicity;
-        uniqueString.add(new Pair<>(roomUniqueString, this));
+        uniqueString.put(roomUniqueString, this);
     }
 
     public Optional<Client> getRoomOwner() {
@@ -100,7 +101,6 @@ public class Room {
     }
 
     public void sendMessage(Message message) {
-
         byte[] rawMessage = Message.getBytes(message);
         for (Client client : clients) {
             try {
@@ -109,14 +109,28 @@ public class Room {
                 socket.getOutputStream().flush();
             } catch (IOException ex) {
                 ex.printStackTrace();
-//                throw new ServerException("Can't send message. To client: " + client, ex);
             }
         }
         System.out.println("SENDED TO " + clients.size() + " CLIENTS OF ROOM " + roomUniqueString);
-
     }
 
-    public void sendMessage(Client from, Message message) throws ServerException {
+    public void sendMessageExcept(Client except, Message message) {
+        byte[] rawMessage = Message.getBytes(message);
+        for (Client client : clients) {
+            if (!client.equals(except)) {
+                try {
+                    Socket socket = client.getSocket();
+                    socket.getOutputStream().write(rawMessage);
+                    socket.getOutputStream().flush();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        System.out.println("SENDED TO " + clients.size() + " CLIENTS OF ROOM " + roomUniqueString);
+    }
+
+    public void sendMessage(Client from, Message message) {
         byte[] rawMessage = Message.getBytes(message);
         if (clients.contains(from)) {
             for (Client client : clients) {

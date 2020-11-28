@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 
-public class RoomConnectPrinter implements EventListener<String> {
+public class RoomConnectPrinter implements EventListener<Integer> {
 
     private Text textStatus;
 
@@ -14,7 +14,7 @@ public class RoomConnectPrinter implements EventListener<String> {
     }
 
     @Override
-    public void onEventAction(String object) {
-        textStatus.setText(object);
+    public void onEventAction(Integer object) {
+        textStatus.setText(String.valueOf(object));
     }
 }
