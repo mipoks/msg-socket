@@ -15,7 +15,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 @Slf4j
 public class GamePlayHandler implements Handler {
-
+    private String theme;
     private Client client;
     private ArrayList<EventListener> listeners;
 

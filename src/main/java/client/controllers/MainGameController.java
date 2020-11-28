@@ -2,10 +2,12 @@ package client.controllers;
 
 import client.handler.EventListener;
 
+import client.visualizer.ThemeContext;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -20,6 +22,8 @@ import java.util.ResourceBundle;
 @Slf4j
 @Data
 public class MainGameController implements Initializable {
+    @FXML
+    private VBox body;
     private int n;
     private Text utillText;
     private  String[] textArray;
@@ -31,7 +35,7 @@ public class MainGameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        body.setStyle(ThemeContext.DEFAULT_THEME);
         textArray ="There is little text here".split("");
         n=0;
         Arrays.stream(textArray).forEach(x->{
@@ -47,7 +51,7 @@ public class MainGameController implements Initializable {
 
 
 
-        System.out.println(keyEvent.getCharacter().toString());
+        log.info(keyEvent.getCharacter().toString());
 
 
 
