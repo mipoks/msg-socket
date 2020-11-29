@@ -65,4 +65,5 @@ public class MessageCreater {
      public static Message createRoomConnectMsg(String room) throws IllegalAccessException {
         return Message.createMessage(Type.ROOM_CONNECT, serialize(room));
      }
+
 }

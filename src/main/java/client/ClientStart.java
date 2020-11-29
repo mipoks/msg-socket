@@ -7,6 +7,8 @@ import client.controllers.WinController;
 import client.handler.implementation.RoomConnectHandler;
 import client.handler.implementation.RoomCreateHandler;
 import client.logic.Client;
+import client.visualizer.RoomCodePrinter;
+import client.visualizer.RoomConnectPrinter;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -71,11 +73,16 @@ public class ClientStart extends Application {
 
 
             Scene gameScene = new Scene(mainGame);
-            primaryStage.setScene(gameScene);
+            primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
             primaryStage.show();
 
-
+            textField = (TextField) scene.lookup("#roomID");
+            RoomCodePrinter roomCodePrinter = new RoomCodePrinter(textField);
+            textStatus = (Text) scene.lookup("#textStatus");
+            RoomConnectPrinter roomConnectPrinter = new RoomConnectPrinter(textStatus);
+            roomConnectHandler.addEventListener(roomConnectPrinter);
+            roomCreateHandler.addEventListener(roomCodePrinter);
 
 
 
@@ -126,8 +133,6 @@ public class ClientStart extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
     }
 }

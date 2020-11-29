@@ -38,6 +38,9 @@ public class RivalNameChangeHandler implements Handler {
             e.printStackTrace();
         }
     }
+    public void addEventListener(EventListener eventListener) {
+        listeners.add(eventListener);
+    }
 
     @Override
     public int getType() {
