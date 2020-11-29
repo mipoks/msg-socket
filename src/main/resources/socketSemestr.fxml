@@ -97,10 +97,11 @@
                         <Font name="Century Gothic" size="12.0" />
                      </font>
                   </Label>
-                  <Button layoutX="17.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#createRoom" prefHeight="38.0" prefWidth="90.0" text="Create room" />
+                  <Button fx:id="demoGame" layoutX="115.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#startDemo" prefHeight="56.0" prefWidth="101.0" text="Start demo" />
                   <Button layoutX="11.0" layoutY="367.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="132.0" text="Play randomly" />
                   <RadioButton layoutX="112.0" layoutY="472.0" mnemonicParsing="false" text="Private Room" />
                   <Label layoutX="55.0" layoutY="426.0" text="or" />
+                  <Button layoutX="16.0" layoutY="298.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="90.0" text="Start Game" />
           </children>
         </AnchorPane>
         <ScrollPane prefHeight="500.0" prefWidth="443.0">

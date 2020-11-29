@@ -6,11 +6,13 @@ import client.protocol.Message;
 import client.visualizer.ThemeContext;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import lombok.Data;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +33,7 @@ public class Controller implements Initializable {
     private String theme;
     @Setter
     private Scene scene;
+    private Scene gameScene;
 
 
     @Override
@@ -68,5 +71,27 @@ public class Controller implements Initializable {
             ThemeContext.currentTheme =ThemeContext.DEFAULT_THEME;
             body.setStyle(ThemeContext.DEFAULT_THEME);
         }
+    }
+
+    public void startDemo(MouseEvent mouseEvent) {
+        Message message = null;
+        try {
+            Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+            log.info("сцена {}",scene);
+            primaryStage.setScene(gameScene);
+
+            message = MessageCreater.createRoomCreateMsg();
+            client.sendMessage(message);
+            message =MessageCreater.createStartGameMsg();
+            client.sendMessage(message);
+
+
+
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

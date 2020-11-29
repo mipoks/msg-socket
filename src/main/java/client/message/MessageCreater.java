@@ -57,13 +57,20 @@ public class MessageCreater {
         }
     }
 
-    public static Message createRoomCreateMsg() throws IllegalAccessException {
+    public static Message createRoomCreateMsg() throws IllegalAccessException {//Todo так низя!
         byte[] bytes = new byte[1];
         return Message.createMessage(Type.ROOM_CREATE, bytes);
      }
 
      public static Message createRoomConnectMsg(String room) throws IllegalAccessException {
         return Message.createMessage(Type.ROOM_CONNECT, serialize(room));
+     }
+     public static Message createStartGameMsg(){
+         try {
+             return Message.createMessage(Type.GAME_START,new byte[1]);
+         } catch (IllegalAccessException e) {
+             throw  new IllegalStateException(e);
+         }
      }
 
 }
