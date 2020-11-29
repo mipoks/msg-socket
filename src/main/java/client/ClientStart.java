@@ -22,6 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -30,6 +31,26 @@ public class ClientStart extends Application {
     public TextField textField;
     public Text textStatus;
     private int n;
+    private Parent root;
+    private Parent wint;
+    private Parent mainGame;
+    private Parent loose;
+    private  Controller controller;
+    private MainGameController controller1;
+    private  WinController controller3;
+    private  LostController controller4;
+    private  Client client;
+    private Scene scene;
+    private   FXMLLoader loader ;
+    private   FXMLLoader loader2;
+    private    FXMLLoader loader3;
+    private  FXMLLoader loader4;
+    private RoomCreateHandler roomCreateHandler;
+    private  RoomConnectHandler roomConnectHandler;
+    private RivalConnectHandler rivalConnectHandler;
+    private RoomCodePrinter roomCodePrinter;
+    private  RoomConnectPrinter roomConnectPrinter;
+    private  RivalPrinter rivalPrinter;
 
     public static void main(String[] args) {
         launch(args);
@@ -38,55 +59,54 @@ public class ClientStart extends Application {
     @Override
     public void start(Stage primaryStage)  {
         n=0;
-
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/socketSemestr.fxml"));
-        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/MainGame.fxml"));
-        FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/Win.fxml"));
-        FXMLLoader loader4 = new FXMLLoader(getClass().getResource("/lost.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/socketSemestr.fxml"));
+        loader2 = new FXMLLoader(getClass().getResource("/MainGame.fxml"));
+        loader3 = new FXMLLoader(getClass().getResource("/Win.fxml"));
+        loader4 = new FXMLLoader(getClass().getResource("/lost.fxml"));
 
         try {
-            loader4.load();
+            loose =loader4.load();
+            root = loader.load();
+            wint = loader3.load();
+            mainGame = loader2.load();
 
-            Parent root = loader.load();
-            Parent wint = loader3.load();
-            Parent mainGame = loader2.load();
 
-
-            Controller controller = loader.getController(); //manuController
-            MainGameController controller1 =loader2.getController();
-            WinController controller3 = loader3.getController();//win scene controller
-            LostController controller4 = loader4.getController();//loose scene controller
-            Scene scene = new Scene(root);
+            controller = loader.getController(); //manuController
+            controller1 =loader2.getController();
+            controller3 = loader3.getController();//win scene controller
+             controller4 = loader4.getController();//loose scene controller
+             scene = new Scene(root);
             controller.setScene(scene);
             controller3.setScene(scene);
             controller4.setScene(scene);
 
-            Client client = new Client(InetAddress.getByName("127.0.0.1"),4888);
+            client = new Client(InetAddress.getByName("127.0.0.1"),4888);
             controller.setClient(client);
             client.connect();
 
-            RoomCreateHandler roomCreateHandler = new RoomCreateHandler(client);
-            RoomConnectHandler roomConnectHandler = new RoomConnectHandler(client);
-            RivalConnectHandler rivalConnectHandler = new RivalConnectHandler(client);
+             roomCreateHandler = new RoomCreateHandler(client);
+             roomConnectHandler = new RoomConnectHandler(client);
+             rivalConnectHandler = new RivalConnectHandler(client);
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);
+            client.registerListener(rivalConnectHandler);
             client.start();
 
 
             Scene gameScene = new Scene(mainGame);
-            primaryStage.setScene(gameScene);
+            primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
             primaryStage.show();
 
 
             textField = (TextField) scene.lookup("#roomID");
-            RoomCodePrinter roomCodePrinter = new RoomCodePrinter(textField);
+            roomCodePrinter = new RoomCodePrinter(textField);
             textStatus = (Text) scene.lookup("#textStatus");
-            RoomConnectPrinter roomConnectPrinter = new RoomConnectPrinter(textStatus);
+            roomConnectPrinter = new RoomConnectPrinter(textStatus);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);
-            RivalPrinter rivalPrinter = new RivalPrinter(controller.getOpponentRow());//Выводит принтер в контроллер
+            log.info(" opponent row{}",controller.getOpponentRow());
+            rivalPrinter = new RivalPrinter(controller.getOpponentRow());//Выводит принтер в контроллер
             rivalConnectHandler.addEventListener(rivalPrinter);//каждый раз когда соперник подключился , отправит всем листенерам Pair
 
 
