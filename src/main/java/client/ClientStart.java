@@ -25,12 +25,12 @@ public class ClientStart extends Application {
     public TextField textField;
     public Text textStatus;
 
-    public static void main(String[] args) throws IOException, IllegalAccessException {
+    public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage)  {
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/socketSemestr.fxml"));
@@ -38,35 +38,47 @@ public class ClientStart extends Application {
         FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/Win.fxml"));
         FXMLLoader loader4 = new FXMLLoader(getClass().getResource("/lost.fxml"));
 
-        loader2.load();
-        loader4.load();
-        Parent root = loader.load();
-        Parent wint = loader3.load();
+        try {
+            loader4.load();
+            Parent mainGame = loader2.load();
+            Parent root = loader.load();
+            Parent wint = loader3.load();
 
 
-        Controller controller = loader.getController(); //manuController
-        WinController controller3 = loader3.getController();//win scene controller
-        LostController controller4 = loader4.getController();//loose scene controller
-        Scene scene = new Scene(root);
-        controller3.setScene(scene);
-        controller4.setScene(scene);
+            Controller controller = loader.getController(); //manuController
+            WinController controller3 = loader3.getController();//win scene controller
+            LostController controller4 = loader4.getController();//loose scene controller
+            Scene scene = new Scene(root);
+            controller.setScene(scene);
+            controller3.setScene(scene);
+            controller4.setScene(scene);
 
-        Client client = new Client(InetAddress.getByName("127.0.0.1"),4888);
-        controller.setClient(client);
-        client.connect();
+            Client client = new Client(InetAddress.getByName("127.0.0.1"),4888);
+            controller.setClient(client);
+            client.connect();
 
-        RoomCreateHandler roomCreateHandler = new RoomCreateHandler(client);
-        RoomConnectHandler roomConnectHandler = new RoomConnectHandler(client);
+            RoomCreateHandler roomCreateHandler = new RoomCreateHandler(client);
+            RoomConnectHandler roomConnectHandler = new RoomConnectHandler(client);
 
-        client.registerListener(roomConnectHandler);
-        client.registerListener(roomCreateHandler);
-        client.start();
+            client.registerListener(roomConnectHandler);
+            client.registerListener(roomCreateHandler);
+            client.start();
 
 
-        primaryStage.setScene(new Scene(wint));
-        primaryStage.centerOnScreen();
-        primaryStage.show();
-        controller.setScene(scene);
+            primaryStage.setScene(new Scene(mainGame));
+            primaryStage.centerOnScreen();
+            primaryStage.show();
+            wint.requestFocus();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
 /*
         textStatus = (Text) scene.lookup("#textStatus");
         textField = (TextField)scene.lookup("#roomID1");//Селектор для id и fx:id , берёт первое вхождение, если совпадений несколько

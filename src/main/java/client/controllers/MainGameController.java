@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -25,7 +26,8 @@ import java.util.ResourceBundle;
 @Slf4j
 @Data
 public class MainGameController implements Initializable {
-
+    @FXML
+    private Text tappedChar;
     @FXML
     private VBox body;
     private int n;
@@ -41,7 +43,8 @@ public class MainGameController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-/*        body.setStyle(ThemeContext.DEFAULT_THEME);
+        body.setStyle(ThemeContext.DEFAULT_THEME);
+
         textArray ="There is little text here".split("");
         n=0;
         Arrays.stream(textArray).forEach(x->{
@@ -50,14 +53,17 @@ public class MainGameController implements Initializable {
             textList.add(utillText);
             gameScreen.getChildren().add(utillText);
         });
-        System.out.println(Arrays.toString(textArray));*/
+        System.out.println(Arrays.toString(textArray));
+        ThemeContext.checkTheme(body);
+        log.info("Vbox body :{}",body);
+
     }
 
     public void getTypedCode(KeyEvent keyEvent) {
 
+        log.info("Code typed");
 
-
-        log.info(keyEvent.getCharacter().toString());
+        log.info("Taked code{}",keyEvent.getCharacter().toString());
 
 
 
@@ -69,6 +75,7 @@ public class MainGameController implements Initializable {
             utillText.setStyle("-fx-stroke: #ff00c8");
             log.info(utillText.getStyle());
             gameScreen.getChildren().add(n,utillText);
+            tappedChar.setText(utillText.getText());
 
             n++;
 
@@ -84,4 +91,35 @@ public class MainGameController implements Initializable {
     }
 
 
+    public void takeTypedCode(KeyEvent keyEvent) {
+        log.info("Code typed");
+        log.info("takedCode{}",keyEvent.getCharacter());
+
+
+
+        if (keyEvent.getCharacter().toLowerCase().equals(textArray[n].toLowerCase())) {
+            gameScreen.getChildren().remove(n);
+            utillText =new Text(keyEvent.getCharacter().toLowerCase());
+            utillText.setFont(Font.font(35));
+
+            utillText.setStyle("-fx-stroke: #ff00c8");
+            log.info(utillText.getStyle());
+            gameScreen.getChildren().add(n,utillText);
+            tappedChar.setText(utillText.getText());
+
+            n++;
+
+            log.info("Совпадение символа {}",  n);
+        }
+        if (textArray[n].equals(" ") && keyEvent.getCharacter().toString().toLowerCase().equals("space")) {
+
+            n++;
+            log.info("Совпадение пробела {}",  n);
+        }
+        log.info("Следующая буква {}" ,textArray[n]);
+    }
+
+    public void checkSensor(MouseEvent mouseEvent) {
+        log.info("Sensor mouse checked");
+    }
 }
