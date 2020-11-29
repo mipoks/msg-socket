@@ -2,18 +2,19 @@ package client;
 
 import client.controllers.Controller;
 import client.controllers.LostController;
+import client.controllers.MainGameController;
 import client.controllers.WinController;
 import client.handler.implementation.RoomConnectHandler;
 import client.handler.implementation.RoomCreateHandler;
 import client.logic.Client;
-import client.visualizer.RoomCodePrinter;
-import client.visualizer.RoomConnectPrinter;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ import java.net.InetAddress;
 public class ClientStart extends Application {
     public TextField textField;
     public Text textStatus;
+    private int n;
 
     public static void main(String[] args) {
         launch(args);
@@ -31,6 +33,7 @@ public class ClientStart extends Application {
 
     @Override
     public void start(Stage primaryStage)  {
+        n=0;
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/socketSemestr.fxml"));
@@ -40,12 +43,14 @@ public class ClientStart extends Application {
 
         try {
             loader4.load();
-            Parent mainGame = loader2.load();
+
             Parent root = loader.load();
             Parent wint = loader3.load();
+            Parent mainGame = loader2.load();
 
 
             Controller controller = loader.getController(); //manuController
+            MainGameController controller1 =loader2.getController();
             WinController controller3 = loader3.getController();//win scene controller
             LostController controller4 = loader4.getController();//loose scene controller
             Scene scene = new Scene(root);
@@ -65,10 +70,56 @@ public class ClientStart extends Application {
             client.start();
 
 
-            primaryStage.setScene(new Scene(mainGame));
+            Scene gameScene = new Scene(mainGame);
+            primaryStage.setScene(gameScene);
             primaryStage.centerOnScreen();
             primaryStage.show();
-            wint.requestFocus();
+
+
+
+
+
+                 //заплатка Todo разобраться с плохим контроллером
+           try {
+               gameScene.setOnKeyTyped(new EventHandler<KeyEvent>() {
+                   @Override
+                   public void handle(KeyEvent keyEvent) {
+
+                       log.info("Code typed");
+                       System.out.println("code");
+
+                       log.info("Taked code{}", keyEvent.getCharacter().toString());
+
+
+                       if (keyEvent.getCharacter().toLowerCase().equals(controller1.getTextArray()[n].toLowerCase())) {
+                           controller1.getGameScreen().getChildren().remove(n);
+                           controller1.setUtillText(new Text(keyEvent.getCharacter().toLowerCase()));
+                           controller1.getUtillText().setFont(Font.font(35));
+
+                           controller1.getUtillText().setStyle("-fx-stroke: #ff00c8");
+                           log.info(controller1.getUtillText().getStyle());
+                           controller1.getGameScreen().getChildren().add(n, controller1.getUtillText());
+                           controller1.getTappedChar().setText(controller1.getUtillText().getText());
+
+                           n++;
+
+                           log.info("Совпадение символа {}", n);
+                       }
+                       if (controller1.getTextArray()[n].equals(" ") && keyEvent.getCharacter().toString().toLowerCase().equals("space")) {
+
+                           n++;
+                           log.info("Совпадение пробела {}", n);
+                       }
+                       log.info("Следующая буква {}", controller1.getTextArray()[n]);
+
+
+                   }
+               });
+           }catch (Exception e){
+               //Игрок прнажимал весь текст
+               System.out.println(" Игрок пронажимал весь текст");
+           }
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,19 +129,5 @@ public class ClientStart extends Application {
 
 
 
-
-/*
-        textStatus = (Text) scene.lookup("#textStatus");
-        textField = (TextField)scene.lookup("#roomID1");//Селектор для id и fx:id , берёт первое вхождение, если совпадений несколько
-        textField.setText("SomeText");
-        RoomCodePrinter roomCodePrinter = new RoomCodePrinter(textField);
-        roomCreateHandler.addEventListener(roomCodePrinter);
-
-        RoomConnectPrinter roomConnectPrinter = new RoomConnectPrinter(textStatus);
-        roomConnectHandler.addEventListener(roomConnectPrinter);*/
-
-
-/*
-        System.out.println(""+ textField.toString());*/
     }
 }

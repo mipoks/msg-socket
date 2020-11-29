@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.net.URL;
@@ -59,9 +60,13 @@ public class MainGameController implements Initializable {
 
     }
 
-    public void getTypedCode(KeyEvent keyEvent) {
+    public void checkSensor(MouseEvent mouseEvent) {
+        log.info("Sensor mouse checked");
+    }
 
-        log.info("Code typed");
+    public void handleTypedCode(KeyEvent keyEvent) {
+      /*  log.info("Code typed");
+        System.out.println("code");
 
         log.info("Taked code{}",keyEvent.getCharacter().toString());
 
@@ -86,40 +91,6 @@ public class MainGameController implements Initializable {
             n++;
             log.info("Совпадение пробела {}",  n);
         }
-        log.info("Следующая буква {}" ,textArray[n]);
-
-    }
-
-
-    public void takeTypedCode(KeyEvent keyEvent) {
-        log.info("Code typed");
-        log.info("takedCode{}",keyEvent.getCharacter());
-
-
-
-        if (keyEvent.getCharacter().toLowerCase().equals(textArray[n].toLowerCase())) {
-            gameScreen.getChildren().remove(n);
-            utillText =new Text(keyEvent.getCharacter().toLowerCase());
-            utillText.setFont(Font.font(35));
-
-            utillText.setStyle("-fx-stroke: #ff00c8");
-            log.info(utillText.getStyle());
-            gameScreen.getChildren().add(n,utillText);
-            tappedChar.setText(utillText.getText());
-
-            n++;
-
-            log.info("Совпадение символа {}",  n);
-        }
-        if (textArray[n].equals(" ") && keyEvent.getCharacter().toString().toLowerCase().equals("space")) {
-
-            n++;
-            log.info("Совпадение пробела {}",  n);
-        }
-        log.info("Следующая буква {}" ,textArray[n]);
-    }
-
-    public void checkSensor(MouseEvent mouseEvent) {
-        log.info("Sensor mouse checked");
+        log.info("Следующая буква {}" ,textArray[n]);*/
     }
 }
