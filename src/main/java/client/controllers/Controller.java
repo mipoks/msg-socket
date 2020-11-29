@@ -10,13 +10,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import lombok.Data;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 @Slf4j
+@Data
 public class Controller implements Initializable {
+    @FXML
+    private Text opponentRow;
     @FXML
     private VBox body;
     @FXML

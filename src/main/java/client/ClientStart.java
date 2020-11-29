@@ -4,9 +4,11 @@ import client.controllers.Controller;
 import client.controllers.LostController;
 import client.controllers.MainGameController;
 import client.controllers.WinController;
+import client.handler.implementation.RivalConnectHandler;
 import client.handler.implementation.RoomConnectHandler;
 import client.handler.implementation.RoomCreateHandler;
 import client.logic.Client;
+import client.visualizer.RivalPrinter;
 import client.visualizer.RoomCodePrinter;
 import client.visualizer.RoomConnectPrinter;
 import javafx.application.Application;
@@ -66,16 +68,17 @@ public class ClientStart extends Application {
 
             RoomCreateHandler roomCreateHandler = new RoomCreateHandler(client);
             RoomConnectHandler roomConnectHandler = new RoomConnectHandler(client);
-
+            RivalConnectHandler rivalConnectHandler = new RivalConnectHandler(client);
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);
             client.start();
 
 
             Scene gameScene = new Scene(mainGame);
-            primaryStage.setScene(scene);
+            primaryStage.setScene(gameScene);
             primaryStage.centerOnScreen();
             primaryStage.show();
+
 
             textField = (TextField) scene.lookup("#roomID");
             RoomCodePrinter roomCodePrinter = new RoomCodePrinter(textField);
@@ -83,7 +86,8 @@ public class ClientStart extends Application {
             RoomConnectPrinter roomConnectPrinter = new RoomConnectPrinter(textStatus);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);
-
+            RivalPrinter rivalPrinter = new RivalPrinter(controller.getOpponentRow());//Выводит принтер в контроллер
+            rivalConnectHandler.addEventListener(rivalPrinter);//каждый раз когда соперник подключился , отправит всем листенерам Pair
 
 
                  //заплатка Todo разобраться с плохим контроллером
@@ -133,6 +137,8 @@ public class ClientStart extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
 
     }
 }
