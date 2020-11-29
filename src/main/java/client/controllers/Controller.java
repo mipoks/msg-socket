@@ -6,6 +6,7 @@ import client.protocol.Message;
 import client.visualizer.ThemeContext;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -23,6 +24,8 @@ public class Controller implements Initializable {
     @Setter
     private Client client;
     private String theme;
+    @Setter
+    private Scene scene;
 
 
     @Override

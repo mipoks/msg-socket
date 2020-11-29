@@ -6,6 +6,8 @@ import client.visualizer.ThemeContext;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -14,6 +16,7 @@ import javafx.scene.text.TextFlow;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +25,7 @@ import java.util.ResourceBundle;
 @Slf4j
 @Data
 public class MainGameController implements Initializable {
+
     @FXML
     private VBox body;
     private int n;
@@ -34,8 +38,10 @@ public class MainGameController implements Initializable {
 
 
     @Override
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        body.setStyle(ThemeContext.DEFAULT_THEME);
+
+/*        body.setStyle(ThemeContext.DEFAULT_THEME);
         textArray ="There is little text here".split("");
         n=0;
         Arrays.stream(textArray).forEach(x->{
@@ -44,7 +50,7 @@ public class MainGameController implements Initializable {
             textList.add(utillText);
             gameScreen.getChildren().add(utillText);
         });
-        System.out.println(Arrays.toString(textArray));
+        System.out.println(Arrays.toString(textArray));*/
     }
 
     public void getTypedCode(KeyEvent keyEvent) {
@@ -59,7 +65,9 @@ public class MainGameController implements Initializable {
             gameScreen.getChildren().remove(n);
             utillText =new Text(keyEvent.getCharacter().toLowerCase());
             utillText.setFont(Font.font(35));
+
             utillText.setStyle("-fx-stroke: #ff00c8");
+            log.info(utillText.getStyle());
             gameScreen.getChildren().add(n,utillText);
 
             n++;
