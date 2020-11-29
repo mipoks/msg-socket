@@ -13,6 +13,7 @@ import server.protocol.Room;
 import server.protocol.Type;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Optional;
 @Slf4j
 public class RoomConnectHandler implements Handler {
@@ -30,9 +31,13 @@ public class RoomConnectHandler implements Handler {
             //ToDo обернуть new String() в try catch
 
             String roomName = (String)(ObjectDeserializer.fromByteArray(message.getData()));
+            System.out.println(roomName + " ROOM ON1");
             Optional<Room> room = Room.getRoomByUnique(roomName);
-            if (!room.isPresent())
+            if (!room.isPresent()) {
+                System.out.println(roomName + " ROOM ON2");
                 return;
+            }
+            System.out.println(roomName + " ROOM ON3");
             room.get().addClient(client);
             client.setRoom(room.get());
 
@@ -40,11 +45,21 @@ public class RoomConnectHandler implements Handler {
 
             Message msg = Message.createMessage(Type.ROOM_CONNECT, ObjectSerializer.toByteArray(
                     new Pair<Integer, String>(client.getId(), client.getName())));
+            System.out.println(roomName + " ROOM ON4");
             room.get().sendMessageExcept(client, msg);
 
             msg.setType(Type.ROOM_CONNECT_ANSWER);
             msg.setData(ObjectSerializer.toByteArray(new Integer(client.getId())));
             server.sendMessage(client, msg);
+            Collection<Client> clients = room.get().getClients();
+            msg.setType(Type.ROOM_CONNECT);
+            for (Client client1 : clients) {
+                if (!client.equals(client1)) {
+                    msg.setData(ObjectSerializer.toByteArray(
+                            new Pair<Integer, String>(client1.getId(), client1.getName())));
+                    server.sendMessage(client, msg);
+                }
+            }
         } catch (ServerException ex) {
             //Add some catch implementation
         }

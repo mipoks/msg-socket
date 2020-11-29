@@ -70,6 +70,14 @@ public class Room {
         uniqueString.put(roomUniqueString, this);
     }
 
+    public Collection<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(ArrayList<Client> clients) {
+        this.clients = clients;
+    }
+
     public Optional<Client> getRoomOwner() {
         Client client = null;
         if (clients.size() > 0) {
@@ -119,6 +127,7 @@ public class Room {
         for (Client client : clients) {
             if (!client.equals(except)) {
                 try {
+                    System.out.println("SENEDEDED");
                     Socket socket = client.getSocket();
                     socket.getOutputStream().write(rawMessage);
                     socket.getOutputStream().flush();
