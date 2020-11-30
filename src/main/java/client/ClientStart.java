@@ -4,10 +4,12 @@ import client.controllers.Controller;
 import client.controllers.LostController;
 import client.controllers.MainGameController;
 import client.controllers.WinController;
+import client.handler.implementation.GameStartHandler;
 import client.handler.implementation.RivalConnectHandler;
 import client.handler.implementation.RoomConnectHandler;
 import client.handler.implementation.RoomCreateHandler;
 import client.logic.Client;
+import client.visualizer.GameTextPrinter;
 import client.visualizer.RivalPrinter;
 import client.visualizer.RoomCodePrinter;
 import client.visualizer.RoomConnectPrinter;
@@ -48,9 +50,12 @@ public class ClientStart extends Application {
     private RoomCreateHandler roomCreateHandler;
     private  RoomConnectHandler roomConnectHandler;
     private RivalConnectHandler rivalConnectHandler;
+    private GameStartHandler gameStartHandler;
     private RoomCodePrinter roomCodePrinter;
     private  RoomConnectPrinter roomConnectPrinter;
     private  RivalPrinter rivalPrinter;
+    private GameTextPrinter gameTextPrinter;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -72,7 +77,7 @@ public class ClientStart extends Application {
 
 
             controller = loader.getController(); //manuController
-            controller1 =loader2.getController();
+            controller1 =loader2.getController();//MainGame controller
             controller3 = loader3.getController();//win scene controller
              controller4 = loader4.getController();//loose scene controller
              scene = new Scene(root);
@@ -87,18 +92,21 @@ public class ClientStart extends Application {
              roomCreateHandler = new RoomCreateHandler(client);
              roomConnectHandler = new RoomConnectHandler(client);
              rivalConnectHandler = new RivalConnectHandler(client);
+             gameStartHandler = new GameStartHandler(client);
+
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);
             client.registerListener(rivalConnectHandler);
+            client.registerListener(gameStartHandler);
             client.start();
 
 
             Scene gameScene = new Scene(mainGame);
-            primaryStage.setScene(scene);
+            primaryStage.setScene(new Scene(wint));
             primaryStage.centerOnScreen();
             primaryStage.show();
-
-
+            controller.setGameScene(gameScene);
+            gameTextPrinter = new GameTextPrinter();
             textField = (TextField) scene.lookup("#roomID");
             roomCodePrinter = new RoomCodePrinter(textField);
             textStatus = (Text) scene.lookup("#textStatus");

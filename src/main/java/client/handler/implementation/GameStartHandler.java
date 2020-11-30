@@ -1,11 +1,14 @@
 package client.handler.implementation;
 
+
+
 import client.handler.EventListener;
+import client.handler.Handler;
 import client.logic.Client;
+import client.protocol.Message;
+import client.protocol.Type;
 import lombok.extern.slf4j.Slf4j;
-import server.handler.Handler;
-import server.protocol.Message;
-import server.protocol.Type;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -22,7 +25,7 @@ public class GameStartHandler implements Handler {
     }
 
     @Override
-    public void handleMessage(server.protocol.Client client, Message message) {
+    public void handleMessage( Message message) {
         try(ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(message.getData())) {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
@@ -40,6 +43,8 @@ public class GameStartHandler implements Handler {
     public void addEventListener(EventListener eventListener) {
         listeners.add(eventListener);
     }
+
+
 
     @Override
     public int getType() {
