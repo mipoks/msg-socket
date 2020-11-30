@@ -67,11 +67,13 @@ public class Game {
             if (cchar.charAt(0) == gameText.charAt(num + 1))
                 gameState.put(client, ++num);
             if (num == gameText.length()) {
+
+                client.setEndTime(new Date());
+                onClientEndGame(client);
                 if (winner == null) {
                     winner = client;
-                    onWinnerSetted();
+                    return num + 1;
                 }
-                client.setEndTime(new Date());
             }
         } else {
             if (cchar.charAt(0) == gameText.charAt(0)) {
@@ -94,8 +96,8 @@ public class Game {
         listeners.add(eventListener);
     }
 
-    private void onWinnerSetted() {
+    private void onClientEndGame(Client client) {
         for (EventListener eventListener : listeners)
-            eventListener.onEventAction(winner);
+            eventListener.onEventAction(client);
     }
 }

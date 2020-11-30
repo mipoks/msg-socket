@@ -28,6 +28,7 @@ public class RoomCreateHandler implements Handler {
             Room room = new Room(Room.createRoomUniqueString());
             log.info("WE ARE CREATING ROOM3");
             room.addClient(client);
+            client.setRoom(room);
             log.info("WE ARE CREATING ROOM4");
 
             log.info("room.getRoomUniqueString() result :  {}",room.getRoomUniqueString());

@@ -31,6 +31,7 @@ public class GameStartHandler implements Handler {
             Object object = objectInputStream.readObject();
             if (object instanceof String) {
                 String text = (String) object; //Text of game
+                System.out.println(text);
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(text);
                 }

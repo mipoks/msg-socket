@@ -36,7 +36,7 @@ public class GamePlayHandler implements Handler {
                     ObjectSerializer.toByteArray(new Pair<Pair<Integer, String>, Integer>
                             (new Pair<Integer, String>(client.getId(), client.getName()), ans)));
             room.sendMessage(msg);
-            if (ans == optionalGame.get().getGameText().length()) {
+            if (ans == optionalGame.get().getGameText().length() + 1) {
                 Message msgGameEnd = Message.createMessage(Type.GAME_END, ObjectSerializer.
                         toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
                 room.sendMessage(msgGameEnd);
