@@ -1,10 +1,8 @@
 package server.protocol;
 
-import javafx.util.Pair;
-import server.exception.ServerException;
+import server.handler.EventListener;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.Socket;
 import java.util.*;
 
@@ -55,7 +53,6 @@ public class Room {
     private String roomUniqueString;
     private ArrayList<Client> clients;
     private boolean publicity;
-
     public Room(String roomUniqueString) {
         this.roomUniqueString = roomUniqueString;
         this.clients = new ArrayList<>();

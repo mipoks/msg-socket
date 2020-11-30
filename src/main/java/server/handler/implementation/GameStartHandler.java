@@ -30,7 +30,7 @@ public class GameStartHandler implements Handler {
                 } else {
                     game = new Game(GameTexter.getText(), room);
                 }
-                game.setStarted(true);
+                game.start();
                 Message msg = Message.createMessage(Type.GAME_START_ANSWER,
                         ObjectSerializer.toByteArray(game.getGameText()));
                 room.sendMessage(msg);
