@@ -4,10 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import server.handler.EventListener;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 public class Game {
@@ -55,6 +52,10 @@ public class Game {
 
     public void start() {
         this.started = false;
+        Collection<Client> clients = room.getClients();
+        for (Client client : clients) {
+            client.setStartTime(new Date());
+        }
     }
 
     public int save(Client client, String cchar) {
@@ -66,8 +67,11 @@ public class Game {
             if (cchar.charAt(0) == gameText.charAt(num + 1))
                 gameState.put(client, ++num);
             if (num == gameText.length()) {
-                winner = client;
-                onWinnerSetted();
+                if (winner == null) {
+                    winner = client;
+                    onWinnerSetted();
+                }
+                client.setEndTime(new Date());
             }
         } else {
             if (cchar.charAt(0) == gameText.charAt(0)) {

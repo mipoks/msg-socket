@@ -40,13 +40,10 @@ public class MainGameController implements Initializable {
 
 
 
-    @Override
-    @FXML
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public void prepare(String text){
         body.setStyle(ThemeContext.DEFAULT_THEME);
 
-        textArray ="There is little text here".split("");
+        textArray =text.split("");
         n=0;
         Arrays.stream(textArray).forEach(x->{
             utillText = new Text(x);
@@ -57,6 +54,15 @@ public class MainGameController implements Initializable {
         System.out.println(Arrays.toString(textArray));
         ThemeContext.checkTheme(body);
         log.info("Vbox body :{}",body);
+    }
+
+
+
+    @Override
+    @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
 
     }
 

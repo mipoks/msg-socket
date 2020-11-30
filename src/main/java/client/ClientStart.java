@@ -102,20 +102,25 @@ public class ClientStart extends Application {
 
 
             Scene gameScene = new Scene(mainGame);
-            primaryStage.setScene(new Scene(wint));
+            primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
             primaryStage.show();
             controller.setGameScene(gameScene);
-            gameTextPrinter = new GameTextPrinter();
+           /* gameTextPrinter = new GameTextPrinter();*/
+
             textField = (TextField) scene.lookup("#roomID");
-            roomCodePrinter = new RoomCodePrinter(textField);
             textStatus = (Text) scene.lookup("#textStatus");
+            roomCodePrinter = new RoomCodePrinter(textField);
             roomConnectPrinter = new RoomConnectPrinter(textStatus);
+            gameTextPrinter = new GameTextPrinter(controller1);
+            rivalPrinter = new RivalPrinter(controller.getOpponentRow());//Выводит принтер в контроллер
+
+            gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);
-            log.info(" opponent row{}",controller.getOpponentRow());
-            rivalPrinter = new RivalPrinter(controller.getOpponentRow());//Выводит принтер в контроллер
             rivalConnectHandler.addEventListener(rivalPrinter);//каждый раз когда соперник подключился , отправит всем листенерам Pair
+
+            log.info(" opponent row{}",controller.getOpponentRow());
 
 
                  //заплатка Todo разобраться с плохим контроллером

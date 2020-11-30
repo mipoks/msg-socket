@@ -2,6 +2,7 @@ package server.protocol;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Date;
 import java.net.Socket;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,6 +13,9 @@ public class Client {
     private int id;
     private Socket socket;
     private Room room;
+
+    private Date startTime;
+    private Date endTime;
 
     public Client(String name, Socket socket, Room room) {
         this.name = name;
@@ -24,6 +28,22 @@ public class Client {
         this.name = name;
         this.id = idCounter++;
         this.socket = socket;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setStartTime(Date date) {
+        startTime = date;
+    }
+
+    public void setEndTime(Date date) {
+        endTime = date;
     }
 
     public Optional<Room> getRoom() {
