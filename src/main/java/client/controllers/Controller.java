@@ -62,10 +62,18 @@ public class Controller implements Initializable {
 
 
     public void sendConnect(MouseEvent mouseEvent) {
+        log.info("connect sended");
         try {
-            log.info(roomCode.getText());
+
             Message message = MessageCreater.createRoomConnectMsg(roomCode.getText());
+            log.info("message text {}",roomCode.getText());
+
             client.sendMessage(message);
+            Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+            log.info("сцена {}",gameScene);
+            primaryStage.setScene(gameScene);
+            gameScene.getRoot().requestFocus();
+            log.info("Is focused?{}",gameScene.getRoot().isFocused());
 
 
 

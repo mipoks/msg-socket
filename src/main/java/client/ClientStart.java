@@ -116,9 +116,10 @@ public class ClientStart extends Application {
             textField = (TextField) scene.lookup("#roomCode");
            /* textStatus = (Text) scene.lookup("#textStatus");*/
             roomCodePrinter = new RoomCodePrinter(textField);
-            /*roomConnectPrinter = new RoomConnectPrinter(textStatus);*/
+            log.info("Имя геймера с контроллера игры{}",controller1.getGamerTwoName().getText());
+            roomConnectPrinter = new RoomConnectPrinter(controller1.getGamerOneName());
             gameTextPrinter = new GameTextPrinter(controller1);
-            rivalPrinter = new RivalPrinter(controller.getOpponentRow());//Выводит принтер в контроллер
+            rivalPrinter = new RivalPrinter(controller1.getGamerTwoName());//Выводит принтер в контроллер
 
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);

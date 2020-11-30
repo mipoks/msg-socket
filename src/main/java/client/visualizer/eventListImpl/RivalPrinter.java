@@ -7,11 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class RivalPrinter implements EventListener<Pair> {
-    private Text text;
+    private volatile Text text;
     public RivalPrinter(Text text){
         log.info("Hello from rival printer ");
         this.text=text;
     }
+
     @Override
     public void onEventAction(Pair object) {
         log.info("Hello from rival printer METHOD");
