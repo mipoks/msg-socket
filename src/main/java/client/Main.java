@@ -1,9 +1,5 @@
 package client;
 
-import client.message.MessageCreater;
-import client.protocol.Message;
-import server.handler.implementation.helper.GameTexter;
-
 public class Main {
 
     private static final String HOST = "127.0.0.1";

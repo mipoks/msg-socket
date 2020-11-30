@@ -4,12 +4,15 @@ import client.controllers.Controller;
 import client.controllers.LostController;
 import client.controllers.MainGameController;
 import client.controllers.WinController;
-import client.handler.implementation.GameStartHandler;
-import client.handler.implementation.RivalConnectHandler;
-import client.handler.implementation.RoomConnectHandler;
-import client.handler.implementation.RoomCreateHandler;
+import client.handler.handlerImpl.GameStartHandler;
+import client.handler.handlerImpl.RivalConnectHandler;
+import client.handler.handlerImpl.RoomConnectHandler;
+import client.handler.handlerImpl.RoomCreateHandler;
 import client.logic.Client;
-import client.visualizer.*;
+import client.visualizer.eventListImpl.GameTextPrinter;
+import client.visualizer.eventListImpl.RivalPrinter;
+import client.visualizer.eventListImpl.RoomCodePrinter;
+import client.visualizer.eventListImpl.RoomConnectPrinter;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -17,12 +20,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -30,7 +31,6 @@ import java.net.InetAddress;
 public class ClientStart extends Application {
     public TextField textField;
     public Text textStatus;
-    private Text utilText;
     private int n;
     private Parent root;
     private Parent wint;
@@ -140,19 +140,12 @@ public class ClientStart extends Application {
                            controller1.getUtillText().setFont(Font.font(35));
 
                            controller1.getUtillText().setStyle("-fx-stroke: #ff00c8");
-
                            log.info(controller1.getUtillText().getStyle());
-                           utilText =controller1.getUtillText();
                            controller1.getGameScreen().getChildren().add(n, controller1.getUtillText());
-
-                           if(ThemeContext.currentTheme.equals(ThemeContext.DARK_THEME)){
-                               utilText.setStyle("-fx-stroke: #ffffff");
-                               controller1.getTappedChar().setText(utilText.getText());
-                           }else { controller1.getTappedChar().setText(utilText.getText());}
-
+                           controller1.getTappedChar().setText(controller1.getUtillText().getText());
 
                            n++;
-                           controller1.getUtillText().setStyle("-fx-stroke: #ff00c8");
+
                            log.info("Совпадение символа {}", n);
                        }
                        if (controller1.getTextArray()[n].equals(" ") && keyEvent.getCharacter().toString().toLowerCase().equals("space")) {
@@ -160,13 +153,12 @@ public class ClientStart extends Application {
                            n++;
                            log.info("Совпадение пробела {}", n);
                        }
-                       if (n==controller1.getTextArray().length){primaryStage.setScene(new Scene(wint));primaryStage.show();}
                        log.info("Следующая буква {}", controller1.getTextArray()[n]);
 
 
                    }
                });
-           }catch (IndexOutOfBoundsException e){
+           }catch (Exception e){
                //Игрок прнажимал весь текст
                System.out.println(" Игрок пронажимал весь текст");
            }

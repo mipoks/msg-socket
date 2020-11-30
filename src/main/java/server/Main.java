@@ -2,7 +2,7 @@ package server;
 
 
 import server.exception.ServerException;
-import server.handler.implementation.*;
+import server.handler.handlerImpl.*;
 
 public class Main {
     public static void main(String[] args) throws ServerException {

@@ -3,7 +3,7 @@ package server;
 import lombok.extern.slf4j.Slf4j;
 import server.exception.ServerException;
 import server.handler.Handler;
-import server.handler.implementation.helper.ObjectSerializer;
+import server.handler.handlerImpl.helper.ObjectSerializer;
 import server.protocol.Client;
 import server.protocol.Message;
 import server.protocol.Room;
