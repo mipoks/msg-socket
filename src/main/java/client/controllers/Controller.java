@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 @Slf4j
 @Data
 public class Controller implements Initializable {
+
     @FXML
     private Text opponentRow;
     @FXML
@@ -41,15 +42,22 @@ public class Controller implements Initializable {
         theme="light";
     }
     @FXML
-    public void createRoom(){
+    public void createRoom(MouseEvent mouseEvent){
 
         log.info("Комнта создана");
         try {
             Message message = MessageCreater.createRoomCreateMsg();
+            Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+            log.info("сцена {}",gameScene);
+            primaryStage.setScene(gameScene);
+            gameScene.getRoot().requestFocus();
+            log.info("Is focused?{}",gameScene.getRoot().isFocused());
             client.sendMessage(message);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 
 
@@ -57,6 +65,10 @@ public class Controller implements Initializable {
         try {
             Message message = MessageCreater.createRoomConnectMsg(roomCode.getText());
             client.sendMessage(message);
+
+
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

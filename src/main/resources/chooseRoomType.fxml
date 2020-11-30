@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="body" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.Controller">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -71,12 +71,12 @@
                   <RowConstraints maxHeight="59.333343505859375" minHeight="10.0" prefHeight="33.33331298828125" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button ellipsisString="" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FA6858;" text="Create Room" textFill="#221b3d" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button ellipsisString="" mnemonicParsing="false" onMouseClicked="#createRoom" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FA6858;" text="Create Room" textFill="#221b3d" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Century Gothic Bold Italic" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #E3445D;" text="Connect Room" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onMouseClicked="#sendConnect" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #E3445D;" text="Connect Room" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Century Gothic Italic" size="15.0" />
                      </font>
@@ -92,7 +92,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField id="roomCode" fx:id="roomCode" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Code" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>

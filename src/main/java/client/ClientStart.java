@@ -34,7 +34,7 @@ import java.net.InetAddress;
 public class ClientStart extends Application {
     public TextField textField;
     public Text textStatus;
-    private int n;
+
     private Parent root;
     private Parent wint;
     private Parent mainGame;
@@ -65,9 +65,8 @@ public class ClientStart extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        n = 0;
-        loader = new FXMLLoader(getClass().getResource("/socketSemestr.fxml"));
-        loader2 = new FXMLLoader(getClass().getResource("/MainGame.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/chooseRoomType.fxml"));
+        loader2 = new FXMLLoader(getClass().getResource("/gameTextMain.fxml"));
         loader3 = new FXMLLoader(getClass().getResource("/Win.fxml"));
         loader4 = new FXMLLoader(getClass().getResource("/lost.fxml"));
 
@@ -89,6 +88,9 @@ public class ClientStart extends Application {
 
             client = new Client(InetAddress.getByName("127.0.0.1"), 4888);
             controller.setClient(client);
+            controller1.setClient(client);
+            controller1.setWinScene(new Scene(wint));
+            controller1.setLostScene(new Scene(loose));
             client.connect();
 
             roomCreateHandler = new RoomCreateHandler(client);
@@ -108,12 +110,13 @@ public class ClientStart extends Application {
             primaryStage.centerOnScreen();
             primaryStage.show();
             controller.setGameScene(gameScene);
-            /* gameTextPrinter = new GameTextPrinter();*/
 
-            textField = (TextField) scene.lookup("#roomID");
-            textStatus = (Text) scene.lookup("#textStatus");
+
+
+            textField = (TextField) scene.lookup("#roomCode");
+           /* textStatus = (Text) scene.lookup("#textStatus");*/
             roomCodePrinter = new RoomCodePrinter(textField);
-            roomConnectPrinter = new RoomConnectPrinter(textStatus);
+            /*roomConnectPrinter = new RoomConnectPrinter(textStatus);*/
             gameTextPrinter = new GameTextPrinter(controller1);
             rivalPrinter = new RivalPrinter(controller.getOpponentRow());//Выводит принтер в контроллер
 
@@ -124,7 +127,7 @@ public class ClientStart extends Application {
 
             log.info(" opponent row{}", controller.getOpponentRow());
 
-
+/*
             //заплатка Todo разобраться с плохим контроллером
             try {
                 gameScene.setOnKeyTyped(new EventHandler<KeyEvent>() {
@@ -174,7 +177,7 @@ public class ClientStart extends Application {
             } catch (Exception e) {
                 //Игрок прнажимал весь текст
                 System.out.println(" Игрок пронажимал весь текст");
-            }
+            }*/
 
 
         } catch (IOException e) {

@@ -13,11 +13,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="body" alignment="TOP_RIGHT" onKeyTyped="#handleTypedCode" onMouseClicked="#checkSensor" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.MainGameController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -60,7 +62,7 @@
     </MenuBar>
       <BorderPane minHeight="400.0" minWidth="640.0">
          <center>
-            <GridPane BorderPane.alignment="CENTER">
+            <GridPane prefHeight="703.0" prefWidth="924.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -83,8 +85,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer3" wrappingWidth="58.13671875" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text fx:id="gamerFourName" fill="#d900ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Text fx:id="gamerThreeName" fill="#00ff33" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer3" wrappingWidth="58.13671875" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                   <GridPane layoutX="490.0" layoutY="110.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -96,13 +98,13 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer1" wrappingWidth="58.13671875" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text fx:id="gamerTwoName" fill="#000fff" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Text fx:id="gamerOneName" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer1" wrappingWidth="58.13671875" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowSpan="4">
                      <center>
-                        <TextFlow prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <TextFlow fx:id="gameScreen" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" BorderPane.alignment="CENTER">
                            <padding>
                               <Insets bottom="50.0" left="50.0" right="50.0" top="10.0" />
                            </padding>
@@ -116,6 +118,14 @@
                      <font>
                         <Font name="Century Gothic Italic" size="23.0" />
                      </font>
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
                   </Text>
                   <GridPane GridPane.columnIndex="3" GridPane.rowIndex="3">
                     <columnConstraints>
@@ -127,8 +137,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="Start Game" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <RadioButton mnemonicParsing="false" text="Public Room" GridPane.halignment="CENTER" />
+                        <Button fx:id="demoGame" mnemonicParsing="false" onMouseClicked="#startDemo" text="Start Game" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="publicity" mnemonicParsing="false" text="Public Room" GridPane.halignment="CENTER" />
                      </children>
                   </GridPane>
                </children>

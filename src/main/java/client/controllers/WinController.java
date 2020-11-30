@@ -26,12 +26,6 @@ public class WinController implements Initializable {
     @Setter
     private Scene scene;
 
-/*    @FXML
-    public void initialize(){
-        log.info(imageView.toString());
-        Image i = new Image(new File("src/main/resources/assets/SdRockFact.gif").toURI().toString());
-        imageView.setImage(i);
-    }*/
 
     public void goToMenu(MouseEvent mouseEvent) {
         Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
