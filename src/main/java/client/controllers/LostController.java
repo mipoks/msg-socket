@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lombok.Data;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
+@Data
 public class LostController implements Initializable {
     @FXML
     private VBox body;

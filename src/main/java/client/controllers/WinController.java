@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lombok.Data;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Slf4j
+@Data
 public class WinController implements Initializable {
     @FXML
     public ImageView imageView;
@@ -44,6 +46,7 @@ public class WinController implements Initializable {
         log.info(imageView.toString());
         Image i = new Image(new File("src/main/resources/assets/SdRockFact.gif").toURI().toString());
         imageView.setImage(i);
+        log.info("Проверяю тему при инициализации");
         ThemeContext.checkTheme(body);
     }
 }

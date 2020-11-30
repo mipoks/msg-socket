@@ -35,6 +35,8 @@ public class MainGameController implements Initializable {
     private List<Text> textList = new ArrayList<>();
 
 
+
+
     @FXML
     public void prepare(String text){
         body.setStyle(ThemeContext.DEFAULT_THEME);

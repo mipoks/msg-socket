@@ -9,6 +9,7 @@ import client.handler.handlerImpl.RivalConnectHandler;
 import client.handler.handlerImpl.RoomConnectHandler;
 import client.handler.handlerImpl.RoomCreateHandler;
 import client.logic.Client;
+import client.visualizer.ThemeContext;
 import client.visualizer.eventListImpl.GameTextPrinter;
 import client.visualizer.eventListImpl.RivalPrinter;
 import client.visualizer.eventListImpl.RoomCodePrinter;
@@ -60,6 +61,7 @@ public class ClientStart extends Application {
         launch(args);
     }
 
+
     @Override
     public void start(Stage primaryStage)  {
         n=0;
@@ -73,13 +75,13 @@ public class ClientStart extends Application {
             root = loader.load();
             wint = loader3.load();
             mainGame = loader2.load();
-
+            scene = new Scene(root);
 
             controller = loader.getController(); //manuController
             controller1 =loader2.getController();//MainGame controller
             controller3 = loader3.getController();//win scene controller
              controller4 = loader4.getController();//loose scene controller
-             scene = new Scene(root);
+
             controller.setScene(scene);
             controller3.setScene(scene);
             controller4.setScene(scene);
@@ -146,14 +148,22 @@ public class ClientStart extends Application {
 
                            n++;
 
-                           log.info("Совпадение символа {}", n);
+                           log.info("Совпадение символа {} длинная массив {}", n,controller1.getTextArray().length);
+                           if (n==controller1.getTextArray().length){
+                               ThemeContext.checkTheme(controller3.getBody());
+                               ThemeContext.checkTheme(controller4.getBody());
+                               primaryStage.setScene(new Scene(wint));
+                               primaryStage.show();
+                               wint.requestFocus();
+                           }
                        }
                        if (controller1.getTextArray()[n].equals(" ") && keyEvent.getCharacter().toString().toLowerCase().equals("space")) {
 
                            n++;
                            log.info("Совпадение пробела {}", n);
                        }
-                       log.info("Следующая буква {}", controller1.getTextArray()[n]);
+
+
 
 
                    }
