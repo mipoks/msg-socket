@@ -7,6 +7,7 @@ import client.handler.Handler;
 import client.visualizer.EventListener;
 import client.protocol.Message;
 import client.protocol.Type;
+import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
@@ -29,10 +30,10 @@ public class RoomConnectHandler implements Handler {
         try(ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(message.getData())) {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
-            if (object instanceof Integer) {
-                Integer id = (Integer) object; //you get your id after connecting the room
+            if (object instanceof Pair) {
+                Pair<Integer, String> pair = (Pair) object; //you get your id + name after connecting the room
                 for (EventListener eventListener : listeners) {
-                    eventListener.onEventAction(id);
+                    eventListener.onEventAction(pair);
                 }
             }
             objectInputStream.close();

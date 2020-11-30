@@ -63,6 +63,7 @@ public class Controller implements Initializable {
 
     public void sendConnect(MouseEvent mouseEvent) {
         try {
+            log.info(roomCode.getText());
             Message message = MessageCreater.createRoomConnectMsg(roomCode.getText());
             client.sendMessage(message);
 

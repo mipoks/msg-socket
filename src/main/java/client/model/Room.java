@@ -39,12 +39,15 @@ public class Room implements EventListener<Pair> {
     }
 
     public void addGamer(Gamer gamer) {
-        if (!gamers.contains(gamer))
+        if (!gamers.contains(gamer)) {
             gamers.add(gamer);
+            onRoomChanged(1, gamer);
+        }
     }
 
     public void removeGamer(Gamer gamer) {
         gamers.remove(gamer);
+        onRoomChanged(-1, gamer);
     }
 
     public String getRoomUnique() {
@@ -68,8 +71,9 @@ public class Room implements EventListener<Pair> {
 
     private void onRoomChanged(int type, Gamer gamer) {
         //type -1 удаление, type 1 добавлнение
+        Pair<Integer, Gamer> pair = new Pair<Integer, Gamer>(type, gamer);
         for (EventListener eventListener : eventListeners) {
-            eventListener.onEventAction(new Pair<Integer, Gamer>(type, gamer));
+            eventListener.onEventAction(pair);
         }
         //onGamerAdded
         //onGamerRemoved
