@@ -2,6 +2,7 @@ package client.visualizer;
 
 import client.controllers.MainGameController;
 import client.handler.EventListener;
+import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -19,7 +20,10 @@ public class GameTextPrinter implements EventListener<String>
     @Override
     public void onEventAction(String object)    {
         log.info("Подготавливаю текст");
-        mainGameController.prepare(object);
+        Platform.runLater(()->{
+            mainGameController.prepare(object);
+        });
+
 
     }
 }

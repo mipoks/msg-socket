@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -31,6 +33,7 @@ public class MainGameController implements Initializable {
     private Text tappedChar;
     @FXML
     private VBox body;
+    private String theme;
     private int n;
     private Text utillText;
     private  String[] textArray;
@@ -39,15 +42,22 @@ public class MainGameController implements Initializable {
     private List<Text> textList = new ArrayList<>();
 
 
-
+    @FXML
     public void prepare(String text){
         body.setStyle(ThemeContext.DEFAULT_THEME);
+        if (ThemeContext.currentTheme.equals(ThemeContext.DARK_THEME)){
+            dupplMapper(text,"-fx-stroke: #ffffff");
+        }else {dupplMapper(text,"");}
 
+    }
+    private void dupplMapper(String text,String style){
         textArray =text.split("");
         n=0;
         Arrays.stream(textArray).forEach(x->{
             utillText = new Text(x);
             utillText.setFont(Font.font(18));
+            utillText.setFill(Color.LIGHTSLATEGRAY);
+            utillText.setStyle(style);
             textList.add(utillText);
             gameScreen.getChildren().add(utillText);
         });
