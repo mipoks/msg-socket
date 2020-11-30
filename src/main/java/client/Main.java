@@ -5,7 +5,7 @@ public class Main {
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 4888;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
 //        Client client = new Client(InetAddress.getByName(HOST), PORT);
 //        Controller clientWindow = new Controller(client);
 //        client.connect();

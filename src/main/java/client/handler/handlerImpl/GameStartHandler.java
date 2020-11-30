@@ -38,7 +38,7 @@ public class GameStartHandler implements Handler {
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
     public void addEventListener(EventListener eventListener) {

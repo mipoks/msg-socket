@@ -40,7 +40,7 @@ public class RoomCreateHandler implements Handler {
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
 

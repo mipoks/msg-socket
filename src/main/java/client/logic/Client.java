@@ -34,11 +34,11 @@ public class Client {
         this.listeners.add(listener);
     }
 
-    public void connect() throws Exception {
+    public void connect()  {
         try {
             socket = new Socket(address, port);
         } catch (IOException ex) {
-            throw new Exception("Can't connect.", ex);
+            throw new IllegalStateException(new IOException("Can't connect.", ex));
         }
     }
     public void start() {
@@ -47,13 +47,13 @@ public class Client {
         thread.start();
     }
 
-    public void sendMessage(Message message) throws Exception {
+    public void sendMessage(Message message)  {
         try {
             socket.getOutputStream().write(Message.getBytes(message));
             socket.getOutputStream().flush();
             //return Message.readMessage(socket.getInputStream());
         } catch (IOException ex) {
-            throw new Exception("Can't send message.", ex);
+            throw new IllegalStateException(new IOException("Can't connect.", ex));
         }
     }
 

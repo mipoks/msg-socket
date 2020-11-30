@@ -24,7 +24,7 @@ public class ServerMessageListener implements Runnable {
                 client.handleMessage(message);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
 }

@@ -181,9 +181,7 @@ public class ClientStart extends Application {
             }*/
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+        } catch (IOException e ) {
             e.printStackTrace();
         }
 

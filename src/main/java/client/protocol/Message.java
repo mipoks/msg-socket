@@ -33,7 +33,7 @@ public class Message {
                     break;
                 }
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                throw new IllegalStateException(e);
             }
         }
         return pair;

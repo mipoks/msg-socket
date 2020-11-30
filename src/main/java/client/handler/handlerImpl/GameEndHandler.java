@@ -35,7 +35,7 @@ public class GameEndHandler implements Handler {
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
 
