@@ -2,10 +2,9 @@ package client.logic;
 
 import client.handler.Handler;
 import client.listener.ServerMessageListener;
+import client.model.Room;
 import client.protocol.Message;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

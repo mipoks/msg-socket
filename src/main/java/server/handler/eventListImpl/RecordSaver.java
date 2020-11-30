@@ -1,17 +1,10 @@
 package server.handler.eventListImpl;
 
 import server.repository.RecordRepository;
-import server.repository.database.ConnectionGiver;
-import server.repository.database.JdbcTemplate;
-import server.repository.database.RowMapper;
-import server.repository.database.implementation.ConnectionLocal;
-import server.repository.database.implementation.RowMapperImpl;
 import server.model.Record;
-import server.model.implementation.RecordCreater;
-import server.model.EntityCreater;
 import server.handler.EventListener;
-import server.protocol.Client;
-import server.protocol.Game;
+import server.model.Client;
+import server.model.Game;
 import server.repository.impl.RecordRepoImpl;
 
 public class RecordSaver implements EventListener {

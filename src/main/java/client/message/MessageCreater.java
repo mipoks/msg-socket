@@ -17,21 +17,12 @@ public class MessageCreater {
             objectOutputStream.flush();
             bytes = byteArrayOutputStream.toByteArray();
             objectOutputStream.close();
-            byteArrayOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return bytes;
     }
     public static Message createTextMsg(Text text) {
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-//        objectOutputStream.writeObject(text);
-//        objectOutputStream.flush();
-//        byte[] bytes = byteArrayOutputStream.toByteArray();
-//        objectOutputStream.close();
-//        byteArrayOutputStream.close();
-        //ToDo проверить, что так работает
         byte[] bytes = serialize(text);
         try {
             return Message.createMessage(Type.TEXT, bytes);
@@ -41,36 +32,45 @@ public class MessageCreater {
     }
 
     public static Message createStateMsg(State state) {
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-//        objectOutputStream.writeObject(state);
-//        objectOutputStream.flush();
-//        byte[] bytes = byteArrayOutputStream.toByteArray();
-//        objectOutputStream.close();
-//        byteArrayOutputStream.close();
-        //ToDo проверить, что так работает
         byte[] bytes = serialize(state);
         try {
             return Message.createMessage(Type.STATE, bytes);
         } catch (IllegalAccessException e) {
-            throw  new IllegalStateException(e);
+            throw new IllegalStateException(e);
         }
     }
 
-    public static Message createRoomCreateMsg() throws IllegalAccessException {//Todo так низя!
+    public static Message createRoomCreateMsg() {
         byte[] bytes = new byte[1];
-        return Message.createMessage(Type.ROOM_CREATE, bytes);
-     }
+        try {
+            return Message.createMessage(Type.ROOM_CREATE, bytes);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
-     public static Message createRoomConnectMsg(String room) throws IllegalAccessException {
-        return Message.createMessage(Type.ROOM_CONNECT, serialize(room));
+     public static Message createRoomConnectMsg(String room) {
+         try {
+             return Message.createMessage(Type.ROOM_CONNECT, serialize(room));
+         } catch (IllegalAccessException e) {
+             throw new IllegalStateException(e);
+         }
      }
      public static Message createStartGameMsg(){
          try {
              return Message.createMessage(Type.GAME_START,new byte[1]);
          } catch (IllegalAccessException e) {
-             throw  new IllegalStateException(e);
+             throw new IllegalStateException(e);
          }
      }
+
+     public static Message createPlayGameMsg(String oneSymbol) {
+         try {
+             return Message.createMessage(Type.GAME_PLAY, serialize(oneSymbol));
+         } catch (IllegalAccessException e) {
+             throw new IllegalStateException(e);
+         }
+     }
+
 
 }

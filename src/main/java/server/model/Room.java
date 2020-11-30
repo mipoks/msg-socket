@@ -1,6 +1,6 @@
-package server.protocol;
+package server.model;
 
-import server.handler.EventListener;
+import server.protocol.Message;
 
 import java.io.IOException;
 import java.net.Socket;

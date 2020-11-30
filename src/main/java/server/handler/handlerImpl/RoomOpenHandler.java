@@ -5,9 +5,9 @@ import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
 import server.handler.handlerImpl.helper.ObjectSerializer;
-import server.protocol.Client;
+import server.model.Client;
 import server.protocol.Message;
-import server.protocol.Room;
+import server.model.Room;
 import server.protocol.Type;
 
 @Slf4j

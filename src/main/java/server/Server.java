@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import server.exception.ServerException;
 import server.handler.Handler;
 import server.handler.handlerImpl.helper.ObjectSerializer;
-import server.protocol.Client;
+import server.model.Client;
 import server.protocol.Message;
-import server.protocol.Room;
+import server.model.Room;
 import server.protocol.Type;
 
 import java.io.IOException;
@@ -15,6 +15,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 @Slf4j
@@ -74,13 +75,18 @@ public class Server {
 
                         log.info("New message: {}",Message.toString(message));
 
-
                         for (Handler listener : listeners) {
                             if (message.getType() == listener.getType()) {
                                 listener.handleMessage(client, message);
                             }
                         }
                     } catch (IOException e) {
+                        //ToDo сделать таймаут
+                        Optional<Room> optionalRoom = client.getRoom();
+                        if (optionalRoom.isPresent()) {
+                            Room room = optionalRoom.get();
+                            room.removeClient(client);
+                        }
                         e.printStackTrace();
                     }
                 }
@@ -95,7 +101,6 @@ public class Server {
         if(!started){
             throw new ServerException("Server hasn't been started yet.");
         }
-        //ToDo: check if this socket is from our pull
         try{
             Socket socket = client.getSocket();
             socket.getOutputStream().write(Message.getBytes(message));

@@ -1,16 +1,26 @@
-package client.logic;
+package client.model;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 @Slf4j
-public class Rival implements Serializable {
+public class Gamer implements Serializable {
     private int progress; //in symbols
+    private int id;
     private String name;
 
-    public Rival(String name) {
+    public Gamer(int id, String name) {
         this.name = name;
         progress = 0;
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Gamer gamer = (Gamer) o;
+        return id == gamer.id;
     }
 
     public int getProgress() {

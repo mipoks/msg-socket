@@ -1,6 +1,6 @@
 package server.handler;
 
-import server.protocol.Client;
+import server.model.Client;
 import server.protocol.Message;
 
 public interface Handler {

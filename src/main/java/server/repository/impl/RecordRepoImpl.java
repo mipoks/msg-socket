@@ -3,8 +3,6 @@ package server.repository.impl;
 import server.model.EntityCreater;
 import server.model.Record;
 import server.model.implementation.RecordCreater;
-import server.protocol.Client;
-import server.protocol.Game;
 import server.repository.RecordRepository;
 import server.repository.database.ConnectionGiver;
 import server.repository.database.JdbcTemplate;

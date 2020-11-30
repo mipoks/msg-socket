@@ -7,7 +7,7 @@ import server.exception.ServerException;
 import server.handler.Handler;
 import server.handler.handlerImpl.helper.ObjectSerializer;
 import server.handler.handlerImpl.helper.ObjectDeserializer;
-import server.protocol.Client;
+import server.model.Client;
 import server.protocol.Message;
 import server.protocol.Type;
 

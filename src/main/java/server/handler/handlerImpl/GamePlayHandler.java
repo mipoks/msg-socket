@@ -6,6 +6,9 @@ import server.Server;
 import server.handler.Handler;
 import server.handler.handlerImpl.helper.ObjectDeserializer;
 import server.handler.handlerImpl.helper.ObjectSerializer;
+import server.model.Client;
+import server.model.Game;
+import server.model.Room;
 import server.protocol.*;
 
 import java.util.Optional;
@@ -25,6 +28,7 @@ public class GamePlayHandler implements Handler {
             room.sendMessage(client, message);
 
             String cchar = (String) ObjectDeserializer.fromByteArray(message.getData());
+            log.info(cchar);
             Optional<Game> optionalGame = Game.findByRoom(room);
 
             int ans = 0;

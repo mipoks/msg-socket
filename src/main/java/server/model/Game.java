@@ -1,9 +1,8 @@
-package server.protocol;
+package server.model;
 
 import lombok.extern.slf4j.Slf4j;
 import server.handler.EventListener;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 @Slf4j
@@ -17,7 +16,7 @@ public class Game {
     private ArrayList<EventListener> listeners;
 
     public Game(String gameText, Room room) {
-        this.gameText = gameText;
+        this.gameText = gameText.toLowerCase();
         this.room = room;
         games.put(room, this);
         started = false;
