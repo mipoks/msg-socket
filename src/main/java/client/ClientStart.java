@@ -10,6 +10,7 @@ import client.handler.handlerImpl.RoomConnectHandler;
 import client.handler.handlerImpl.RoomCreateHandler;
 import client.logic.Client;
 import client.message.MessageCreater;
+import client.model.GamerCreater;
 import client.protocol.Message;
 import client.visualizer.eventListImpl.GameTextPrinter;
 import client.visualizer.eventListImpl.RivalPrinter;
@@ -58,6 +59,7 @@ public class ClientStart extends Application {
     private RivalPrinter rivalPrinter;
     private GameTextPrinter gameTextPrinter;
 
+    private GamerCreater gamerCreater;
 
     public static void main(String[] args) {
         launch(args);
@@ -97,6 +99,11 @@ public class ClientStart extends Application {
             roomConnectHandler = new RoomConnectHandler(client);
             rivalConnectHandler = new RivalConnectHandler(client);
             gameStartHandler = new GameStartHandler(client);
+
+
+            gamerCreater = new GamerCreater();
+            roomConnectHandler.addEventListener(gamerCreater);
+            rivalConnectHandler.addEventListener(gamerCreater);
 
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);

@@ -3,9 +3,12 @@ package client.model;
 import client.visualizer.EventListener;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
+import server.handler.Handler;
+import server.handler.handlerImpl.GamePlayHandler;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Slf4j
 public class Room implements EventListener<Pair> {
@@ -30,6 +33,10 @@ public class Room implements EventListener<Pair> {
         publicity = false;
     }
 
+    public ArrayList<Gamer> getGamers() {
+        return gamers;
+    }
+
     public boolean isPublicity() {
         return publicity;
     }
@@ -43,6 +50,13 @@ public class Room implements EventListener<Pair> {
             gamers.add(gamer);
             onRoomChanged(1, gamer);
         }
+    }
+
+    public Optional<Gamer> getMe() {
+        Gamer gamer = null;
+        if (gamers.size() > 0)
+            gamer = gamers.get(0);
+        return Optional.ofNullable(gamer);
     }
 
     public void removeGamer(Gamer gamer) {
@@ -64,7 +78,6 @@ public class Room implements EventListener<Pair> {
         Gamer gamer = new Gamer(pair.getKey(), pair.getValue());
         if (gamers.contains(gamer))
             return;
-
         gamers.add(gamer);
 
     }

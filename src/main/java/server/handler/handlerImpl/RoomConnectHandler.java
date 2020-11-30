@@ -51,15 +51,15 @@ public class RoomConnectHandler implements Handler {
             msg.setType(Type.ROOM_CONNECT_ANSWER);
             msg.setData(ObjectSerializer.toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
             server.sendMessage(client, msg);
-//            Collection<Client> clients = room.get().getClients();
-//            msg.setType(Type.ROOM_CONNECT);
-//            for (Client client1 : clients) {
-//                if (!client.equals(client1)) {
-//                    msg.setData(ObjectSerializer.toByteArray(
-//                            new Pair<Integer, String>(client1.getId(), client1.getName())));
-//                    server.sendMessage(client, msg);
-//                }
-//            }
+            Collection<Client> clients = room.get().getClients();
+            msg.setType(Type.ROOM_CONNECT);
+            for (Client client1 : clients) {
+                if (!client.equals(client1)) {
+                    msg.setData(ObjectSerializer.toByteArray(
+                            new Pair<Integer, String>(client1.getId(), client1.getName())));
+                    server.sendMessage(client, msg);
+                }
+            }
         } catch (ServerException ex) {
             //Add some catch implementation
         }

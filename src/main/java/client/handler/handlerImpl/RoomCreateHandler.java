@@ -4,6 +4,7 @@ package client.handler.handlerImpl;
 
 import client.logic.Client;
 import client.handler.Handler;
+import client.model.Room;
 import client.visualizer.EventListener;
 import client.protocol.Message;
 import client.protocol.Type;
@@ -34,6 +35,7 @@ public class RoomCreateHandler implements Handler {
             if (object instanceof String) {
                 String text = (String) object;
                 System.out.println(text);
+                Room.createNewRoom();
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(text);
                 }
