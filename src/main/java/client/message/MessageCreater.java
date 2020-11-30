@@ -6,6 +6,7 @@ import client.protocol.Type;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
+
 @Slf4j
 public class MessageCreater {
 
@@ -22,6 +23,7 @@ public class MessageCreater {
         }
         return bytes;
     }
+
     public static Message createTextMsg(Text text) {
         byte[] bytes = serialize(text);
         try {
@@ -49,28 +51,36 @@ public class MessageCreater {
         }
     }
 
-     public static Message createRoomConnectMsg(String room) {
-         try {
-             return Message.createMessage(Type.ROOM_CONNECT, serialize(room));
-         } catch (IllegalAccessException e) {
-             throw new IllegalStateException(e);
-         }
-     }
-     public static Message createStartGameMsg(){
-         try {
-             return Message.createMessage(Type.GAME_START,new byte[1]);
-         } catch (IllegalAccessException e) {
-             throw new IllegalStateException(e);
-         }
-     }
+    public static Message createRoomConnectMsg(String room) {
+        try {
+            return Message.createMessage(Type.ROOM_CONNECT, serialize(room));
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
-     public static Message createPlayGameMsg(String oneSymbol) {
-         try {
-             return Message.createMessage(Type.GAME_PLAY, serialize(oneSymbol));
-         } catch (IllegalAccessException e) {
-             throw new IllegalStateException(e);
-         }
-     }
+    public static Message createStartGameMsg() {
+        try {
+            return Message.createMessage(Type.GAME_START, new byte[1]);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
+    public static Message createPlayGameMsg(String oneSymbol) {
+        try {
+            return Message.createMessage(Type.GAME_PLAY, serialize(oneSymbol));
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    public static Message createRoomPublicityMsg(boolean publicity) {
+        try {
+            return Message.createMessage(Type.ROOM_PUBLICITY_CHANGE, serialize(new Boolean(publicity)));
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
 }

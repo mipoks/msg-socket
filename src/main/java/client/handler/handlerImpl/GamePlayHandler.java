@@ -31,7 +31,7 @@ public class GamePlayHandler implements Handler {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
             if (object instanceof Pair) {
-                Pair<Pair<Integer, String>, Integer> pair = (Pair) object; //<id, name> + cursor on game text
+                Pair<Integer, Integer> pair = (Pair) object; //id + cursor on game text
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(pair);
                 }

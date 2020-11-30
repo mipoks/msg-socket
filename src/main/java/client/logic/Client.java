@@ -42,7 +42,7 @@ public class Client {
         }
     }
     public void start() {
-        room = new Room();
+        room = Room.getActualRoom();
         Thread thread = new Thread(new ServerMessageListener(this,  socket));
         thread.start();
     }

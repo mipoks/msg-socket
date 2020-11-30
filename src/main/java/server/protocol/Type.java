@@ -27,15 +27,15 @@ public class Type {
     public static final int NAME_CHANGE_ANSWER = -5;
     public static final int NAME_CHANGE_ANSWER_MAX_SIZE = 1000;
 
-    public static final int ROOM_OPEN = 6;
-    public static final int ROOM_OPEN_MAX_SIZE = 1000;
-    public static final int ROOM_OPEN_ANSWER = -6;
-    public static final int ROOM_OPEN_ANSWER_MAX_SIZE = 1000;
-
-    public static final int ROOM_CLOSE = 7;
-    public static final int ROOM_CLOSE_MAX_SIZE = 1000;
-    public static final int ROOM_CLOSE_ANSWER = -7;
-    public static final int ROOM_CLOSE_ANSWER_MAX_SIZE = 1000;
+    public static final int ROOM_PUBLICITY_CHANGE = 6;
+    public static final int ROOM_PUBLICITY_CHANGE_MAX_SIZE = 1000;
+    public static final int ROOM_PUBLICITY_CHANGE_ANSWER = -6;
+    public static final int ROOM_PUBLICITY_CHANGE_ANSWER_MAX_SIZE = 1000;
+//
+//    public static final int ROOM_CLOSE = 7;
+//    public static final int ROOM_CLOSE_MAX_SIZE = 1000;
+//    public static final int ROOM_CLOSE_ANSWER = -7;
+//    public static final int ROOM_CLOSE_ANSWER_MAX_SIZE = 1000;
 
     public static final int GAME_START = 8;
     public static final int GAME_START_MAX_SIZE = 1000;

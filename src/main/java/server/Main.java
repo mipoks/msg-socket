@@ -10,10 +10,10 @@ public class Main {
         server.registerListener(new GamePlayHandler(server));
         server.registerListener(new GameStartHandler(server));
         server.registerListener(new NameChangeHandler(server));
-        server.registerListener(new RoomCloseHandler(server));
+//        server.registerListener(new RoomCloseHandler(server));
         server.registerListener(new RoomConnectHandler(server));
         server.registerListener(new RoomCreateHandler(server));
-        server.registerListener(new RoomOpenHandler(server));
+//        server.registerListener(new RoomOpenHandler(server));
         server.registerListener(new RoomRandomConnectHandler(server));
         server.start();
     }

@@ -1,10 +1,12 @@
 package client.model;
 
+import client.visualizer.EventListener;
+import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 @Slf4j
-public class Gamer implements Serializable {
+public class Gamer {
     private int progress; //in symbols
     private int id;
     private String name;
@@ -21,6 +23,10 @@ public class Gamer implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Gamer gamer = (Gamer) o;
         return id == gamer.id;
+    }
+
+    public void addEventListener(EventListener eventListener) {
+        //onGamerChanged
     }
 
     public int getProgress() {
