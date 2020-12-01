@@ -109,8 +109,6 @@ public class Controller implements Initializable {
 
 
 
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

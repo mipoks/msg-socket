@@ -14,6 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Slf4j
 public class RoomCreateHandler implements Handler {
@@ -34,8 +35,19 @@ public class RoomCreateHandler implements Handler {
             Object object = objectInputStream.readObject();
             if (object instanceof String) {
                 String text = (String) object;
-                System.out.println(text);
-                Room.createNewRoom();
+
+                //new code
+                //copy all listeners of old room
+                Room room = Room.getActualRoom();
+                Collection<EventListener> listeners = room.getAllListeners();
+                //creating room
+                room = Room.createNewRoom();
+                for (EventListener eventListener : listeners) {
+                    room.addEventListener(eventListener);
+                }
+
+
+
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(text);
                 }

@@ -1,6 +1,7 @@
 package client.handler.handlerImpl;
 
 
+import client.model.Room;
 import client.visualizer.EventListener;
 import client.handler.Handler;
 import client.logic.Client;

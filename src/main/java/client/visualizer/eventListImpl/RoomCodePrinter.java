@@ -1,7 +1,10 @@
 package client.visualizer.eventListImpl;
 
+import client.model.Room;
 import client.visualizer.EventListener;
 import javafx.scene.control.TextField;
+
+import java.util.Collection;
 
 
 public class RoomCodePrinter implements EventListener<String> {

@@ -16,6 +16,7 @@ public class Gamer {
     private String name;
     private ArrayList<EventListener> eventListeners;
 
+
     public Gamer(int id, String name) {
         this.name = name;
         progress = 0;

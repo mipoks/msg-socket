@@ -8,6 +8,7 @@ import server.handler.handlerImpl.GamePlayHandler;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
 @Slf4j
@@ -52,11 +53,14 @@ public class Room implements EventListener<Pair> {
         }
     }
 
+    private Gamer me;
+
+    public void setMe(Gamer me) {
+        this.me = me;
+    }
+
     public Optional<Gamer> getMe() {
-        Gamer gamer = null;
-        if (gamers.size() > 0)
-            gamer = gamers.get(0);
-        return Optional.ofNullable(gamer);
+        return Optional.ofNullable(me);
     }
 
     public void removeGamer(Gamer gamer) {
@@ -90,6 +94,10 @@ public class Room implements EventListener<Pair> {
         }
         //onGamerAdded
         //onGamerRemoved
+    }
+
+    public Collection<EventListener> getAllListeners() {
+        return eventListeners;
     }
 
 

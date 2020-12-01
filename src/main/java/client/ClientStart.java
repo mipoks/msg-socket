@@ -9,21 +9,15 @@ import client.handler.handlerImpl.RivalConnectHandler;
 import client.handler.handlerImpl.RoomConnectHandler;
 import client.handler.handlerImpl.RoomCreateHandler;
 import client.logic.Client;
-import client.message.MessageCreater;
-import client.model.GamerCreater;
-import client.protocol.Message;
 import client.visualizer.eventListImpl.GameTextPrinter;
 import client.visualizer.eventListImpl.RivalPrinter;
 import client.visualizer.eventListImpl.RoomCodePrinter;
 import client.visualizer.eventListImpl.RoomConnectPrinter;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
@@ -58,8 +52,6 @@ public class ClientStart extends Application {
     private RoomConnectPrinter roomConnectPrinter;
     private RivalPrinter rivalPrinter;
     private GameTextPrinter gameTextPrinter;
-
-    private GamerCreater gamerCreater;
 
     public static void main(String[] args) {
         launch(args);
@@ -100,10 +92,6 @@ public class ClientStart extends Application {
             rivalConnectHandler = new RivalConnectHandler(client);
             gameStartHandler = new GameStartHandler(client);
 
-
-            gamerCreater = new GamerCreater();
-            roomConnectHandler.addEventListener(gamerCreater);
-            rivalConnectHandler.addEventListener(gamerCreater);
 
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);

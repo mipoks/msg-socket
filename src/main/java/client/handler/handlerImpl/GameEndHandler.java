@@ -32,6 +32,8 @@ public class GameEndHandler implements Handler {
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(pair);
                 }
+
+
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {

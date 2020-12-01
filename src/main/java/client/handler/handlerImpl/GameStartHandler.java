@@ -25,7 +25,7 @@ public class GameStartHandler implements Handler {
     }
 
     @Override
-    public void handleMessage( Message message) {
+    public void handleMessage(Message message) {
         try(ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(message.getData())) {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();

@@ -1,5 +1,6 @@
 package server.handler.handlerImpl;
 
+import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.exception.ServerException;
@@ -36,6 +37,7 @@ public class RoomCreateHandler implements Handler {
 
             Message answer = Message.createMessage(Type.ROOM_CREATE_ANSWER, bytes);
             server.sendMessage(client, answer);
+
         } catch (ServerException ex) {
             ex.printStackTrace();
             //Add some catch implementation

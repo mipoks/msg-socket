@@ -9,18 +9,19 @@ import javafx.scene.text.TextFlow;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
+
 @Slf4j
-public class GameTextPrinter implements EventListener<String>
-{
+public class GameTextPrinter implements EventListener<String> {
     MainGameController mainGameController;
 
-    public GameTextPrinter(MainGameController mainGameController){
+    public GameTextPrinter(MainGameController mainGameController) {
         this.mainGameController = mainGameController;
     }
+
     @Override
-    public void onEventAction(String object)    {
+    public void onEventAction(String object) {
         log.info("Подготавливаю текст");
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             mainGameController.prepare(object);
         });
 

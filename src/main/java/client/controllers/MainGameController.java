@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+
 @Slf4j
 @Data
 public class MainGameController implements Initializable {
@@ -43,7 +44,7 @@ public class MainGameController implements Initializable {
     private String theme;
     private int n;
     private Text utillText;
-    private  String[] textArray;
+    private String[] textArray;
     @FXML
     private TextFlow gameScreen;
     private Client client;
@@ -53,18 +54,21 @@ public class MainGameController implements Initializable {
 
 
     @FXML
-    public void prepare(String text){
-        n=0;
+    public void prepare(String text) {
+        n = 0;
         body.setStyle(ThemeContext.DEFAULT_THEME);
-        if (ThemeContext.currentTheme.equals(ThemeContext.DARK_THEME)){
-            dupplMapper(text,"-fx-stroke: #ffffff");
-        }else {dupplMapper(text,"");}
+        if (ThemeContext.currentTheme.equals(ThemeContext.DARK_THEME)) {
+            dupplMapper(text, "-fx-stroke: #ffffff");
+        } else {
+            dupplMapper(text, "");
+        }
 
     }
-    private void dupplMapper(String text,String style){
-        textArray =text.split("");
-        n=0;
-        Arrays.stream(textArray).forEach(x->{
+
+    private void dupplMapper(String text, String style) {
+        textArray = text.split("");
+        n = 0;
+        Arrays.stream(textArray).forEach(x -> {
             utillText = new Text(x);
             utillText.setFont(Font.font(18));
             utillText.setFill(Color.LIGHTSLATEGRAY);
@@ -74,15 +78,13 @@ public class MainGameController implements Initializable {
         });
         System.out.println(Arrays.toString(textArray));
         ThemeContext.checkTheme(body);
-        log.info("Vbox body :{}",body);
+        log.info("Vbox body :{}", body);
     }
-
 
 
     @Override
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
 
     }
@@ -94,72 +96,60 @@ public class MainGameController implements Initializable {
     public void handleTypedCode(KeyEvent keyEvent) {
         try {
 
-                    log.info("Code typed");
-                    System.out.println("code");
+            log.info("Code typed");
+            System.out.println("code");
 
-                    log.info("Taked code{}", keyEvent.getCharacter());
+            log.info("Taked code{}", keyEvent.getCharacter());
 
 
-                    if (keyEvent.getCharacter().toLowerCase().equals(getTextArray()[n].toLowerCase()) ||
-                            getTextArray()[n].equals(" ") && keyEvent.getCharacter().toLowerCase().equals("space")) {
-                        getGameScreen().getChildren().remove(n);
-                        setUtillText(new Text(keyEvent.getCharacter().toLowerCase()));
-                        getUtillText().setFont(Font.font(35));
+            if (keyEvent.getCharacter().toLowerCase().equals(getTextArray()[n].toLowerCase()) ||
+                    getTextArray()[n].equals(" ") && keyEvent.getCharacter().toLowerCase().equals("space")) {
+                getGameScreen().getChildren().remove(n);
+                setUtillText(new Text(keyEvent.getCharacter().toLowerCase()));
+                getUtillText().setFont(Font.font(35));
 
-                        getUtillText().setStyle("-fx-stroke: #ff0000");
-                        log.info(getUtillText().getStyle());
-                        getGameScreen().getChildren().add(n, getUtillText());
+                getUtillText().setStyle("-fx-stroke: #ff0000");
+                log.info(getUtillText().getStyle());
+                getGameScreen().getChildren().add(n, getUtillText());
 
-                        n++;
+                n++;
 
-                        Message message = MessageCreater.createPlayGameMsg(keyEvent.getCharacter());
-                        try {
-                            client.sendMessage(message);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        log.info("Совпадение символа {}", n);
-                    }
+                Message message = MessageCreater.createPlayGameMsg(keyEvent.getCharacter());
+                try {
+                    client.sendMessage(message);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                log.info("Совпадение символа {}", n);
+            }
 //
-                    if (n == getTextArray().length) {
-                        Stage primaryStage = (Stage)((Node)keyEvent.getSource()).getScene().getWindow();
-                        log.info("сцена {}",winScene);
-                        primaryStage.setScene(winScene);
-                        winScene.getRoot().requestFocus();
-                        log.info("Is focused?{}",winScene.getRoot().isFocused());
-                    } else{
-                        log.info("Следующая буква {}", getTextArray()[n]);}
+            if (n == getTextArray().length) {
+                Stage primaryStage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
+                log.info("сцена {}", winScene);
+                primaryStage.setScene(winScene);
+                winScene.getRoot().requestFocus();
+                log.info("Is focused?{}", winScene.getRoot().isFocused());
+            } else {
+                log.info("Следующая буква {}", getTextArray()[n]);
+            }
 
 
-
-        } catch (Exception e){
-            throw  new IllegalStateException(e);
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
         }
-
-
-
 
 
     }
 
     public void startDemo(MouseEvent mouseEvent) {
         Message message = null;
-        try {
-            message = MessageCreater.createRoomCreateMsg();
-            client.sendMessage(message);
-            message =MessageCreater.createStartGameMsg();
-            client.sendMessage(message);
-            Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+
+        message = MessageCreater.createRoomCreateMsg();
+        client.sendMessage(message);
+        message = MessageCreater.createStartGameMsg();
+        client.sendMessage(message);
+        Stage primaryStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
 
-
-
-
-
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
