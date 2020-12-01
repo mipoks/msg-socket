@@ -14,6 +14,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Optional;
+
 @Slf4j
 public class RivalNameChangeHandler implements Handler {
     private Client client;
@@ -34,10 +36,10 @@ public class RivalNameChangeHandler implements Handler {
 
                 //new code
                 Room room = Room.getActualRoom();
-                Gamer gamer = new Gamer(pair.getKey(), pair.getValue());
-                int index = room.getGamers().indexOf(gamer);
-                if (index > 0) {
-                    room.getGamers().get(index).setName(pair.getValue());
+                Optional<Gamer> gamerOptional = room.findById(pair.getKey());
+                if (gamerOptional.isPresent()) {
+                    Gamer gamer = gamerOptional.get();
+                    gamer.setName(pair.getValue());
                 }
 
                 //old code
