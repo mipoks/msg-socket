@@ -96,6 +96,17 @@ public class Room implements EventListener<Pair> {
         //onGamerRemoved
     }
 
+    public Optional<Gamer> findById(int id) {
+        Gamer gamer = null;
+        for (Gamer gamer1 : gamers) {
+            if (gamer1.getId() == id) {
+                gamer = gamer1;
+                break;
+            }
+        }
+        return Optional.ofNullable(gamer);
+    }
+
     public Collection<EventListener> getAllListeners() {
         return eventListeners;
     }

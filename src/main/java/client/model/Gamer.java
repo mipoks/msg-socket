@@ -32,6 +32,9 @@ public class Gamer {
         return id == gamer.id;
     }
 
+    public int getId() {
+        return id;
+    }
     public void addEventListener(EventListener eventListener) {
         eventListeners.add(eventListener);
     }

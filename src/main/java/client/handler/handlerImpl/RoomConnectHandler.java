@@ -4,6 +4,8 @@ package client.handler.handlerImpl;
 
 import client.logic.Client;
 import client.handler.Handler;
+import client.model.Gamer;
+import client.model.Room;
 import client.visualizer.EventListener;
 import client.protocol.Message;
 import client.protocol.Type;
@@ -14,6 +16,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+
 @Slf4j
 public class RoomConnectHandler implements Handler {
 
@@ -32,6 +36,15 @@ public class RoomConnectHandler implements Handler {
             Object object = objectInputStream.readObject();
             if (object instanceof Pair) {
                 Pair<Integer, String> pair = (Pair) object; //you get your id + name after connecting the room
+
+
+                //new code
+                Room room = Room.getActualRoom();
+                Gamer me = new Gamer(pair.getKey(), pair.getValue());
+                room.setMe(me);
+                room.addGamer(me);
+
+                //old code
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(pair);
                 }

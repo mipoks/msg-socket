@@ -1,5 +1,7 @@
 package client.handler.handlerImpl;
 
+import client.model.Gamer;
+import client.model.Room;
 import client.visualizer.EventListener;
 import client.handler.Handler;
 import client.logic.Client;
@@ -28,9 +30,19 @@ public class RivalNameChangeHandler implements Handler {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
             if (object instanceof Pair) {
-                Pair<Integer, String> id = (Pair) object; //id + new name of rival
+                Pair<Integer, String> pair = (Pair) object; //id + new name of rival
+
+                //new code
+                Room room = Room.getActualRoom();
+                Gamer gamer = new Gamer(pair.getKey(), pair.getValue());
+                int index = room.getGamers().indexOf(gamer);
+                if (index > 0) {
+                    room.getGamers().get(index).setName(pair.getValue());
+                }
+
+                //old code
                 for (EventListener eventListener : listeners) {
-                    eventListener.onEventAction(id);
+                    eventListener.onEventAction(pair);
                 }
             }
             objectInputStream.close();

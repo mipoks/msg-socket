@@ -1,6 +1,7 @@
 package client.handler.handlerImpl;
 
 
+import client.model.Gamer;
 import client.model.Room;
 import client.visualizer.EventListener;
 import client.handler.Handler;
@@ -14,6 +15,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Optional;
+
 @Slf4j
 public class GamePlayHandler implements Handler {
     private String theme;
@@ -33,6 +36,16 @@ public class GamePlayHandler implements Handler {
             Object object = objectInputStream.readObject();
             if (object instanceof Pair) {
                 Pair<Integer, Integer> pair = (Pair) object; //id + cursor on game text
+
+                //new code
+                Room room = Room.getActualRoom();
+                Optional<Gamer> gamerOptional = room.findById(pair.getKey());
+                if (gamerOptional.isPresent()) {
+                    Gamer gamer = gamerOptional.get();
+                    gamer.setProgress(pair.getValue());
+                }
+
+                //old code
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(pair);
                 }
