@@ -1,6 +1,5 @@
 package client.message;
 
-import client.message.Text;
 import client.protocol.Message;
 import client.protocol.Type;
 import lombok.extern.slf4j.Slf4j;
@@ -24,23 +23,14 @@ public class MessageCreater {
         return bytes;
     }
 
-    public static Message createTextMsg(Text text) {
-        byte[] bytes = serialize(text);
-        try {
-            return Message.createMessage(Type.TEXT, bytes);
-        } catch (IllegalAccessException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
-    public static Message createStateMsg(State state) {
-        byte[] bytes = serialize(state);
-        try {
-            return Message.createMessage(Type.STATE, bytes);
-        } catch (IllegalAccessException e) {
-            throw new IllegalStateException(e);
-        }
-    }
+//    public static Message createTextMsg(Text text) {
+//        byte[] bytes = serialize(text);
+//        try {
+//            return Message.createMessage(Type.TEXT, bytes);
+//        } catch (IllegalAccessException e) {
+//            throw new IllegalStateException(e);
+//        }
+//    }
 
     public static Message createRoomCreateMsg() {
         byte[] bytes = new byte[1];
