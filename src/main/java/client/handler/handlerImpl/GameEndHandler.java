@@ -1,5 +1,6 @@
 package client.handler.handlerImpl;
 
+import client.model.Room;
 import client.visualizer.EventListener;
 import client.handler.Handler;
 import client.logic.Client;
@@ -32,8 +33,6 @@ public class GameEndHandler implements Handler {
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(pair);
                 }
-
-
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {

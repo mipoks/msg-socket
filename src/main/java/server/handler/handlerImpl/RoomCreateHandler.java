@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import server.Server;
 import server.exception.ServerException;
 import server.handler.Handler;
+import server.handler.handlerImpl.helper.ObjectDeserializer;
 import server.handler.handlerImpl.helper.ObjectSerializer;
 import server.model.Client;
 import server.protocol.Message;
@@ -38,6 +39,9 @@ public class RoomCreateHandler implements Handler {
             Message answer = Message.createMessage(Type.ROOM_CREATE_ANSWER, bytes);
             server.sendMessage(client, answer);
 
+            answer = Message.createMessage(Type.ROOM_CONNECT_ANSWER,
+                    ObjectSerializer.toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
+            server.sendMessage(client, answer);
         } catch (ServerException ex) {
             ex.printStackTrace();
             //Add some catch implementation
