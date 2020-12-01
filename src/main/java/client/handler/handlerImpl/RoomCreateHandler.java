@@ -42,6 +42,7 @@ public class RoomCreateHandler implements Handler {
                 Collection<EventListener> listeners = room.getAllListeners();
                 //creating room
                 room = Room.createNewRoom();
+                room.setRoomUnique(text);
                 for (EventListener eventListener : listeners) {
                     room.addEventListener(eventListener);
                 }

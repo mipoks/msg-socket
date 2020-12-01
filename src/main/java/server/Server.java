@@ -63,7 +63,7 @@ public class Server {
 
     protected void handleConnection(Socket socket) throws ServerException{
         Client client = new Client(Client.generateName(), socket);
-        Message msgId = Message.createMessage(Type.CLIENT_ID, ObjectSerializer.toByteArray(new Integer(client.getId())));
+        Message msgId = Message.createMessage(Type.CONNECTED, ObjectSerializer.toByteArray(new Integer(client.getId())));
         sendMessage(client, msgId);
         threadPool.execute(new Runnable() {
             @Override
