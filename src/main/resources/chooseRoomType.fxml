@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -71,17 +72,17 @@
                   <RowConstraints maxHeight="59.333343505859375" minHeight="10.0" prefHeight="33.33331298828125" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button ellipsisString="" mnemonicParsing="false" onMouseClicked="#createRoom" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FA6858;" text="Create Room" textFill="#221b3d" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button ellipsisString="" mnemonicParsing="false" onMouseClicked="#createRoom" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #FA6858;" text="Create Room" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Century Gothic Bold Italic" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#sendConnect" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #E3445D;" text="Connect Room" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onMouseClicked="#sendConnect" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #E3445D;" text="Connect Room" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Century Gothic Italic" size="15.0" />
                      </font>
                   </Button>
-                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <GridPane GridPane.columnSpan="2" GridPane.rowIndex="3">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -92,11 +93,22 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField id="roomCode" fx:id="roomCode" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Code" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <TextField id="roomCode" fx:id="roomCode" maxWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room Code" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets right="20.0" />
+                           </GridPane.margin></Text>
                      </children>
                   </GridPane>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text Typing Machine" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Text stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="LUXTyper" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Italic" size="29.0" />
+                     </font></Text>
+                  <Button layoutX="362.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#sendConnect" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #E13CF0;" text="Play Randomly" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Century Gothic Italic" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </GridPane>
          </center>
