@@ -34,8 +34,8 @@ public class Room implements EventListener<Pair> {
         publicity = false;
     }
 
-    public ArrayList<Gamer> getGamers() {
-        return gamers;
+    public Optional<ArrayList<Gamer>> getGamers() {
+        return Optional.ofNullable(gamers);
     }
 
     public boolean isPublicity() {

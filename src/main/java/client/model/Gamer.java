@@ -3,6 +3,7 @@ package client.model;
 import client.visualizer.EventListener;
 import javafx.event.Event;
 import javafx.util.Pair;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Slf4j
+@ToString
 public class Gamer {
     private int progress; //in symbols
     private int id;

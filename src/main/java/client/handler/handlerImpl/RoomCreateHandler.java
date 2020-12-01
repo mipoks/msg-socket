@@ -47,10 +47,10 @@ public class RoomCreateHandler implements Handler {
                 }
 
 
-                //old code
+          /*      //old code
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(text);
-                }
+                }*/
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {

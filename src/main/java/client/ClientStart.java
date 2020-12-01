@@ -9,6 +9,7 @@ import client.handler.handlerImpl.RivalConnectHandler;
 import client.handler.handlerImpl.RoomConnectHandler;
 import client.handler.handlerImpl.RoomCreateHandler;
 import client.logic.Client;
+import client.model.Room;
 import client.visualizer.eventListImpl.GameTextPrinter;
 import client.visualizer.eventListImpl.RivalPrinter;
 import client.visualizer.eventListImpl.RoomCodePrinter;
@@ -53,6 +54,8 @@ public class ClientStart extends Application {
     private RivalPrinter rivalPrinter;
     private GameTextPrinter gameTextPrinter;
 
+    private volatile Room room;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -92,12 +95,15 @@ public class ClientStart extends Application {
             rivalConnectHandler = new RivalConnectHandler(client);
             gameStartHandler = new GameStartHandler(client);
 
-
+            room = Room.getActualRoom();
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);
             client.registerListener(rivalConnectHandler);
             client.registerListener(gameStartHandler);
             client.start();
+
+
+
 
 
             Scene gameScene = new Scene(mainGame);
@@ -114,12 +120,12 @@ public class ClientStart extends Application {
             log.info("Имя геймера с контроллера игры{}",controller1.getGamerTwoName().getText());
             roomConnectPrinter = new RoomConnectPrinter(controller1.getGamerOneName());
             gameTextPrinter = new GameTextPrinter(controller1);
-            rivalPrinter = new RivalPrinter(controller1.getGamerTwoName());//Выводит принтер в контроллер
+            rivalPrinter = new RivalPrinter(controller1.getGamerOneName(),controller1.getGamerTwoName(),controller1.getGamerThreeName(),controller1.getGamerFourName());//Выводит принтер в контроллер
 
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);
-            rivalConnectHandler.addEventListener(rivalPrinter);//каждый раз когда соперник подключился , отправит всем листенерам Pair
+            room.addEventListener(rivalPrinter);//каждый раз когда соперник подключился , отправит всем листенерам Pair
 
             log.info(" opponent row{}", controller.getOpponentRow());
 
