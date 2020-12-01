@@ -24,7 +24,7 @@ public class GameStartHandler implements Handler {
         if (client.getRoom().isPresent()) {
             Room room = client.getRoom().get();
             System.out.println("WEWEWEWEW2");
-            if (room.getRoomOwner().isPresent() && room.getRoomOwner().get() == client) {
+            if (room.getRoomOwner().isPresent() && room.getRoomOwner().get().equals(client)) {
                 System.out.println("WEWEWEWEW3");
                 Game game = null;
                 if (Game.findByRoom(room).isPresent()) {
