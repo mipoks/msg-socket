@@ -60,7 +60,7 @@ public class MainGameController implements Initializable {
         if (ThemeContext.currentTheme.equals(ThemeContext.DARK_THEME)) {
             dupplMapper(text, "-fx-stroke: #ffffff");
         } else {
-            dupplMapper(text, "");
+            dupplMapper(text, "-fx-stroke: #353535");
         }
 
     }
@@ -70,7 +70,7 @@ public class MainGameController implements Initializable {
         n = 0;
         Arrays.stream(textArray).forEach(x -> {
             utillText = new Text(x);
-            utillText.setFont(Font.font(18));
+            utillText.setFont(Font.font(40));
             utillText.setFill(Paint.valueOf("778899"));
 
             utillText.setStyle(style);

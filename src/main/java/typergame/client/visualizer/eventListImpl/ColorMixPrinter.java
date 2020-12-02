@@ -45,6 +45,7 @@ public class ColorMixPrinter implements EventListener<Pair> {
                 if(gamer.getId() == (int) object.getKey()) {
 
                     symb = (Text) filed.get(position);
+                    symb.setStyle("-fx-stroke: #353535");
                     log.info("symb fills {}", symb.getFill().toString().substring(2, 8));
                     switch (symb.getFill().toString().substring(2, 8)) {
                         case "778899" -> {
@@ -55,17 +56,25 @@ public class ColorMixPrinter implements EventListener<Pair> {
                             symb.setFill(Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
                             log.info("case 000000  gamers color: {}", Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
                         }
-                        case "FF2376" -> {symb.setFill(Paint.valueOf("F5B03B"));
+                        case "ff2376" -> {symb.setFill(Paint.valueOf("f5b03b"));
                         log.info("case FF2376");}
 
 
-                        case "ff0000", "000fff" ->{symb.setFill(Paint.valueOf("D4C80B"));} // смешивание красного с синим ?
-                        case "D4C80B"->{symb.setFill(Paint.valueOf("EC7544"));}
-                        case "852A26"->{symb.setFill(Paint.valueOf("EC7544"));}
-                        default -> {symb.setFill(Paint.valueOf("FF2376"));
+                        case "ff0000", "000fff" ->{symb.setFill(Paint.valueOf("d4c80b"));} // смешивание красного с синим ?
+                        case "00ff33" ->{
+                            switch (ColorMixer.getLibraryColor().get(gamer)){
+                                case "000fff"->{ symb.setFill(Paint.valueOf("ffef08"));}//желтый
+                                case "ff0000"->{symb.setFill(Paint.valueOf("053742"));}
+                            }
+
+                        }
+                        case "d4c80b"->{symb.setFill(Paint.valueOf("ec7544"));}
+                        case "ec7544"->{symb.setFill(Paint.valueOf("852A26"));}
+                        default -> {symb.setFill(Paint.valueOf("ff2376"));
                         log.info("case default");}
 
                     }
+
                     paint =symb.getFill().toString().substring(2,8);
                     colorIndexHome = Integer.parseInt(paint,16);
                     colorIndexServer = Integer.parseInt(ColorMixer.getLibraryColor().get(gamer),16);
