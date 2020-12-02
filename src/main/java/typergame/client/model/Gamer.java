@@ -1,13 +1,16 @@
 package typergame.client.model;
 
+import lombok.EqualsAndHashCode;
 import typergame.client.visualizer.EventListener;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Slf4j
 @ToString
+
 public class Gamer {
     private int progress; //in symbols
     private int id;
@@ -59,5 +62,10 @@ public class Gamer {
         for (EventListener eventListener : eventListeners) {
             eventListener.onEventAction(this);
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

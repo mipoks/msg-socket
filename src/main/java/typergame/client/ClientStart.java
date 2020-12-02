@@ -4,16 +4,10 @@ import typergame.client.controllers.Controller;
 import typergame.client.controllers.LostController;
 import typergame.client.controllers.MainGameController;
 import typergame.client.controllers.WinController;
-import typergame.client.handler.handlerImpl.GameStartHandler;
-import typergame.client.handler.handlerImpl.RivalConnectHandler;
-import typergame.client.handler.handlerImpl.RoomConnectHandler;
-import typergame.client.handler.handlerImpl.RoomCreateHandler;
+import typergame.client.handler.handlerImpl.*;
 import typergame.client.logic.Client;
 import typergame.client.model.Room;
-import typergame.client.visualizer.eventListImpl.GameTextPrinter;
-import typergame.client.visualizer.eventListImpl.RivalPrinter;
-import typergame.client.visualizer.eventListImpl.RoomCodePrinter;
-import typergame.client.visualizer.eventListImpl.RoomConnectPrinter;
+import typergame.client.visualizer.eventListImpl.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -49,10 +43,12 @@ public class ClientStart extends Application {
     private RoomConnectHandler roomConnectHandler;
     private RivalConnectHandler rivalConnectHandler;
     private GameStartHandler gameStartHandler;
+    private GamePlayHandler gamePlayHandler;
     private RoomCodePrinter roomCodePrinter;
     private RoomConnectPrinter roomConnectPrinter;
     private RivalPrinter rivalPrinter;
     private GameTextPrinter gameTextPrinter;
+    private ColorMixPrinter colorMixPrinter;
 
     private volatile Room room;
 
@@ -94,12 +90,14 @@ public class ClientStart extends Application {
             roomConnectHandler = new RoomConnectHandler(client);
             rivalConnectHandler = new RivalConnectHandler(client);
             gameStartHandler = new GameStartHandler(client);
+            gamePlayHandler = new GamePlayHandler(client);
 
             room = Room.getActualRoom();
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);
             client.registerListener(rivalConnectHandler);
             client.registerListener(gameStartHandler);
+            client.registerListener(gamePlayHandler);
             client.start();
 
 
@@ -121,10 +119,13 @@ public class ClientStart extends Application {
             roomConnectPrinter = new RoomConnectPrinter(controller1.getGamerOneName());
             gameTextPrinter = new GameTextPrinter(controller1);
             rivalPrinter = new RivalPrinter(controller1.getGamerOneName(),controller1.getGamerTwoName(),controller1.getGamerThreeName(),controller1.getGamerFourName());//Выводит принтер в контроллер
+            colorMixPrinter = new ColorMixPrinter(controller1,room);
 
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);
+            gamePlayHandler.addEventListener(colorMixPrinter);
+
             room.addEventListener(rivalPrinter);//каждый раз когда соперник подключился , отправит всем листенерам Pair
 
             log.info(" opponent row{}", controller.getOpponentRow());
