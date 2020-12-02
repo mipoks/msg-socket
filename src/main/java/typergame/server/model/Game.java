@@ -69,7 +69,7 @@ public class Game {
             log.info("МЫ ЗДЕСЬ3");
             num = gameState.get(client);
             log.info("МЫ ЗДЕСЬ5 " + num);
-            if (cchar.charAt(0) == gameText.charAt(num + 1)) {
+            if (cchar.charAt(0) == gameText.charAt(num)) {
 
                 log.info("МЫ ЗДЕСЬ6 ");
                 gameState.put(client, ++num);
