@@ -45,6 +45,7 @@ public class RivalPrinter implements EventListener<Pair> {
             gamer = (Gamer) object.getValue();
             log.info("gamer{}",gamer);
             gamers.add(gamer);
+            log.info("Gamer's color {}",gamersNames.get(n%4).getFill());
             ColorMixer.getLibraryColor().put(gamer,gamersNames.get(n%4).getFill().toString().substring(2,8));
             gamersNames.get(n++%4).setText(gamer.getName());
             System.out.println(object.getKey().toString() + object.getValue().toString());

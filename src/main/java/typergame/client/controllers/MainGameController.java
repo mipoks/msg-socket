@@ -1,5 +1,6 @@
 package typergame.client.controllers;
 
+import javafx.scene.paint.Paint;
 import typergame.client.logic.Client;
 import typergame.client.message.MessageCreater;
 import typergame.client.visualizer.ThemeContext;
@@ -70,7 +71,8 @@ public class MainGameController implements Initializable {
         Arrays.stream(textArray).forEach(x -> {
             utillText = new Text(x);
             utillText.setFont(Font.font(18));
-            utillText.setFill(Color.LIGHTSLATEGRAY);
+            utillText.setFill(Paint.valueOf("778899"));
+
             utillText.setStyle(style);
             textList.add(utillText);
             gameScreen.getChildren().add(utillText);
@@ -107,7 +109,7 @@ public class MainGameController implements Initializable {
                 setUtillText(new Text(keyEvent.getCharacter().toLowerCase()));
                 getUtillText().setFont(Font.font(35));
 
-                getUtillText().setStyle("-fx-stroke: #ff0000");
+//                getUtillText().setStyle("-fx-stroke: #ff0000");
                 log.info(getUtillText().getStyle());
                 getGameScreen().getChildren().add(n, getUtillText());
 

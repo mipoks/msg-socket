@@ -14,7 +14,7 @@ public class GameTextPrinter implements EventListener<String> {
     }
 
     @Override
-    public void onEventAction(String object) {
+    public synchronized void onEventAction(String object) {
         log.info("Подготавливаю текст");
         Platform.runLater(() -> {
             mainGameController.prepare(object);
