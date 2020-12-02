@@ -1,13 +1,15 @@
 package typergame.client.visualizer.eventListImpl;
 
+import javafx.scene.text.Text;
 import typergame.client.visualizer.EventListener;
 import javafx.scene.control.TextField;
 
 
 public class RoomCodePrinter implements EventListener<String> {
-    private TextField textField;
+    private Text textField;
 
-    public RoomCodePrinter(TextField textField) {
+
+    public RoomCodePrinter(Text textField) {
         this.textField = textField;
     }
 

@@ -30,6 +30,8 @@ import java.util.ResourceBundle;
 @Data
 public class MainGameController implements Initializable {
     @FXML
+    private Text roomCode;
+    @FXML
     private Text gamerTwoName;
     @FXML
     private Text gamerOneName;
