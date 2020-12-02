@@ -18,11 +18,11 @@ public class Room implements EventListener<Pair> {
     private static Room actualRoom;
     private ArrayList<EventListener> eventListeners;
 
-    public static Room createNewRoom() {
+    public synchronized static Room createNewRoom() {
         actualRoom = new Room();
         return actualRoom;
     }
-    public static Room getActualRoom() {
+    public synchronized static Room getActualRoom() {
         if (actualRoom == null)
             actualRoom = new Room();
         return actualRoom;

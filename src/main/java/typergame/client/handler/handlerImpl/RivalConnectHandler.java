@@ -37,6 +37,7 @@ public class RivalConnectHandler implements Handler {
                 Room room = Room.getActualRoom();
                 Gamer rival = new Gamer(pair.getKey(), pair.getValue());
                 room.addGamer(rival);
+                log.info("GAMERS IN ROOM:" + room.getGamers().get().toString());
 
                 //old code
                 for (EventListener eventListener : listeners) {

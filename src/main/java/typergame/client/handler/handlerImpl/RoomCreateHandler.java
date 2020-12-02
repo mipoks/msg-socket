@@ -46,6 +46,7 @@ public class RoomCreateHandler implements Handler {
                 for (EventListener eventListener : listeners) {
                     room.addEventListener(eventListener);
                 }
+                log.info("GAMERS IN ROOM:" + room.getGamers().get().toString());
 
 
           /*      //old code

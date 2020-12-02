@@ -29,6 +29,7 @@ public class RecordSaver implements EventListener {
             double cpersec = game.getGameText().length() * 1000 * 60 /
                     (double) (client.getEndTime().getTime() - client.getStartTime().getTime());
 
+            client.setCpersec(cpersec);
             log.info("Скокроть клиента: " + cpersec);
             Record record = new Record(client.getName(), cpersec);
             recordRepository.save(record);
