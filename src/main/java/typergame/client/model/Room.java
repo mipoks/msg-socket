@@ -1,5 +1,6 @@
 package typergame.client.model;
 
+import lombok.ToString;
 import typergame.client.visualizer.EventListener;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Slf4j
+@ToString
 public class Room implements EventListener<Pair> {
     private String roomUnique;
     private boolean publicity;

@@ -34,12 +34,14 @@ public class ColorMixPrinter implements EventListener<Pair> {
 
     @Override
     public void onEventAction(Pair object) {
+       log.info("room gamers {}",room.getGamers().get());
        position = (int)object.getValue()-1;
        log.info("Pair object key {}, value {}",object.getKey(),object.getValue());
         room.getGamers().ifPresent(x -> {
             x.stream().forEach(gamer -> {
                 if(gamer.getId()==(int)object.getKey()){
                     symb = (Text)filed.get(position);
+
                     paint =symb.getFill().toString().substring(2,8);
                     colorIndexHome = Integer.parseInt(paint,16);
                     colorIndexServer = Integer.parseInt(ColorMixer.getLibraryColor().get(gamer),16);

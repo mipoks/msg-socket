@@ -10,7 +10,6 @@ import java.util.Objects;
 
 @Slf4j
 @ToString
-
 public class Gamer {
     private int progress; //in symbols
     private int id;
