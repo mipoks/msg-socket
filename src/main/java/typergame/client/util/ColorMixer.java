@@ -3,10 +3,11 @@ package typergame.client.util;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import typergame.client.model.Gamer;
 
 import java.util.HashMap;
-
+@ToString
 public class ColorMixer {
     @Setter
     @Getter

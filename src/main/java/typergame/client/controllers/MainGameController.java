@@ -105,13 +105,14 @@ public class MainGameController implements Initializable {
 
             if (keyEvent.getCharacter().toLowerCase().equals(getTextArray()[n].toLowerCase()) ||
                     getTextArray()[n].equals(" ") && keyEvent.getCharacter().toLowerCase().equals("space")) {
-                getGameScreen().getChildren().remove(n);
+/*                getGameScreen().getChildren().remove(n);
                 setUtillText(new Text(keyEvent.getCharacter().toLowerCase()));
                 getUtillText().setFont(Font.font(35));
 
 //                getUtillText().setStyle("-fx-stroke: #ff0000");
+                utillText.setFill(Paint.valueOf("778899"));
                 log.info(getUtillText().getStyle());
-                getGameScreen().getChildren().add(n, getUtillText());
+                getGameScreen().getChildren().add(n, getUtillText());*/
 
                 n++;
 

@@ -28,10 +28,14 @@ public class ColorMixPrinter implements EventListener<Pair> {
    public  ColorMixPrinter(MainGameController controller){
        this.mainGameController = controller;
        filed = controller.getGameScreen().getChildren();
+
    }
 
     @Override
     public void onEventAction(Pair object) {
+       log.info("library of colors(hash) {}",ColorMixer.getLibraryColor().toString());
+       filed.stream().map(x->(Text)x).forEach(x->log.info("Fill of text in text flow {}",x.getFill()));
+
        room = Room.getActualRoom();
        log.info("room gamers {}",room.getGamers().get());
        position = (int)object.getValue()-1;
@@ -56,6 +60,8 @@ public class ColorMixPrinter implements EventListener<Pair> {
 
 
                         case "ff0000", "000fff" ->{symb.setFill(Paint.valueOf("D4C80B"));} // смешивание красного с синим ?
+                        case "D4C80B"->{symb.setFill(Paint.valueOf("EC7544"));}
+                        case "852A26"->{symb.setFill(Paint.valueOf("EC7544"));}
                         default -> {symb.setFill(Paint.valueOf("FF2376"));
                         log.info("case default");}
 
