@@ -5,6 +5,7 @@ import typergame.client.handler.Handler;
 import typergame.client.logic.Client;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
+import typergame.protocol.MExtendedPair;
 import typergame.protocol.Message;
 import typergame.protocol.Type;
 
@@ -27,8 +28,8 @@ public class GameEndHandler implements Handler {
         try(ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(message.getData())) {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
-            if (object instanceof Pair) {
-                Pair<Integer, String> pair = (Pair) object; //id + name of rival
+            if (object instanceof MExtendedPair) {
+                MExtendedPair<Integer, String> pair = (MExtendedPair) object; //id + name of rival
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(pair);
                 }

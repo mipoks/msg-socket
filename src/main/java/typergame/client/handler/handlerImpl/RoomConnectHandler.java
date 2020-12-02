@@ -43,6 +43,7 @@ public class RoomConnectHandler implements Handler {
                 Gamer me = new Gamer(pair.getKey(), pair.getValue());
                 room.setMe(me);
                 room.addGamer(me);
+                log.info("GAMERS IN ROOM:" + room.getGamers().get().toString());
 
                 //old code
                 for (EventListener eventListener : listeners) {

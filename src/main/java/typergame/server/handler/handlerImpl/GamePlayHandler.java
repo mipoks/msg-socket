@@ -2,6 +2,7 @@ package typergame.server.handler.handlerImpl;
 
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
+import typergame.protocol.MExtendedPair;
 import typergame.protocol.Message;
 import typergame.protocol.Type;
 import typergame.server.Server;
@@ -45,7 +46,7 @@ public class GamePlayHandler implements Handler {
             
             if (ans + 1 == optionalGame.get().getGameText().length()) {
                 Message msgGameEnd = Message.createMessage(Type.GAME_END, ObjectSerializer.
-                        toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
+                        toByteArray(new MExtendedPair<Integer, String>(client.getId(), client.getName(), client.getCpersec())));
                 room.sendMessage(msgGameEnd);
                 log.info("Игра окончена" );
             }

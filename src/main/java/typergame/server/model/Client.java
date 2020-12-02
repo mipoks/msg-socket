@@ -13,6 +13,7 @@ public class Client {
     private int id;
     private Socket socket;
     private Room room;
+    private double cpersec;
 
     private Date startTime;
     private Date endTime;
@@ -28,6 +29,14 @@ public class Client {
         this.name = name;
         this.id = idCounter++;
         this.socket = socket;
+    }
+
+    public double getCpersec() {
+        return cpersec;
+    }
+
+    public void setCpersec(double cpersec) {
+        this.cpersec = cpersec;
     }
 
     public Date getStartTime() {
