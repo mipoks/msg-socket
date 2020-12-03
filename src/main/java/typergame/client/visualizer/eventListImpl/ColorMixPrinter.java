@@ -61,8 +61,9 @@ public class ColorMixPrinter implements EventListener<Pair> {
                         log.info("case FF2376");}
 
 
+
                         case "ff0000", "000fff" ->{symb.setFill(Paint.valueOf("d4c80b"));} // смешивание красного с синим ?
-                        case "00ff33" ->{
+                        case "00ff33", "E13CF0" ->{
                             switch (ColorMixer.getLibraryColor().get(gamer)){
                                 case "000fff"->{ symb.setFill(Paint.valueOf("ffef08"));}//желтый
                                 case "ff0000"->{symb.setFill(Paint.valueOf("053742"));}
@@ -71,6 +72,7 @@ public class ColorMixPrinter implements EventListener<Pair> {
                         }
                         case "d4c80b"->{symb.setFill(Paint.valueOf("ec7544"));}
                         case "ec7544"->{symb.setFill(Paint.valueOf("852A26"));}
+
                         default -> {symb.setFill(Paint.valueOf("ff2376"));
                         log.info("case default");}
 

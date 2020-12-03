@@ -68,7 +68,9 @@ public class MainGameController implements Initializable {
     }
 
     private void dupplMapper(String text, String style) {
-        textArray = text.split("");
+        log.info("Удалено букв {}",gameScreen.getChildren().size());
+        gameScreen.getChildren().remove(0,gameScreen.getChildren().size());
+        textArray = (text+" ").split("");
         n = 0;
         Arrays.stream(textArray).forEach(x -> {
             utillText = new Text(x);
@@ -131,15 +133,10 @@ public class MainGameController implements Initializable {
                 log.info("Совпадение символа {}", n);
             }
 //
-            if (n == getTextArray().length) {
+            if (n == getTextArray().length-1) {
+                    endgame(keyEvent);
 
-                Stage primaryStage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
-                log.info("сцена {}", winScene);
-                primaryStage.setScene(winScene);
-                winScene.getRoot().requestFocus();
-                log.info("Is focused?{}", winScene.getRoot().isFocused());
-            } else {
-                log.info("Следующая буква {}", getTextArray()[n]);
+
             }
             ((Text)getGameScreen().getChildren().get(n)).setFont(Font.font(55));
 
@@ -156,5 +153,19 @@ public class MainGameController implements Initializable {
         message = MessageCreater.createStartGameMsg();
         client.sendMessage(message);
         Stage primaryStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+    }
+
+    private void endgame(KeyEvent keyEvent){
+        Stage primaryStage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
+        log.info("сцена {}", winScene);
+        primaryStage.setScene(winScene);
+        winScene.getRoot().requestFocus();
+        log.info("Is focused?{}", winScene.getRoot().isFocused());
+        log.info("Следующей буквы не будет");
+        gameScreen.getChildren().remove(0,gameScreen.getChildren().size());
+        gamerOneName.setText("Gamer 1");
+        gamerTwoName.setText("Gamer 2");
+        gamerThreeName.setText("Gamer 3");
+        gamerFourName.setText("Gamer 4");
     }
 }

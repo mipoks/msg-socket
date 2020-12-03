@@ -50,13 +50,14 @@ public class Controller implements Initializable {
         log.info("Комнта создана");
         try {
             Message message = MessageCreater.createRoomCreateMsg();
+            client.sendMessage(message);
             Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
             ThemeContext.checkTheme(gameScene);
             log.info("сцена {}",gameScene);
             primaryStage.setScene(gameScene);
             gameScene.getRoot().requestFocus();
             log.info("Is focused?{}",gameScene.getRoot().isFocused());
-            client.sendMessage(message);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

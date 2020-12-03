@@ -1,10 +1,11 @@
 package typergame.client.visualizer.eventListImpl;
 
+import lombok.extern.slf4j.Slf4j;
 import typergame.client.visualizer.EventListener;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
-
+@Slf4j
 public class RoomConnectPrinter implements EventListener<Pair> {
 
     private Text text;
@@ -15,7 +16,8 @@ public class RoomConnectPrinter implements EventListener<Pair> {
 
     @Override
     public void onEventAction(Pair object) {
-        Pair<Integer, String> pair = (Pair<Integer, String>) object;
-        text.setText("ID: " + pair.getKey() + " Name: " + pair.getValue());
+        log.info("Roomconncetprinter");
+        /*Pair<Integer, String> pair = (Pair<Integer, String>) object;
+        text.setText("ID: " + pair.getKey() + " Name: " + pair.getValue());*/
     }
 }
