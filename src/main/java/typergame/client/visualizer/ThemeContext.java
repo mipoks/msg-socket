@@ -13,10 +13,10 @@ public class ThemeContext {
         if (ThemeContext.currentTheme.equals(ThemeContext.DEFAULT_THEME)) {
 
 
-            scene.getStylesheets().remove("css/DarkTheme.css");
+            scene.getStylesheets().remove("css/DarkV2Theme.css");
         }else  if (ThemeContext.currentTheme.equals(ThemeContext.DARK_THEME)) {
 
-            scene.getStylesheets().add("css/DarkTheme.css");
+            scene.getStylesheets().add("css/DarkV2Theme.css");
         }
     }
 }
