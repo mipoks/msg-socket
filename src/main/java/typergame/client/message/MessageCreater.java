@@ -52,5 +52,9 @@ public class MessageCreater {
     public static Message createRoomPublicityMsg(boolean publicity) {
         return Message.createMessage(Type.ROOM_PUBLICITY_CHANGE, serialize(new Boolean(publicity)));
     }
+    public static Message createRoomgetRecordsMsg(){
+        return Message.createMessage(Type.RECORD_GET,new byte[1]);
+
+    }
 
 }

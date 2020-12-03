@@ -76,6 +76,8 @@ public class ColorMixPrinter implements EventListener<Pair> {
 
                     }
 
+                     ((Text) filed.get(position)).setFont(Font.font(40));
+
                    /* paint =symb.getFill().toString().substring(2,8);
                     colorIndexHome = Integer.parseInt(paint,16);
                     colorIndexServer = Integer.parseInt(ColorMixer.getLibraryColor().get(gamer),16);*/

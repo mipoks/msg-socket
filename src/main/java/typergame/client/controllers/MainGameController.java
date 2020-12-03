@@ -132,6 +132,7 @@ public class MainGameController implements Initializable {
             }
 //
             if (n == getTextArray().length) {
+
                 Stage primaryStage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
                 log.info("сцена {}", winScene);
                 primaryStage.setScene(winScene);

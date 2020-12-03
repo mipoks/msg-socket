@@ -40,6 +40,9 @@ public class RecordGetHandler implements Handler {
         }
     }
 
+    public void addEventListener(EventListener eventListener) {
+        listeners.add(eventListener);
+    }
     @Override
     public int getType() {
         return Type.RECORD_GET_ANSWER;

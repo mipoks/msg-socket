@@ -1,9 +1,6 @@
 package typergame.client;
 
-import typergame.client.controllers.Controller;
-import typergame.client.controllers.LostController;
-import typergame.client.controllers.MainGameController;
-import typergame.client.controllers.WinController;
+import typergame.client.controllers.*;
 import typergame.client.handler.handlerImpl.*;
 import typergame.client.logic.Client;
 import typergame.client.model.Room;
@@ -29,26 +26,31 @@ public class ClientStart extends Application {
     private Parent wint;
     private Parent mainGame;
     private Parent loose;
+    private Parent records;
     private Controller controller;
     private MainGameController controller1;
     private WinController controller3;
     private LostController controller4;
+    private RecordsController controller5;
     private Client client;
     private Scene scene;
     private FXMLLoader loader;
     private FXMLLoader loader2;
     private FXMLLoader loader3;
     private FXMLLoader loader4;
+    private FXMLLoader loader5;
     private RoomCreateHandler roomCreateHandler;
     private RoomConnectHandler roomConnectHandler;
     private RivalConnectHandler rivalConnectHandler;
     private GameStartHandler gameStartHandler;
     private GamePlayHandler gamePlayHandler;
+    private RecordGetHandler recordGetHandler;
     private RoomCodePrinter roomCodePrinter;
     private RoomConnectPrinter roomConnectPrinter;
     private RivalPrinter rivalPrinter;
     private GameTextPrinter gameTextPrinter;
     private ColorMixPrinter colorMixPrinter;
+    private RecordsCodePrinter recordsCodePrinter;
 
     private volatile Room room;
 
@@ -62,18 +64,21 @@ public class ClientStart extends Application {
         loader2 = new FXMLLoader(getClass().getResource("/gameTextMain.fxml"));
         loader3 = new FXMLLoader(getClass().getResource("/Win.fxml"));
         loader4 = new FXMLLoader(getClass().getResource("/lost.fxml"));
+        loader5 = new FXMLLoader(getClass().getResource("/RecordTable.fxml"));
 
         try {
             loose = loader4.load();
             root = loader.load();
             wint = loader3.load();
             mainGame = loader2.load();
+            records = loader5.load();
 
 
             controller = loader.getController(); //manuController
             controller1 = loader2.getController();//MainGame controller
             controller3 = loader3.getController();//win scene controller
             controller4 = loader4.getController();//loose scene controller
+            controller5 = loader5.getController();
             scene = new Scene(root);
             controller.setScene(scene);
             controller3.setScene(scene);
@@ -91,6 +96,7 @@ public class ClientStart extends Application {
             rivalConnectHandler = new RivalConnectHandler(client);
             gameStartHandler = new GameStartHandler(client);
             gamePlayHandler = new GamePlayHandler(client);
+            recordGetHandler = new RecordGetHandler(client);
 
             room = Room.getActualRoom();
             client.registerListener(roomConnectHandler);
@@ -98,6 +104,7 @@ public class ClientStart extends Application {
             client.registerListener(rivalConnectHandler);
             client.registerListener(gameStartHandler);
             client.registerListener(gamePlayHandler);
+            client.registerListener(recordGetHandler);
             client.start();
 
 
@@ -105,10 +112,12 @@ public class ClientStart extends Application {
 
 
             Scene gameScene = new Scene(mainGame);
+            Scene recordScene = new Scene(records);
             primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
             primaryStage.show();
             controller.setGameScene(gameScene);
+            controller.setRecordScene(recordScene);
 
            /* textStatus = (Text) scene.lookup("#textStatus");*/
             roomCodePrinter = new RoomCodePrinter(controller1.getRoomCode());
@@ -117,11 +126,14 @@ public class ClientStart extends Application {
             gameTextPrinter = new GameTextPrinter(controller1);
             rivalPrinter = new RivalPrinter(controller1.getGamerOneName(),controller1.getGamerTwoName(),controller1.getGamerThreeName(),controller1.getGamerFourName());//Выводит принтер в контроллер
             colorMixPrinter = new ColorMixPrinter(controller1);
+            recordsCodePrinter = new RecordsCodePrinter(controller5);
            /* roomCreateHandler.addEventListener(roomCodePrinter);*/
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);
             gamePlayHandler.addEventListener(colorMixPrinter);
+            recordGetHandler.addEventListener(recordsCodePrinter);
+
 
             room.addEventListener(rivalPrinter);//каждый раз когда соперник подключился , отправит всем листенерам Pair
 

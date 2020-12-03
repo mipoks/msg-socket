@@ -35,6 +35,8 @@ public class Controller implements Initializable {
     @Setter
     private Scene scene;
     private Scene gameScene;
+    private Scene recordScene;
+    private Message message;
 
 
     @Override
@@ -110,6 +112,14 @@ public class Controller implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void getRecordsTable(MouseEvent mouseEvent) {
+        message =MessageCreater.createRoomCreateMsg();
+        client.sendMessage(message);
+        Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(gameScene);
 
     }
 }
