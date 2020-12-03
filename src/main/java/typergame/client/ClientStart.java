@@ -80,6 +80,7 @@ public class ClientStart extends Application {
             controller4 = loader4.getController();//loose scene controller
             controller5 = loader5.getController();
             scene = new Scene(root);
+            controller5.setMainScene(scene);
             controller.setScene(scene);
             controller3.setScene(scene);
             controller4.setScene(scene);
@@ -126,7 +127,7 @@ public class ClientStart extends Application {
             gameTextPrinter = new GameTextPrinter(controller1);
             rivalPrinter = new RivalPrinter(controller1.getGamerOneName(),controller1.getGamerTwoName(),controller1.getGamerThreeName(),controller1.getGamerFourName());//Выводит принтер в контроллер
             colorMixPrinter = new ColorMixPrinter(controller1);
-            recordsCodePrinter = new RecordsCodePrinter(controller5);
+            recordsCodePrinter = new RecordsCodePrinter(controller5.getChart());
            /* roomCreateHandler.addEventListener(roomCodePrinter);*/
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);

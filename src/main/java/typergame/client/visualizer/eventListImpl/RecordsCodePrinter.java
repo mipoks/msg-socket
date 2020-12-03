@@ -1,42 +1,39 @@
 package typergame.client.visualizer.eventListImpl;
 
 import javafx.application.Platform;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
-import typergame.client.controllers.RecordsController;
-import typergame.client.handler.Handler;
 import typergame.client.visualizer.EventListener;
-import typergame.protocol.Message;
 import typergame.protocol.Record;
 
 import java.util.Collection;
+
 @Slf4j
 public class RecordsCodePrinter implements EventListener<Collection<Record>> {
-    private RecordsController recordsController;
-    private TextFlow textField;
+    private BarChart chart;
     private Text text;
-    public RecordsCodePrinter(RecordsController recordsController){
-        this.recordsController = recordsController;
-        textField =(TextFlow) recordsController.getRecordsScreen();
+    private XYChart.Series dataSeries1;
+
+    public RecordsCodePrinter(BarChart chart) {
+
+        this.chart = chart;
+        dataSeries1 = new XYChart.Series();
     }
 
     @Override
     public synchronized void onEventAction(Collection<Record> object) {
-        Platform.runLater(()->{
-            textField.getChildren().remove(0,textField.getChildren().size());
+        Platform.runLater(() -> {
+            chart.getData().remove(0, chart.getData().size());
 
-            object.forEach(x->{
+
+            object.forEach(x -> {
                 log.info("");
-                text = new Text(x.getName()+x.getTime());
-                text.setFont(Font.font(34));
-
-
-                textField.getChildren().add(text);});
-
+                log.info("Прихдящая запись {}  ,  {}", x.getName(), x.getTime());
+                dataSeries1.getData().add(new XYChart.Data(x.getName(), x.getTime()));
+            });
+            chart.getData().add(dataSeries1);
 
 
         });

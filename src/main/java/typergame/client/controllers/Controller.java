@@ -120,6 +120,7 @@ public class Controller implements Initializable {
         client.sendMessage(message);
         Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(recordScene);
+        recordScene.getRoot().requestFocus();
 
     }
 }

@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class ConnectionLocal implements ConnectionGiver {
 
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
-    private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/Kursach";
     private static final String DATABASE_USER = "postgres";
-    private static final String DATABASE_PASSWORD = "postgres";
+    private static final String DATABASE_PASSWORD = "123456789";
 
     public Connection getConnection() throws SQLException {
         try {
