@@ -119,7 +119,7 @@ public class Controller implements Initializable {
         message =MessageCreater.createRoomCreateMsg();
         client.sendMessage(message);
         Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(gameScene);
+        primaryStage.setScene(recordScene);
 
     }
 }
