@@ -4,6 +4,7 @@ package typergame.client.visualizer.eventListImpl;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,7 @@ public class ColorMixPrinter implements EventListener<Pair> {
     @Override
     public void onEventAction(Pair object) {
        log.info("library of colors(hash) {}",ColorMixer.getLibraryColor().toString());
-       filed.stream().map(x->(Text)x).forEach(x->log.info("Fill of text in text flow {}",x.getFill()));
+       /*filed.stream().map(x->(Text)x).forEach(x->log.info("Fill of text in text flow {}",x.getFill()));*/
 
        room = Room.getActualRoom();
        log.info("room gamers {}",room.getGamers().get());
@@ -75,9 +76,11 @@ public class ColorMixPrinter implements EventListener<Pair> {
 
                     }
 
-                    paint =symb.getFill().toString().substring(2,8);
+                   /* paint =symb.getFill().toString().substring(2,8);
                     colorIndexHome = Integer.parseInt(paint,16);
-                    colorIndexServer = Integer.parseInt(ColorMixer.getLibraryColor().get(gamer),16);
+                    colorIndexServer = Integer.parseInt(ColorMixer.getLibraryColor().get(gamer),16);*/
+                    log.info("Устанавливаю красный стиль");
+
 
               /*      color = ((colorIndexHome*colorIndexServer+colorIndexHome*colorIndexHome)-colorIndexHome*colorIndexServer);
                     log.info("home color {}",Integer.toString(colorIndexHome,16));

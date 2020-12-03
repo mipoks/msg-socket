@@ -119,8 +119,12 @@ public class MainGameController implements Initializable {
                 n++;
 
                 Message message = MessageCreater.createPlayGameMsg(keyEvent.getCharacter());
+
+
                 try {
                     client.sendMessage(message);
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -136,6 +140,7 @@ public class MainGameController implements Initializable {
             } else {
                 log.info("Следующая буква {}", getTextArray()[n]);
             }
+            ((Text)getGameScreen().getChildren().get(n)).setFont(Font.font(55));
 
 
         } catch (Exception e) {
