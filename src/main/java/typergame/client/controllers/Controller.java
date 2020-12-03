@@ -116,7 +116,7 @@ public class Controller implements Initializable {
     }
 
     public void getRecordsTable(MouseEvent mouseEvent) {
-        message =MessageCreater.createRoomCreateMsg();
+        message =MessageCreater.createGetRecordsMsg();
         client.sendMessage(message);
         Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(recordScene);
