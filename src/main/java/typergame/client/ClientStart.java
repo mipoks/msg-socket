@@ -91,6 +91,8 @@ public class ClientStart extends Application {
             client = new Client(InetAddress.getByName("127.0.0.1"), 4888);
             controller.setClient(client);
             controller1.setClient(client);
+            settingsController.setClient(client);
+
 
             Scene gameScene = new Scene(mainGame);
             Scene recordScene = new Scene(records);
