@@ -22,7 +22,7 @@ public class RecordRepoImpl implements RecordRepository {
     //language=sql
     private String SQL_INSERT_RECORD = "INSERT INTO records (name, cpersec) VALUES (?, ?)";
     //language=sql
-    private String SQL_SELECT_LIMIT_15 = "SELECT name, cpersec FROM records LIMIT 15 ORDER BY cpersec DESC";
+    private String SQL_SELECT_LIMIT_15 = "SELECT name, cpersec FROM records ORDER BY cpersec DESC LIMIT 15";
 
 
     public RecordRepoImpl() {
