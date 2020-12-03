@@ -112,7 +112,7 @@
                     </rowConstraints>
                      <children>
                         <Button fx:id="demoGame" mnemonicParsing="false" onMouseClicked="#startDemo" text="Start Game" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="publicity" mnemonicParsing="false" text="Public Room" GridPane.halignment="CENTER">
+                        <RadioButton fx:id="publicity" mnemonicParsing="false" onMouseClicked="#sendPublicityStatus" text="Public Room" GridPane.halignment="CENTER">
                            <font>
                               <Font name="Century Gothic Italic" size="12.0" />
                            </font></RadioButton>

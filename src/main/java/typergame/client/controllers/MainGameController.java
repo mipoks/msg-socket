@@ -1,6 +1,7 @@
 package typergame.client.controllers;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.paint.Paint;
 import typergame.client.logic.Client;
 import typergame.client.message.MessageCreater;
@@ -30,7 +31,8 @@ import java.util.ResourceBundle;
 @Slf4j
 @Data
 public class MainGameController implements Initializable {
-
+    @FXML
+    private RadioButton publicity;
     @FXML
     private Button demoGame;
     @FXML
@@ -172,5 +174,9 @@ public class MainGameController implements Initializable {
         gamerTwoName.setText("Gamer 2");
         gamerThreeName.setText("Gamer 3");
         gamerFourName.setText("Gamer 4");
+    }
+
+    public void sendPublicityStatus(MouseEvent mouseEvent) {
+        client.sendMessage(MessageCreater.createRoomPublicityMsg(publicity.isSelected()));
     }
 }
