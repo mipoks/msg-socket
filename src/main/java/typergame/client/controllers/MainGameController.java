@@ -1,5 +1,6 @@
 package typergame.client.controllers;
 
+import javafx.scene.control.Button;
 import javafx.scene.paint.Paint;
 import typergame.client.logic.Client;
 import typergame.client.message.MessageCreater;
@@ -29,6 +30,9 @@ import java.util.ResourceBundle;
 @Slf4j
 @Data
 public class MainGameController implements Initializable {
+
+    @FXML
+    private Button demoGame;
     @FXML
     private Text roomCode;
     @FXML
@@ -84,6 +88,7 @@ public class MainGameController implements Initializable {
         System.out.println(Arrays.toString(textArray));
        /* ThemeContext.checkTheme(body);*/
         log.info("Vbox body :{}", body);
+        demoGame.setVisible(false);
     }
 
 
