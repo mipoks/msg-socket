@@ -41,6 +41,9 @@ public class MessageCreater {
         return Message.createMessage(Type.ROOM_CONNECT, serialize(room));
     }
 
+    public static Message createNickNameChangeMsg(String name) {
+        return Message.createMessage(Type.NAME_CHANGE, serialize(name));
+    }
     public static Message createStartGameMsg() {
         return Message.createMessage(Type.GAME_START, new byte[1]);
     }
