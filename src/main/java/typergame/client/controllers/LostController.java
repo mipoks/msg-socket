@@ -1,5 +1,6 @@
 package typergame.client.controllers;
 
+import lombok.Getter;
 import typergame.client.visualizer.ThemeContext;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 @Slf4j
 public class LostController implements Initializable {
     @FXML
+    @Getter
     private VBox body;
     @Setter
     private Scene scene;
@@ -45,6 +47,8 @@ public class LostController implements Initializable {
         log.info(imageView.toString());
         Image i = new Image(new File("src/main/resources/assets/lost.gif").toURI().toString());
         imageView.setImage(i);
-        ThemeContext.checkTheme(body);
+       /* ThemeContext.checkTheme(body);*/
     }
+
+
 }

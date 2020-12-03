@@ -1,3 +1,4 @@
+/* default setting */
 .root {
     -darcula-background-bright: #4b6eaf;
     -darcula-background: #3c3f41; /*60 63 65*/
@@ -37,7 +38,10 @@
 .menu:disabled,
 .menu-item:disabled > .label,
 .menu-item:disabled,
-
+.list-cell:filled:selected:focused:disabled,
+.list-cell:filled:selected:disabled,
+.tree-cell:filled:selected:focused:disabled,
+.tree-cell:filled:selected:disabled,
 .tree-cell > .tree-disclosure-node:disabled,
 .tree-table-row-cell > .tree-disclosure-node:disabled,
 .table-row-cell:selected:disabled,
@@ -57,7 +61,7 @@
 }
 
 .hyperlink {
-    -fx-text-fill: #589df6;
+    -fx-text-fill: #589df6; /*88 157 246*/
 }
 
 .hyperlink .text {

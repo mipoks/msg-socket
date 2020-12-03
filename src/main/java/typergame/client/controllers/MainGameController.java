@@ -80,7 +80,7 @@ public class MainGameController implements Initializable {
             gameScreen.getChildren().add(utillText);
         });
         System.out.println(Arrays.toString(textArray));
-        ThemeContext.checkTheme(body);
+       /* ThemeContext.checkTheme(body);*/
         log.info("Vbox body :{}", body);
     }
 
@@ -89,7 +89,7 @@ public class MainGameController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        /*ThemeContext.checkTheme(body);*/
     }
 
     public void checkSensor(MouseEvent mouseEvent) {

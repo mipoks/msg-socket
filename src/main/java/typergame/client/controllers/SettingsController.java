@@ -4,12 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,41 +14,35 @@ import typergame.client.visualizer.ThemeContext;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RecordsController implements Initializable {
+public class SettingsController implements Initializable {
 
-    @FXML
-    @Setter
-    @Getter
-    private  NumberAxis y;
-
-    @FXML
-    @Setter
-    @Getter
-    private  CategoryAxis x;
-    @FXML
-    @Setter
-    @Getter
-    private BarChart chart;
     @FXML
     @Getter
     private VBox body;
     @Setter
+
     private Scene mainScene;
 
+    public void changeTheme(MouseEvent mouseEvent) {
+        if (ThemeContext.currentTheme.equals(ThemeContext.DEFAULT_THEME)) {
+            ThemeContext.currentTheme =ThemeContext.DARK_THEME;
+
+            body.setStyle(ThemeContext.DARK_THEME);
+        }else {
+            ThemeContext.currentTheme =ThemeContext.DEFAULT_THEME;
+            body.setStyle(ThemeContext.DEFAULT_THEME);
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*CategoryAxis xAxis    = new CategoryAxis();
-        xAxis.setLabel("Nicknames");
 
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("words per minute");
-        chart.set*/
-        /*ThemeContext.checkTheme(body);*/
+
     }
 
     public void getMainScene(MouseEvent mouseEvent) {
         Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        ThemeContext.checkTheme(mainScene);
         primaryStage.setScene(mainScene);
         mainScene.getRoot().requestFocus();
     }

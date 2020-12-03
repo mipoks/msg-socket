@@ -19,6 +19,7 @@ import typergame.protocol.Message;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 @Slf4j
 @Data
 public class Controller implements Initializable {
@@ -33,15 +34,15 @@ public class Controller implements Initializable {
     private Client client;
     private String theme;
     @Setter
-    private Scene scene;
     private Scene gameScene;
     private Scene recordScene;
+    private Scene settingsScene;
     private Message message;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        theme="light";
+     /*   ThemeContext.checkTheme();*/ //будем ли хранить смену темы юзера в бд ?
     }
     @FXML
     public void createRoom(MouseEvent mouseEvent){
@@ -50,6 +51,7 @@ public class Controller implements Initializable {
         try {
             Message message = MessageCreater.createRoomCreateMsg();
             Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+            ThemeContext.checkTheme(gameScene);
             log.info("сцена {}",gameScene);
             primaryStage.setScene(gameScene);
             gameScene.getRoot().requestFocus();
@@ -85,16 +87,6 @@ public class Controller implements Initializable {
         }
     }
 
-    public void changeTheme(MouseEvent mouseEvent) {
-        if (ThemeContext.currentTheme.equals(ThemeContext.DEFAULT_THEME)) {
-            ThemeContext.currentTheme =ThemeContext.DARK_THEME;
-
-            body.setStyle(ThemeContext.DARK_THEME);
-        }else {
-            ThemeContext.currentTheme =ThemeContext.DEFAULT_THEME;
-            body.setStyle(ThemeContext.DEFAULT_THEME);
-        }
-    }
 
     public void startDemo(MouseEvent mouseEvent) {
         Message message = null;
@@ -102,7 +94,6 @@ public class Controller implements Initializable {
             message =MessageCreater.createStartGameMsg();
             client.sendMessage(message);
             Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-            log.info("сцена {}",scene);
             primaryStage.setScene(gameScene);
 
 
@@ -119,8 +110,19 @@ public class Controller implements Initializable {
         message =MessageCreater.createGetRecordsMsg();
         client.sendMessage(message);
         Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        ThemeContext.checkTheme(recordScene);
         primaryStage.setScene(recordScene);
         recordScene.getRoot().requestFocus();
 
     }
+
+    public void getSettingsScene(MouseEvent mouseEvent) {
+        Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        ThemeContext.checkTheme(settingsScene);
+
+
+        primaryStage.setScene(settingsScene);
+        settingsScene.getRoot().requestFocus();
+    }
+
 }

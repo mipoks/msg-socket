@@ -1,5 +1,6 @@
 package typergame.client.controllers;
 
+import lombok.Getter;
 import typergame.client.visualizer.ThemeContext;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ public class WinController implements Initializable {
     @FXML
     public ImageView imageView;
     @FXML
+    @Getter
     private VBox body;
     @Setter
     private Scene scene;
@@ -38,6 +40,7 @@ public class WinController implements Initializable {
         log.info(imageView.toString());
         Image i = new Image(new File("src/main/resources/assets/SdRockFact.gif").toURI().toString());
         imageView.setImage(i);
-        ThemeContext.checkTheme(body);
+        /*ThemeContext.checkTheme(body);*/
     }
+
 }

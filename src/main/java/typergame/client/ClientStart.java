@@ -27,11 +27,13 @@ public class ClientStart extends Application {
     private Parent mainGame;
     private Parent loose;
     private Parent records;
+    private Parent settings;
     private Controller controller;
     private MainGameController controller1;
     private WinController controller3;
     private LostController controller4;
     private RecordsController controller5;
+    private SettingsController settingsController;
     private Client client;
     private Scene scene;
     private FXMLLoader loader;
@@ -39,6 +41,7 @@ public class ClientStart extends Application {
     private FXMLLoader loader3;
     private FXMLLoader loader4;
     private FXMLLoader loader5;
+    private FXMLLoader settingsLoader;
     private RoomCreateHandler roomCreateHandler;
     private RoomConnectHandler roomConnectHandler;
     private RivalConnectHandler rivalConnectHandler;
@@ -65,6 +68,7 @@ public class ClientStart extends Application {
         loader3 = new FXMLLoader(getClass().getResource("/Win.fxml"));
         loader4 = new FXMLLoader(getClass().getResource("/lost.fxml"));
         loader5 = new FXMLLoader(getClass().getResource("/RecordTable.fxml"));
+        settingsLoader = new FXMLLoader(getClass().getResource("/settingGame.fxml"));
 
         try {
             loose = loader4.load();
@@ -72,24 +76,37 @@ public class ClientStart extends Application {
             wint = loader3.load();
             mainGame = loader2.load();
             records = loader5.load();
+            settings = settingsLoader.load();
 
 
             controller = loader.getController(); //manuController
             controller1 = loader2.getController();//MainGame controller
             controller3 = loader3.getController();//win scene controller
             controller4 = loader4.getController();//loose scene controller
-            controller5 = loader5.getController();
+            controller5 = loader5.getController(); //record scene
+            settingsController = settingsLoader.getController();
             scene = new Scene(root);
-            controller5.setMainScene(scene);
-            controller.setScene(scene);
-            controller3.setScene(scene);
-            controller4.setScene(scene);
+
 
             client = new Client(InetAddress.getByName("127.0.0.1"), 4888);
             controller.setClient(client);
             controller1.setClient(client);
+
+            Scene gameScene = new Scene(mainGame);
+            Scene recordScene = new Scene(records);
+            Scene settingsScene = new Scene(settings);
+
+            controller.setGameScene(gameScene);
+            controller.setRecordScene(recordScene);
+            controller.setSettingsScene(settingsScene);
             controller1.setWinScene(new Scene(wint));
             controller1.setLostScene(new Scene(loose));
+            controller3.setScene(scene);
+            controller4.setScene(scene);
+            controller5.setMainScene(scene);
+            settingsController.setMainScene(scene);
+
+
             client.connect();
 
             roomCreateHandler = new RoomCreateHandler(client);
@@ -112,13 +129,11 @@ public class ClientStart extends Application {
 
 
 
-            Scene gameScene = new Scene(mainGame);
-            Scene recordScene = new Scene(records);
+
             primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
             primaryStage.show();
-            controller.setGameScene(gameScene);
-            controller.setRecordScene(recordScene);
+
 
            /* textStatus = (Text) scene.lookup("#textStatus");*/
             roomCodePrinter = new RoomCodePrinter(controller1.getRoomCode());
