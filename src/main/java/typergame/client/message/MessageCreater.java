@@ -57,8 +57,10 @@ public class MessageCreater {
     }
     public static Message createGetRecordsMsg(){
         return Message.createMessage(Type.RECORD_GET,new byte[1]);
-
     }
 
+    public static Message createConnectRandomMsg() {
+        return Message.createMessage(Type.ROOM_CONNECT_RAND, new byte[1]);
+    }
 
 }

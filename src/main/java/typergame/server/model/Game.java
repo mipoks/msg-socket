@@ -74,7 +74,7 @@ public class Game {
                 log.info("МЫ ЗДЕСЬ6 ");
                 gameState.put(client, ++num);
             }
-            if (num + 1 == gameText.length()) {
+            if (num == gameText.length()) {
                 client.setEndTime(new Date());
                 onClientEndGame(client);
                 if (winner == null) {
