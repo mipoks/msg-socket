@@ -100,6 +100,7 @@ public class MainGameController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         publicity.setVisible(false);
         hardGameMode.setVisible(false);
+        demoGame.setVisible(false);
         /*ThemeContext.checkTheme(body);*/
     }
 

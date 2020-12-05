@@ -64,6 +64,8 @@ public class Controller implements Initializable {
 
             (gameScene.getRoot().lookup("#publicity")).setVisible(true);
             (gameScene.getRoot().lookup("#hardGameMode")).setVisible(true);
+            (gameScene.getRoot().lookup("#demoGame")).setVisible(true);
+
 
         } catch (Exception e) {
             e.printStackTrace();
