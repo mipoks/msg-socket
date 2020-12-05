@@ -39,7 +39,9 @@ public class RoomConnectHandler implements Handler {
             System.out.println(roomName + " ROOM ON3");
             if (room.get().getClients().contains(client))
                 return;
-            room.get().addClient(client);
+            if (!room.get().addClient(client)) {
+                return;
+            }
             client.setRoom(room.get());
 
 

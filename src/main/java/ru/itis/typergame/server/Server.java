@@ -86,6 +86,7 @@ public class Server {
                         if (optionalRoom.isPresent()) {
                             Room room = optionalRoom.get();
                             room.removeClient(client);
+                            Room.cleanEmptyRooms();
                         }
                         e.printStackTrace();
                     }

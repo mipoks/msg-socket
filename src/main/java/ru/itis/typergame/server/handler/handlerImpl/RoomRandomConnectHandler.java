@@ -24,7 +24,7 @@ public class RoomRandomConnectHandler implements Handler {
 
     public void handleMessage(Client client, Message message) {
         try {
-            Room room = Room.getOpenRoom();
+//            Room room = Room.getOpenRoom();
 //            room.addClient(client);
 //            client.setRoom(room);
 
@@ -38,9 +38,14 @@ public class RoomRandomConnectHandler implements Handler {
 //            room.sendMessage(message);
 
 
-            if (room.getClients().contains(client))
-                return;
-            room.addClient(client);
+            Room room;
+            boolean ans = false;
+            do {
+                room = Room.getOpenRoom();
+                if (room.getClients().contains(client))
+                    return;
+                ans = room.addClient(client);
+            } while (!ans);
             client.setRoom(room);
 
 

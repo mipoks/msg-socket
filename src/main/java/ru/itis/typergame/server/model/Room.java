@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Room {
     public static final int ROOM_UNIQUE_LENGTH = 4;
-    public static final int MAX_CLIENT = 1000;
+    public static final int MAX_CLIENT = 4;
 
     //    private static ArrayList<Pair<String, Room>> uniqueString = new ArrayList<>();
     private static HashMap<String, Room> uniqueString = new HashMap<>();
@@ -149,6 +149,19 @@ public class Room {
                 }
             }
             System.out.println("SENDED TO " + clients.size() + " CLIENTS OF ROOM " + roomUniqueString);
+        }
+    }
+
+    public static void cleanEmptyRooms() {
+        Set<String> keys = uniqueString.keySet();
+        for (String roomCode : keys) {
+            Room room = uniqueString.get(roomCode);
+            if (room.getClients().size() == 0) {
+                synchronized (room) {
+                    if (room.getClients().size() == 0)
+                        uniqueString.remove(roomCode);
+                }
+            }
         }
     }
 
