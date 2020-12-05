@@ -6,7 +6,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="body" alignment="TOP_RIGHT" onKeyTyped="#handleTypedCode" onMouseClicked="#checkSensor" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="typergame.client.controllers.MainGameController">
+<VBox fx:id="body" alignment="TOP_RIGHT" onKeyTyped="#handleTypedCode" onMouseClicked="#checkSensor" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.itis.typergame.client.controllers.MainGameController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>

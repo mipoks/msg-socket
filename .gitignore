@@ -11,3 +11,4 @@
 .idea/uiDesigner.xml
 .idea/vcs.xml
 msg.iml
+/src/main/resources/application.properties
