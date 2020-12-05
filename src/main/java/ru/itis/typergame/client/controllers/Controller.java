@@ -1,5 +1,6 @@
 package ru.itis.typergame.client.controllers;
 
+import javafx.scene.control.RadioButton;
 import ru.itis.typergame.client.logic.Client;
 import ru.itis.typergame.client.message.MessageCreater;
 import ru.itis.typergame.client.visualizer.ISceneChanger;
@@ -58,7 +59,11 @@ public class Controller implements Initializable {
             primaryStage.setScene(gameScene);
             gameScene.getRoot().requestFocus();
             log.info("Is focused?{}",gameScene.getRoot().isFocused());*/
+
             ISceneChanger.changeScene(gameScene,mouseEvent);
+
+            (gameScene.getRoot().lookup("#publicity")).setVisible(true);
+            (gameScene.getRoot().lookup("#hardGameMode")).setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -31,6 +31,8 @@ import java.util.ResourceBundle;
 @Data
 public class MainGameController implements Initializable {
     @FXML
+    private RadioButton hardGameMode;
+    @FXML
     private RadioButton publicity;
     @FXML
     private Button demoGame;
@@ -96,7 +98,8 @@ public class MainGameController implements Initializable {
     @Override
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        publicity.setVisible(false);
+        hardGameMode.setVisible(false);
         /*ThemeContext.checkTheme(body);*/
     }
 
