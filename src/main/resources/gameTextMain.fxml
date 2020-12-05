@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<VBox fx:id="body" alignment="TOP_RIGHT" onKeyTyped="#handleTypedCode" onMouseClicked="#checkSensor" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.itis.typergame.client.controllers.MainGameController">
+<VBox fx:id="body" onKeyTyped="#handleTypedCode" onMouseClicked="#checkSensor" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.itis.typergame.client.controllers.MainGameController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -72,8 +86,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text fx:id="gamerFourName" fill="#d900ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer4" wrappingWidth="58.2565313577652" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Text fx:id="gamerThreeName" fill="#00ff33" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer3" wrappingWidth="58.13671875" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text fx:id="gamerFourName" fill="#d900ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting" wrappingWidth="58.2565313577652" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Text fx:id="gamerThreeName" fill="#00ff33" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting" wrappingWidth="58.13671875" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                   <GridPane layoutX="490.0" layoutY="110.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -85,13 +99,13 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Text fx:id="gamerTwoName" fill="#000fff" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer2" wrappingWidth="59.58984339237213" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Text fx:id="gamerOneName" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Gamer1" wrappingWidth="58.13671875" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Text fx:id="gamerTwoName" fill="#000fff" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting" wrappingWidth="59.58984339237213" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Text fx:id="gamerOneName" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting" wrappingWidth="58.13671875" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowSpan="4">
                      <center>
-                        <TextFlow fx:id="gameScreen" prefHeight="200.0" prefWidth="200.0" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
+                        <TextFlow fx:id="gameScreen" prefHeight="317.0" prefWidth="480.0" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
                            <padding>
                               <Insets bottom="50.0" left="50.0" right="50.0" top="10.0" />
                            </padding>
@@ -106,16 +120,18 @@
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="demoGame" mnemonicParsing="false" onMouseClicked="#startDemo" text="Start Game" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="publicity" mnemonicParsing="false" onMouseClicked="#sendPublicityStatus" text="Public Room" GridPane.halignment="CENTER">
+                        <Button fx:id="demoGame" mnemonicParsing="false" onMouseClicked="#startDemo" text="Start Game" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                        <RadioButton fx:id="publicity" mnemonicParsing="false" onMouseClicked="#sendPublicityStatus" text="Public Room" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font name="Century Gothic Italic" size="12.0" />
                            </font></RadioButton>
+                        <RadioButton mnemonicParsing="false" onMouseClicked="#changeGameMode" text="Hard Game" GridPane.halignment="CENTER" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="3">
@@ -146,7 +162,7 @@
                                     </Stop>
                                     <Stop offset="1.0">
                                        <color>
-                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                          <Color blue="1.0" green="1.0" red="1.0" />
                                        </color>
                                     </Stop>
                                  </stops>

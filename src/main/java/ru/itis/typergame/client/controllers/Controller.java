@@ -58,7 +58,6 @@ public class Controller implements Initializable {
             primaryStage.setScene(gameScene);
             gameScene.getRoot().requestFocus();
             log.info("Is focused?{}",gameScene.getRoot().isFocused());*/
-            client.sendMessage(message);
             ISceneChanger.changeScene(gameScene,mouseEvent);
 
         } catch (Exception e) {

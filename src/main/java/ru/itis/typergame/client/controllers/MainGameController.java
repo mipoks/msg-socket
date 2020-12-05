@@ -175,10 +175,14 @@ public class MainGameController implements Initializable {
         gamerTwoName.setText("Gamer 2");
         gamerThreeName.setText("Gamer 3");
         gamerFourName.setText("Gamer 4");
+        demoGame.setVisible(true);
     }
 
     public void sendPublicityStatus(MouseEvent mouseEvent) {
         client.sendMessage(MessageCreater.createRoomPublicityMsg(publicity.isSelected()));
     }
 
+    public void changeGameMode(MouseEvent mouseEvent) {
+
+    }
 }
