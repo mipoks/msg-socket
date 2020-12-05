@@ -1,5 +1,6 @@
 package ru.itis.typergame.server.handler.handlerImpl;
 
+import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import ru.itis.typergame.server.Server;
 import ru.itis.typergame.server.exception.ServerException;
@@ -9,6 +10,8 @@ import ru.itis.typergame.server.model.Client;
 import ru.itis.typergame.protocol.Message;
 import ru.itis.typergame.server.model.Room;
 import ru.itis.typergame.protocol.Type;
+
+import java.util.Collection;
 
 @Slf4j
 public class RoomRandomConnectHandler implements Handler {
@@ -22,17 +25,42 @@ public class RoomRandomConnectHandler implements Handler {
     public void handleMessage(Client client, Message message) {
         try {
             Room room = Room.getOpenRoom();
+//            room.addClient(client);
+//            client.setRoom(room);
+
+//            byte[] bytes = ObjectSerializer.toByteArray("connected to room");
+//            message.setType(Type.ROOM_CONNECT_RAND_ANSWER);
+//            message.setData(bytes);
+//            server.sendMessage(client, message);
+//
+//            bytes = ObjectSerializer.toByteArray(client.getName() + " connected to room");
+//            message.setData(bytes);
+//            room.sendMessage(message);
+
+
+            if (room.getClients().contains(client))
+                return;
             room.addClient(client);
             client.setRoom(room);
 
-            byte[] bytes = ObjectSerializer.toByteArray("connected to room");
-            message.setType(Type.ROOM_CONNECT_RAND_ANSWER);
-            message.setData(bytes);
-            server.sendMessage(client, message);
 
-            bytes = ObjectSerializer.toByteArray(client.getName() + " connected to room");
-            message.setData(bytes);
-            room.sendMessage(message);
+            Message msg = Message.createMessage(Type.ROOM_CONNECT, ObjectSerializer.toByteArray(
+                    new Pair<Integer, String>(client.getId(), client.getName())));
+//            System.out.println(roomName + " ROOM ON4");
+            room.sendMessageExcept(client, msg);
+
+            msg.setType(Type.ROOM_CONNECT_ANSWER);
+            msg.setData(ObjectSerializer.toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
+            server.sendMessage(client, msg);
+            Collection<Client> clients = room.getClients();
+            msg.setType(Type.ROOM_CONNECT);
+            for (Client client1 : clients) {
+                if (!client.equals(client1)) {
+                    msg.setData(ObjectSerializer.toByteArray(
+                            new Pair<Integer, String>(client1.getId(), client1.getName())));
+                    server.sendMessage(client, msg);
+                }
+            }
         } catch (ServerException ex) {
             //Add some catch implementation
         }

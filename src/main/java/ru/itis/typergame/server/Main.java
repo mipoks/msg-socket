@@ -14,6 +14,7 @@ public class Main {
         server.registerListener(new RecordGetHandler(server, new RecordRepoImpl()));
         server.registerListener(new RoomConnectHandler(server));
         server.registerListener(new RoomCreateHandler(server));
+        server.registerListener(new RoomPublicityChangeHandler(server));
         server.registerListener(new RoomRandomConnectHandler(server));
         server.start();
     }

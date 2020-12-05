@@ -56,7 +56,7 @@ public class Room {
     public Room(String roomUniqueString) {
         this.roomUniqueString = roomUniqueString;
         this.clients = new ArrayList<>();
-        this.publicity = true;
+        this.publicity = false;
         uniqueString.put(roomUniqueString, this);
     }
 
