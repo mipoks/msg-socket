@@ -1,5 +1,6 @@
 package ru.itis.typergame.client.message;
 
+import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
 import ru.itis.typergame.protocol.Message;
 import ru.itis.typergame.protocol.Type;
@@ -44,8 +45,8 @@ public class MessageCreater {
     public static Message createNickNameChangeMsg(String name) {
         return Message.createMessage(Type.NAME_CHANGE, serialize(name));
     }
-    public static Message createStartGameMsg() {
-        return Message.createMessage(Type.GAME_START, new byte[1]);
+    public static Message createStartGameMsg(int difficulty) {
+        return Message.createMessage(Type.GAME_START, serialize(new Pair<Integer, Integer>(difficulty, 0)));
     }
 
     public static Message createPlayGameMsg(String oneSymbol) {

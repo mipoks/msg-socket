@@ -102,7 +102,7 @@ public class Controller implements Initializable {
     public void startDemo(MouseEvent mouseEvent) {
         Message message = null;
         try {
-            message =MessageCreater.createStartGameMsg();
+            message =MessageCreater.createStartGameMsg(1);
             client.sendMessage(message);
             ISceneChanger.changeScene(gameScene,mouseEvent);
           /*  Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();

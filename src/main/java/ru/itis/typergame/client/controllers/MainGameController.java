@@ -162,7 +162,7 @@ public class MainGameController implements Initializable {
 
     public void startDemo(MouseEvent mouseEvent) {
         Message message = null;
-        message = MessageCreater.createStartGameMsg();
+        message = MessageCreater.createStartGameMsg(1);
         client.sendMessage(message);
         Stage primaryStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
     }
