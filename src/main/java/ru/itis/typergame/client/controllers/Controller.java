@@ -99,14 +99,14 @@ public class Controller implements Initializable {
     }
 
 
-    public void startDemo(MouseEvent mouseEvent) {
+/*    public void startDemo(MouseEvent mouseEvent) {
         Message message = null;
         try {
-            message =MessageCreater.createStartGameMsg(1);
+            message =MessageCreater.createStartGameMsg(hardGameMode.isSelected()?1:0);
             client.sendMessage(message);
             ISceneChanger.changeScene(gameScene,mouseEvent);
-          /*  Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-            primaryStage.setScene(gameScene);*/
+          *//*  Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+            primaryStage.setScene(gameScene);*//*
 
 
 
@@ -116,7 +116,7 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     public void getRecordsTable(MouseEvent mouseEvent) {
         message =MessageCreater.createGetRecordsMsg();
