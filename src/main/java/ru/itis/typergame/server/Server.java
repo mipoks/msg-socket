@@ -85,6 +85,10 @@ public class Server {
                         Optional<Room> optionalRoom = client.getRoom();
                         if (optionalRoom.isPresent()) {
                             Room room = optionalRoom.get();
+                            Message clientLeft = Message.createMessage(Type.DISCONNECTED,
+                                    ObjectSerializer.toByteArray(new Integer(client.getId())));
+                            room.sendMessageExcept(client, clientLeft);
+
                             room.removeClient(client);
                             Room.cleanEmptyRooms();
                         }

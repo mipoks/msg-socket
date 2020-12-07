@@ -72,5 +72,9 @@ public class Type {
     public static final int CONNECTED_ANSWER = -14;
     public static final int CONNECTED_ANSWER_MAX_SIZE = 1000;
 
-   //ToDo получить победителя,
+    public static final int DISCONNECTED = 15;
+    public static final int DISCONNECTED_MAX_SIZE = 1000;
+    public static final int DISCONNECTED_ANSWER = -15;
+    public static final int DISCONNECTED_ANSWER_MAX_SIZE = 1000;
+
 }
