@@ -24,19 +24,18 @@ public class RoomConnectHandler implements Handler {
     }
 
     public void handleMessage(Client client, Message message) {
-        log.info("BLABALBAL");
-        log.info("string res : {}", (String)(ObjectDeserializer.fromByteArray(message.getData())));
-        try {
-            //ToDo обернуть new String() в try catch
 
-            String roomName = (String)(ObjectDeserializer.fromByteArray(message.getData()));
-            System.out.println(roomName + " ROOM ON1");
+        try {
+            Object roomNameObj = (ObjectDeserializer.fromByteArray(message.getData()));
+            if (!(roomNameObj instanceof String))
+                return;
+            log.info("string res : {}", (String)(ObjectDeserializer.fromByteArray(message.getData())));
+
+            String roomName = (String) roomNameObj;
             Optional<Room> room = Room.getRoomByUnique(roomName);
             if (!room.isPresent()) {
-                System.out.println(roomName + " ROOM ON2");
                 return;
             }
-            System.out.println(roomName + " ROOM ON3");
             if (room.get().getClients().contains(client))
                 return;
             if (!room.get().addClient(client)) {
@@ -47,7 +46,6 @@ public class RoomConnectHandler implements Handler {
 
             Message msg = Message.createMessage(Type.ROOM_CONNECT, ObjectSerializer.toByteArray(
                     new Pair<Integer, String>(client.getId(), client.getName())));
-            System.out.println(roomName + " ROOM ON4");
             room.get().sendMessageExcept(client, msg);
 
             msg.setType(Type.ROOM_CONNECT_ANSWER);
@@ -63,7 +61,7 @@ public class RoomConnectHandler implements Handler {
                 }
             }
         } catch (ServerException ex) {
-            //Add some catch implementation
+            log.info(ex.getMessage());
         }
     }
 

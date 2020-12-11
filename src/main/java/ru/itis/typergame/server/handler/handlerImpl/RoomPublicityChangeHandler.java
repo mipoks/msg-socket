@@ -39,7 +39,7 @@ public class RoomPublicityChangeHandler implements Handler {
             server.sendMessage(client, answer);
             log.info("ROOM PUBLICITY: " + room.isPublicity());
         } catch (ServerException ex) {
-            throw new IllegalStateException(ex);
+            log.info(ex.getMessage());
         }
     }
 

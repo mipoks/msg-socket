@@ -45,10 +45,10 @@ public class RoomConnectHandler implements Handler {
                 room.addGamer(me);
                 log.info("GAMERS IN ROOM:" + room.getGamers().get().toString());
 
-                //old code
-                for (EventListener eventListener : listeners) {
-                    eventListener.onEventAction(pair);
-                }
+//                //old code
+//                for (EventListener eventListener : listeners) {
+//                    eventListener.onEventAction(pair);
+//                }
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {

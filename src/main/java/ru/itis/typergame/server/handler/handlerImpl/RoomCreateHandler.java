@@ -22,15 +22,10 @@ public class RoomCreateHandler implements Handler {
 
     @Override
     public void handleMessage(Client client, Message message) {
-        log.info("WE ARE CREATING ROOM");
         try {
-            log.info("WE ARE CREATING ROOM2");
             Room room = new Room(Room.createRoomUniqueString());
-            log.info("WE ARE CREATING ROOM3");
             room.addClient(client);
             client.setRoom(room);
-            log.info("WE ARE CREATING ROOM4");
-
             log.info("room.getRoomUniqueString() result :  {}",room.getRoomUniqueString());
             byte[] bytes = ObjectSerializer.toByteArray(room.getRoomUniqueString());
             log.info("Array bytes{}",Arrays.toString(bytes));
@@ -42,8 +37,7 @@ public class RoomCreateHandler implements Handler {
                     ObjectSerializer.toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
             server.sendMessage(client, answer);
         } catch (ServerException ex) {
-            ex.printStackTrace();
-            //Add some catch implementation
+            log.info(ex.getMessage());
         }
     }
 

@@ -25,12 +25,9 @@ public class GameStartHandler implements Handler {
 
     @Override
     public void handleMessage(Client client, Message message) {
-        System.out.println("WEWEWEWEW");
         if (client.getRoom().isPresent()) {
             Room room = client.getRoom().get();
-            System.out.println("WEWEWEWEW2");
             if (room.getRoomOwner().isPresent() && room.getRoomOwner().get().equals(client)) {
-                System.out.println("WEWEWEWEW3");
                 Game game = null;
 
                 int difficulty = 0;
@@ -41,21 +38,17 @@ public class GameStartHandler implements Handler {
                 }
 
                 if (Game.findByRoom(room).isPresent()) {
-                    System.out.println("WEWEWEWEW4");
                     Client winner = Game.findByRoom(room).get().getWinner();
                     if (winner != null) {
-                        System.out.println("WEWEWEWEW5");
                         game = new Game(GameTexter.getText(difficulty), room);
                     }
 
                 } else {
-                    System.out.println("WEWEWEWEW6");
                     game = new Game(GameTexter.getText(difficulty), room);
                 }
                 game.start();
                 game.addEventListener(new RecordSaver(game));
 
-                System.out.println("WEWEWEWEW7");
                 Message msg = Message.createMessage(Type.GAME_START_ANSWER,
                         ObjectSerializer.toByteArray(game.getGameText()));
                 room.sendMessage(msg);

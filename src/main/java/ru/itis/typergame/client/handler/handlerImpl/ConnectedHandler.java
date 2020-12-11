@@ -27,7 +27,7 @@ public class ConnectedHandler implements Handler {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
             if (object instanceof Integer) {
-                Integer id = (Integer) object; //your get your id when you connecting to server
+                Integer id = (Integer) object; //you get your id when you connecting to server
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(id);
                 }

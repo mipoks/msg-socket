@@ -145,7 +145,6 @@ public class ClientStart extends Application {
             rivalPrinter = new RivalPrinter(controller1.getGamerOneName(),controller1.getGamerTwoName(),controller1.getGamerThreeName(),controller1.getGamerFourName());//Выводит принтер в контроллер
             colorMixPrinter = new ColorMixPrinter(controller1);
             recordsCodePrinter = new RecordsCodePrinter(controller5.getChart());
-           /* roomCreateHandler.addEventListener(roomCodePrinter);*/
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);

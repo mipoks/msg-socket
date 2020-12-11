@@ -24,20 +24,6 @@ public class RoomRandomConnectHandler implements Handler {
 
     public void handleMessage(Client client, Message message) {
         try {
-//            Room room = Room.getOpenRoom();
-//            room.addClient(client);
-//            client.setRoom(room);
-
-//            byte[] bytes = ObjectSerializer.toByteArray("connected to room");
-//            message.setType(Type.ROOM_CONNECT_RAND_ANSWER);
-//            message.setData(bytes);
-//            server.sendMessage(client, message);
-//
-//            bytes = ObjectSerializer.toByteArray(client.getName() + " connected to room");
-//            message.setData(bytes);
-//            room.sendMessage(message);
-
-
             Room room;
             boolean ans = false;
             do {
@@ -51,7 +37,6 @@ public class RoomRandomConnectHandler implements Handler {
 
             Message msg = Message.createMessage(Type.ROOM_CONNECT, ObjectSerializer.toByteArray(
                     new Pair<Integer, String>(client.getId(), client.getName())));
-//            System.out.println(roomName + " ROOM ON4");
             room.sendMessageExcept(client, msg);
 
             msg.setType(Type.ROOM_CONNECT_ANSWER);
@@ -67,7 +52,7 @@ public class RoomRandomConnectHandler implements Handler {
                 }
             }
         } catch (ServerException ex) {
-            //Add some catch implementation
+            log.info(ex.getMessage());
         }
     }
 

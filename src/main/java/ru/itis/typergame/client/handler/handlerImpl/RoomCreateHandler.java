@@ -49,10 +49,10 @@ public class RoomCreateHandler implements Handler {
                 log.info("GAMERS IN ROOM:" + room.getGamers().get().toString());
 
 
-          /*      //old code
+               //old code
                 for (EventListener eventListener : listeners) {
                     eventListener.onEventAction(text);
-                }*/
+                }
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {

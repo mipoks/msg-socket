@@ -1,16 +1,17 @@
 package ru.itis.typergame.server.model;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.itis.typergame.protocol.Message;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.*;
 
+@Slf4j
 public class Room {
     public static final int ROOM_UNIQUE_LENGTH = 4;
     public static final int MAX_CLIENT = 4;
 
-    //    private static ArrayList<Pair<String, Room>> uniqueString = new ArrayList<>();
     private static HashMap<String, Room> uniqueString = new HashMap<>();
     private static final String CHARACTERS = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
 
@@ -133,7 +134,7 @@ public class Room {
                 }
             }
         }
-        System.out.println("SENDED TO " + clients.size() + " CLIENTS OF ROOM " + roomUniqueString);
+        log.info("SENDED TO " + clients.size() + " CLIENTS OF ROOM " + roomUniqueString);
     }
 
     public void sendMessage(Client from, Message message) {

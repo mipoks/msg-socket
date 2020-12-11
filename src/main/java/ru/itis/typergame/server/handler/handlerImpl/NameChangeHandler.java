@@ -22,6 +22,9 @@ public class NameChangeHandler implements Handler {
     @Override
     public void handleMessage(Client client, Message message) {
         try {
+            if (!(ObjectDeserializer.fromByteArray(message.getData()) instanceof String)) {
+                return;
+            }
             client.setName((String)(ObjectDeserializer.fromByteArray(message.getData())));
 
             Message msgAns = Message.createMessage(Type.NAME_CHANGE_ANSWER, message.getData());
@@ -33,7 +36,7 @@ public class NameChangeHandler implements Handler {
                 client.getRoom().get().sendMessage(message);
             }
         } catch (ServerException e) {
-            e.printStackTrace();
+            log.info(e.getMessage());
         }
     }
 
