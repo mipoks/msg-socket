@@ -39,20 +39,18 @@ public class RoomCreateHandler implements Handler {
                 //new code
                 //copy all listeners of old room
                 Room room = Room.getActualRoom();
-                Collection<EventListener> listeners = room.getAllListeners();
+                Collection<EventListener> listeners2 = room.getAllListeners();
                 //creating room
                 room = Room.createNewRoom();
                 room.setRoomUnique(text);
-                for (EventListener eventListener : listeners) {
+                for (EventListener eventListener : listeners2) {
                     room.addEventListener(eventListener);
                 }
                 log.info("GAMERS IN ROOM:" + room.getGamers().get().toString());
 
-
-               //old code
-//                for (EventListener eventListener : listeners) {
-//                    eventListener.onEventAction(text);
-//                }
+                for (EventListener eventListener : listeners) {
+                    eventListener.onEventAction(text);
+                }
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {

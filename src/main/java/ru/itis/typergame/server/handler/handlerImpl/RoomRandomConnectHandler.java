@@ -42,6 +42,9 @@ public class RoomRandomConnectHandler implements Handler {
             msg.setType(Type.ROOM_CONNECT_ANSWER);
             msg.setData(ObjectSerializer.toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
             server.sendMessage(client, msg);
+
+            Message roomCode = Message.createMessage(Type.ROOM_CREATE_ANSWER, ObjectSerializer.toByteArray(room.getRoomUniqueString()));
+            server.sendMessage(client, roomCode);
             Collection<Client> clients = room.getClients();
             msg.setType(Type.ROOM_CONNECT);
             for (Client client1 : clients) {

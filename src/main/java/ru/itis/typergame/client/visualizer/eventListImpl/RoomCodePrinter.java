@@ -1,5 +1,6 @@
 package ru.itis.typergame.client.visualizer.eventListImpl;
 
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +16,14 @@ public class RoomCodePrinter implements EventListener<String> {
         this.label = labelText;
     }
 
+
     @Override
-    public void onEventAction(String object) {
-        log.info("IN CODE PRINTER " + object);
-        label.setText(object);
+    public synchronized void onEventAction(String object) {
+//        log.info("IN CODE PRINTER " + object);
+//        label.setText(object);
+        Platform.runLater(() -> {
+            log.info("IN CODE PRINTER " + object);
+            label.setText(object);
+        });
     }
 }
