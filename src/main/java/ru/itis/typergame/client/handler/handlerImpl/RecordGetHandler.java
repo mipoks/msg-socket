@@ -1,5 +1,6 @@
 package ru.itis.typergame.client.handler.handlerImpl;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.itis.typergame.client.handler.Handler;
 import ru.itis.typergame.client.logic.Client;
 import ru.itis.typergame.client.visualizer.EventListener;
@@ -13,6 +14,7 @@ import ru.itis.typergame.protocol.Message;
 import ru.itis.typergame.protocol.Record;
 import ru.itis.typergame.protocol.Type;
 
+@Slf4j
 public class RecordGetHandler implements Handler {
 
     private Client client;
@@ -36,7 +38,7 @@ public class RecordGetHandler implements Handler {
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {
-            throw new IllegalStateException(e);
+            log.info(e.getMessage());
         }
     }
 

@@ -52,7 +52,7 @@ public class RoomConnectHandler implements Handler {
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {
-            throw new IllegalStateException(e);
+            log.info(e.getMessage());
         }
     }
 

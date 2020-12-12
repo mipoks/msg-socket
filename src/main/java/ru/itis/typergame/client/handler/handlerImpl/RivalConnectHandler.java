@@ -46,7 +46,7 @@ public class RivalConnectHandler implements Handler {
             }
             objectInputStream.close();
         } catch (IOException | ClassNotFoundException e) {
-            throw new IllegalStateException(e);
+            log.info(e.getMessage());
         }
     }
     public void addEventListener(EventListener eventListener) {
