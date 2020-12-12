@@ -125,6 +125,7 @@ public class ClientStart extends Application {
             client.registerListener(gameStartHandler);
             client.registerListener(gamePlayHandler);
             client.registerListener(recordGetHandler);
+
             client.start();
 
 
@@ -156,57 +157,7 @@ public class ClientStart extends Application {
 
             log.info(" opponent row{}", controller.getOpponentRow());
 
-/*
-            //заплатка Todo разобраться с плохим контроллером
-            try {
-                gameScene.setOnKeyTyped(new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent keyEvent) {
 
-                        log.info("Code typed");
-                        System.out.println("code");
-
-                        log.info("Taked code{}", keyEvent.getCharacter().toString());
-
-
-                        if (keyEvent.getCharacter().toLowerCase().equals(controller1.getTextArray()[n].toLowerCase()) ||
-                                controller1.getTextArray()[n].equals(" ") && keyEvent.getCharacter().toString().toLowerCase().equals("space")) {
-                            controller1.getGameScreen().getChildren().remove(n);
-                            controller1.setUtillText(new Text(keyEvent.getCharacter().toLowerCase()));
-                            controller1.getUtillText().setFont(Font.font(35));
-
-                            controller1.getUtillText().setStyle("-fx-stroke: #ff00c8");
-                            log.info(controller1.getUtillText().getStyle());
-                            controller1.getGameScreen().getChildren().add(n, controller1.getUtillText());
-                            controller1.getTappedChar().setText(controller1.getUtillText().getText());
-
-                            n++;
-
-                            Message message = MessageCreater.createPlayGameMsg(keyEvent.getCharacter());
-                            try {
-                                client.sendMessage(message);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            log.info("Совпадение символа {}", n);
-                        }
-//                        if (controller1.getTextArray()[n].equals(" ") && keyEvent.getCharacter().toString().toLowerCase().equals("space")) {
-//
-//                            n++;
-//                            log.info("Совпадение пробела {}", n);
-//                        }
-                        if (n == controller1.getTextArray().length) {
-                            primaryStage.setScene(new Scene(wint));
-                            primaryStage.show();
-                        } else
-                        log.info("Следующая буква {}", controller1.getTextArray()[n]);
-
-                    }
-                });
-            } catch (Exception e) {
-                //Игрок прнажимал весь текст
-                System.out.println(" Игрок пронажимал весь текст");
-            }*/
 
 
         } catch (IOException e ) {

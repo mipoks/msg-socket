@@ -2,7 +2,6 @@ package ru.itis.typergame.client.visualizer.eventListImpl;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 import lombok.extern.slf4j.Slf4j;
 import ru.itis.typergame.client.visualizer.EventListener;
 

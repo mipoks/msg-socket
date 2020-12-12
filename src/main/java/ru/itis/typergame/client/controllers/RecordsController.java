@@ -39,19 +39,11 @@ public class RecordsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*CategoryAxis xAxis    = new CategoryAxis();
-        xAxis.setLabel("Nicknames");
 
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("words per minute");
-        chart.set*/
-        /*ThemeContext.checkTheme(body);*/
     }
 
     public void getMainScene(MouseEvent mouseEvent) {
-       /* Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(mainScene);
-        mainScene.getRoot().requestFocus();*/
+
         ISceneChanger.changeScene(mainScene,mouseEvent);
     }
 

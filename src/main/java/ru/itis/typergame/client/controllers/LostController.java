@@ -26,18 +26,10 @@ public class LostController implements Initializable {
     @FXML
     public ImageView imageView;
 
- /*   @FXML
-    public void initialize(){
-        log.info(imageView.toString());
-        Image i = new Image(new File("src/main/resources/assets/lost.gif").toURI().toString());
-        imageView.setImage(i);
-    }*/
+
 
     public void goToMenu(MouseEvent mouseEvent) {
-        /*Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
 
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
         ISceneChanger.changeScene(scene,mouseEvent);
     }
 
@@ -46,7 +38,7 @@ public class LostController implements Initializable {
         log.info(imageView.toString());
         Image i = new Image(new File("src/main/resources/assets/lost.gif").toURI().toString());
         imageView.setImage(i);
-       /* ThemeContext.checkTheme(body);*/
+
     }
 
 

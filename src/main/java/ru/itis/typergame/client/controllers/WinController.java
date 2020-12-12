@@ -28,9 +28,7 @@ public class WinController implements Initializable {
 
 
     public void goToMenu(MouseEvent mouseEvent) {
-      /*  Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        log.info("сцена {}",scene);
-        primaryStage.setScene(scene);*/
+
         ISceneChanger.changeScene(scene,mouseEvent);
     }
 
@@ -39,7 +37,7 @@ public class WinController implements Initializable {
         log.info(imageView.toString());
         Image i = new Image(new File("src/main/resources/assets/SdRockFact.gif").toURI().toString());
         imageView.setImage(i);
-        /*ThemeContext.checkTheme(body);*/
+
     }
 
 }

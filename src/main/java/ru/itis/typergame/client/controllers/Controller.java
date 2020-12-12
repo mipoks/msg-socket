@@ -44,7 +44,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-     /*   ThemeContext.checkTheme();*/ //будем ли хранить смену темы юзера в бд ?
+
     }
     @FXML
     public void createRoom(MouseEvent mouseEvent){
@@ -53,12 +53,7 @@ public class Controller implements Initializable {
         try {
             Message message = MessageCreater.createRoomCreateMsg();
             client.sendMessage(message);
-            /*Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-            ThemeContext.checkTheme(gameScene);
-            log.info("сцена {}",gameScene);
-            primaryStage.setScene(gameScene);
-            gameScene.getRoot().requestFocus();
-            log.info("Is focused?{}",gameScene.getRoot().isFocused());*/
+
 
             ISceneChanger.changeScene(gameScene,mouseEvent);
 
@@ -83,11 +78,7 @@ public class Controller implements Initializable {
             log.info("message text {}",roomCode.getText());
 
             client.sendMessage(message);
-            /*Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-            log.info("сцена {}",gameScene);
-            primaryStage.setScene(gameScene);
-            gameScene.getRoot().requestFocus();
-            log.info("Is focused?{}",gameScene.getRoot().isFocused());*/
+
             ISceneChanger.changeScene(gameScene,mouseEvent);
 
 
@@ -98,33 +89,13 @@ public class Controller implements Initializable {
     }
 
 
-/*    public void startDemo(MouseEvent mouseEvent) {
-        Message message = null;
-        try {
-            message =MessageCreater.createStartGameMsg(hardGameMode.isSelected()?1:0);
-            client.sendMessage(message);
-            ISceneChanger.changeScene(gameScene,mouseEvent);
-          *//*  Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-            primaryStage.setScene(gameScene);*//*
 
-
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }*/
 
     public void getRecordsTable(MouseEvent mouseEvent) {
         message =MessageCreater.createGetRecordsMsg();
         client.sendMessage(message);
         ISceneChanger.changeScene(recordScene,mouseEvent);
-        /*Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        ThemeContext.checkTheme(recordScene);
-        primaryStage.setScene(recordScene);
-        recordScene.getRoot().requestFocus();*/
+
 
     }
 
@@ -139,18 +110,9 @@ public class Controller implements Initializable {
 
     public void playRandom(MouseEvent mouseEvent) {
         client.sendMessage(MessageCreater.createConnectRandomMsg());
-//        Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        ISceneChanger.changeScene(gameScene,mouseEvent);
-        /*ThemeContext.checkTheme(gameScene);
-        primaryStage.setScene(gameScene);
-        gameScene.getRoot().requestFocus();*/
-    }
-/*    private void specifyScene(Scene scene, InputEvent event){
-        log.info("Проверка и изменение темы");
-        Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        ThemeContext.checkTheme(scene);
-        primaryStage.setScene(scene);
-        scene.getRoot().requestFocus();
 
-    }*/
+        ISceneChanger.changeScene(gameScene,mouseEvent);
+
+    }
+
 }
