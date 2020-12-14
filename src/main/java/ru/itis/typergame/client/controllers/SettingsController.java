@@ -15,6 +15,8 @@ import ru.itis.typergame.client.visualizer.ThemeContext;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SettingsController implements Initializable {
     @FXML
@@ -26,6 +28,8 @@ public class SettingsController implements Initializable {
     private Scene mainScene;
     @Setter
     private Client client;
+    private Pattern pattern;
+    private Matcher matcher;
 
     public void changeTheme(MouseEvent mouseEvent) {
         if (ThemeContext.currentTheme.equals(ThemeContext.DEFAULT_THEME)) {
@@ -45,15 +49,15 @@ public class SettingsController implements Initializable {
     }
 
     public void getMainScene(MouseEvent mouseEvent) {
-        /*Stage primaryStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        ThemeContext.checkTheme(mainScene);
-        primaryStage.setScene(mainScene);
-        mainScene.getRoot().requestFocus();*/
+
         ISceneChanger.changeScene(mainScene,mouseEvent);
     }
 
     public void saveName(MouseEvent mouseEvent) {
-        client.sendMessage(MessageCreater.createNickNameChangeMsg(newName.getText()));
-        newName.setText("");
+        if(newName.getText().matches("^(?=.{1,15}$)[a-zA-Z][a-zA-Z0-9]*(?: [a-zA-Z0-9]+)*$")){
+            client.sendMessage(MessageCreater.createNickNameChangeMsg(newName.getText()));
+
+        }else {newName.setText("Попробуйте другое имя");}
+
     }
 }

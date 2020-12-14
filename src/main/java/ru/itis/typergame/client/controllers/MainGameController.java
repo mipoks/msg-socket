@@ -90,7 +90,7 @@ public class MainGameController implements Initializable {
             gameScreen.getChildren().add(utillText);
         });
         System.out.println(Arrays.toString(textArray));
-        /* ThemeContext.checkTheme(body);*/
+
         log.info("Vbox body :{}", body);
         demoGame.setVisible(false);
     }
@@ -102,7 +102,7 @@ public class MainGameController implements Initializable {
         publicity.setVisible(false);
         hardGameMode.setVisible(false);
         demoGame.setVisible(false);
-        /*ThemeContext.checkTheme(body);*/
+
     }
 
     public void checkSensor(MouseEvent mouseEvent) {
@@ -120,14 +120,7 @@ public class MainGameController implements Initializable {
 
             if (keyEvent.getCharacter().toLowerCase().equals(getTextArray()[n].toLowerCase()) ||
                     getTextArray()[n].equals(" ") && keyEvent.getCharacter().toLowerCase().equals("space")) {
-/*                getGameScreen().getChildren().remove(n);
-                setUtillText(new Text(keyEvent.getCharacter().toLowerCase()));
-                getUtillText().setFont(Font.font(35));
 
-//                getUtillText().setStyle("-fx-stroke: #ff0000");
-                utillText.setFill(Paint.valueOf("778899"));
-                log.info(getUtillText().getStyle());
-                getGameScreen().getChildren().add(n, getUtillText());*/
                 n++;
                 Message message = MessageCreater.createPlayGameMsg(keyEvent.getCharacter());
 
@@ -187,7 +180,5 @@ public class MainGameController implements Initializable {
         client.sendMessage(MessageCreater.createRoomPublicityMsg(publicity.isSelected()));
     }
 
-    public void changeGameMode(MouseEvent mouseEvent) {
 
-    }
 }
