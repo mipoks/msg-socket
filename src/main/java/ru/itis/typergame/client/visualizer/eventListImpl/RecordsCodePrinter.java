@@ -9,6 +9,7 @@ import ru.itis.typergame.client.visualizer.EventListener;
 import ru.itis.typergame.protocol.Record;
 
 import java.util.Collection;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 public class RecordsCodePrinter implements EventListener<Collection<Record>> {
@@ -26,12 +27,12 @@ public class RecordsCodePrinter implements EventListener<Collection<Record>> {
     public synchronized void onEventAction(Collection<Record> object) {
         Platform.runLater(() -> {
             chart.getData().remove(0, chart.getData().size());
-
+             AtomicInteger i = new AtomicInteger(1);
 
             object.forEach(x -> {
                 log.info("");
                 log.info("Прихдящая запись {}  ,  {}", x.getName(), x.getTime());
-                dataSeries1.getData().add(new XYChart.Data(x.getName(), x.getTime()));
+                dataSeries1.getData().add(new XYChart.Data(i.getAndIncrement() + ": " + x.getName(), x.getTime()));
             });
             chart.getData().add(dataSeries1);
 
