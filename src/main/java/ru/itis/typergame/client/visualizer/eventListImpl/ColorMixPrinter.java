@@ -8,6 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
+import ru.itis.typergame.client.ClockFX;
 import ru.itis.typergame.client.controllers.MainGameController;
 import ru.itis.typergame.client.model.Room;
 import ru.itis.typergame.client.util.ColorMixer;
@@ -34,6 +35,7 @@ public class ColorMixPrinter implements EventListener<Pair> {
 
     @Override
     public void onEventAction(Pair object) {
+       mainGameController.getClockFX().startTimer();
        log.info("library of colors(hash) {}",ColorMixer.getLibraryColor().toString());
        /*filed.stream().map(x->(Text)x).forEach(x->log.info("Fill of text in text flow {}",x.getFill()));*/
 
@@ -81,17 +83,11 @@ public class ColorMixPrinter implements EventListener<Pair> {
                      ((Text) filed.get(position)).setFont(Font.font(40));
 
                     ((Text) filed.get(position)).setFont(Font.font(48));
-                   /* paint =symb.getFill().toString().substring(2,8);
-                    colorIndexHome = Integer.parseInt(paint,16);
-                    colorIndexServer = Integer.parseInt(ColorMixer.getLibraryColor().get(gamer),16);*/
+
                     log.info("Устанавливаю красный стиль");
 
 
-              /*      color = ((colorIndexHome*colorIndexServer+colorIndexHome*colorIndexHome)-colorIndexHome*colorIndexServer);
-                    log.info("home color {}",Integer.toString(colorIndexHome,16));
-                    log.info("server color {}",Integer.toString(colorIndexServer,16));
-                    log.info("final color {}",Integer.toString(color,16).substring(1,7));
-                    symb.setFill(Paint.valueOf(Integer.toString(color,16).substring(1,7)));*/
+
 
 
 

@@ -52,21 +52,5 @@ public class RivalPrinter implements EventListener<Pair> {
 
         }
         }
-/*    private Text textStatus1;
-    private Text textStatus2;
-    private Text textStatus3;
-    private Text textStatus4;*/
 
-   /* public RivalRoomConnect(Text... args) {
-        Field[] fields = this.getClass().getDeclaredFields();
-        for (int i = 0; i < fields.length && i < args.length; i++) {
-            fields[i].setAccessible(true);
-            try {
-                fields[i].set(this, args[i]);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            fields[i].setAccessible(false);
-        }
-    }*/
 }

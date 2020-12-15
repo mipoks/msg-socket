@@ -1,14 +1,9 @@
+package ru.itis.typergame.client;
+
 import javafx.animation.AnimationTimer;
-import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.stage.Stage;
 import javafx.util.Pair;
 
 
@@ -84,7 +79,7 @@ public class ClockFX  {
         SecClock secClock = new SecClock(0);
         drawClock(secClock, gc);
         myAnimTimer = new MyAnimTimer(secClock, SEC_ARROW, gc);
-        startTimer();
+
     }
 
     class MyAnimTimer extends AnimationTimer {

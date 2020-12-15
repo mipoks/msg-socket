@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -17,6 +18,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import ru.itis.typergame.client.ClockFX;
 import ru.itis.typergame.client.logic.Client;
 import ru.itis.typergame.client.message.MessageCreater;
 import ru.itis.typergame.client.visualizer.ThemeContext;
@@ -31,6 +33,8 @@ import java.util.ResourceBundle;
 @Slf4j
 @Data
 public class MainGameController implements Initializable {
+    @FXML
+    private Canvas clock;
     @FXML
     private RadioButton hardGameMode;
     @FXML
@@ -61,6 +65,7 @@ public class MainGameController implements Initializable {
     private List<Text> textList = new ArrayList<>();
     private Scene winScene;
     private Scene lostScene;
+    private ClockFX clockFX;
 
 
     @FXML
@@ -102,6 +107,9 @@ public class MainGameController implements Initializable {
         publicity.setVisible(false);
         hardGameMode.setVisible(false);
         demoGame.setVisible(false);
+        clockFX = new ClockFX();
+        clockFX.drawOn(clock);
+
 
     }
 

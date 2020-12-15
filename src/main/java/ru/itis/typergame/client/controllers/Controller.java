@@ -40,6 +40,7 @@ public class Controller implements Initializable {
     private Scene recordScene;
     private Scene settingsScene;
     private Message message;
+    private Stage stage;
 
 
     @Override

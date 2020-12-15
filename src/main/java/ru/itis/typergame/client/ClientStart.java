@@ -103,11 +103,14 @@ public class ClientStart extends Application {
             controller.setSettingsScene(settingsScene);
             controller1.setWinScene(new Scene(wint));
             controller1.setLostScene(new Scene(loose));
+
             controller3.setScene(scene);
             controller4.setScene(scene);
             controller5.setMainScene(scene);
             settingsController.setMainScene(scene);
 
+
+            ClockFX clockFX = new ClockFX();
 
             client.connect();
 
