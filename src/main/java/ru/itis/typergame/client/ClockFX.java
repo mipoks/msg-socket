@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 
 
 class SecClock {
@@ -38,7 +39,6 @@ public class ClockFX  {
     }
 
     private void drawClock(SecClock сlock, GraphicsContext gc) {
-
         double angle;
         for (int i = 1; i < 13; i++) {
             angle = Math.PI / 2 - i * Math.PI / 6;
@@ -78,8 +78,8 @@ public class ClockFX  {
     private void doDrawing(GraphicsContext gc) {
         SecClock secClock = new SecClock(0);
         drawClock(secClock, gc);
+        gc.strokeLine(CENTER_CLOCK / 2, CENTER_CLOCK / 2, CENTER_CLOCK / 2, CENTER_CLOCK / 2 - SEC_ARROW);
         myAnimTimer = new MyAnimTimer(secClock, SEC_ARROW, gc);
-
     }
 
     class MyAnimTimer extends AnimationTimer {
@@ -105,6 +105,7 @@ public class ClockFX  {
         @Override
         public void handle(long now) {
             if (now - lastUpdate >= 1_000_000_000) {
+                secClock.setSecond(secClock.getSecond() + (int) (now / lastUpdate));
                 lastUpdate = now;
                 Platform.runLater(clockRunnable);
             }
@@ -128,7 +129,6 @@ public class ClockFX  {
             gc.clearRect(0, 0, CENTER_CLOCK, CENTER_CLOCK);
             drawClock(secClock, gc);
             double angle = Math.PI / 2 - secClock.getSecond() * Math.PI / 30;
-            secClock.setSecond(secClock.getSecond() + 1);
             Pair<Integer, Integer> point = getEndCoords(angle, radiusSec);
             gc.strokeLine(CENTER_CLOCK / 2, CENTER_CLOCK / 2, point.getKey(), point.getValue());
         }
