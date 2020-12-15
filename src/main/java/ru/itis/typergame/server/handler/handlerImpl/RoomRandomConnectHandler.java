@@ -29,7 +29,7 @@ public class RoomRandomConnectHandler implements Handler {
             do {
                 room = Room.getOpenRoom();
                 if (room.getClients().contains(client))
-                    return;
+                    break;
                 ans = room.addClient(client);
             } while (!ans);
             client.setRoom(room);
