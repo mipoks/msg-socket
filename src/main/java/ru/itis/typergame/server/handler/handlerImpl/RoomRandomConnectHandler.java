@@ -34,7 +34,6 @@ public class RoomRandomConnectHandler implements Handler {
             } while (!ans);
             client.setRoom(room);
 
-
             Message msg = Message.createMessage(Type.ROOM_CONNECT, ObjectSerializer.toByteArray(
                     new Pair<Integer, String>(client.getId(), client.getName())));
             room.sendMessageExcept(client, msg);
@@ -53,6 +52,11 @@ public class RoomRandomConnectHandler implements Handler {
                             new Pair<Integer, String>(client1.getId(), client1.getName())));
                     server.sendMessage(client, msg);
                 }
+            }
+
+            if (room.getRoomOwner().get() == client) {
+                Message roomOwner = Message.createMessage(Type.ROOM_OWNER_ANSWER, ObjectSerializer.toByteArray(client.getId()));
+                server.sendMessage(client, roomOwner);
             }
         } catch (ServerException ex) {
             log.info(ex.getMessage());

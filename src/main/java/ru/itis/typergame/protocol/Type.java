@@ -77,4 +77,8 @@ public class Type {
     public static final int DISCONNECTED_ANSWER = -15;
     public static final int DISCONNECTED_ANSWER_MAX_SIZE = 1000;
 
+    public static final int ROOM_OWNER = 16;
+    public static final int ROOM_OWNER_MAX_SIZE = 1000;
+    public static final int ROOM_OWNER_ANSWER = -16;
+    public static final int ROOM_OWNER_ANSWER_MAX_SIZE = 1000;
 }
