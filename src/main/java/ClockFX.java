@@ -1,6 +1,7 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,7 +11,6 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
-import java.awt.*;
 
 class SecClock {
     private int second;
@@ -29,16 +29,11 @@ class SecClock {
 }
 
 
-public class ClockFX extends Application {
+public class ClockFX  {
     private static final int CENTER_CLOCK = 150;
     private static final int SEC_ARROW = 50;
     private static final int CLOCK_RADIUS = 70;
     private MyAnimTimer myAnimTimer;
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        initUI(stage);
-    }
 
     private Pair<Integer, Integer> getEndCoords(double angle, int radius) {
         Pair<Integer, Integer> O = new Pair<>(CENTER_CLOCK / 2, CENTER_CLOCK / 2);
@@ -61,20 +56,20 @@ public class ClockFX extends Application {
         gc.fillOval(center.getKey() - radius / 2, center.getValue() - radius / 2, radius, radius);
     }
 
-    private void initUI(Stage stage) {
+    public void drawOn(Canvas canvas) {
 
-        Pane root = new Pane();
+//        Pane root = new Pane();
 
-        Canvas canvas = new Canvas(CLOCK_RADIUS * 2.5, CLOCK_RADIUS * 2.5);
+//        Canvas canvas = new Canvas(CLOCK_RADIUS * 2.5, CLOCK_RADIUS * 2.5);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         doDrawing(gc);
 
-        root.getChildren().add(canvas);
+//        root.getChildren().add(canvas);
 
-        Scene scene = new Scene(root, CLOCK_RADIUS * 2 + 10, CLOCK_RADIUS * 2 + 10, Color.WHITESMOKE);
-
-        stage.setScene(scene);
-        stage.show();
+//        Scene scene = new Scene(root, CLOCK_RADIUS * 2 + 10, CLOCK_RADIUS * 2 + 10, Color.WHITESMOKE);
+//
+//        stage.setScene(scene);
+//        stage.show();
     }
 
     public void startTimer() {
@@ -144,7 +139,4 @@ public class ClockFX extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
