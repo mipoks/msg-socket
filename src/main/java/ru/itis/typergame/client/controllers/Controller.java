@@ -45,7 +45,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
     @FXML
     public void createRoom(MouseEvent mouseEvent){
@@ -61,6 +60,10 @@ public class Controller implements Initializable {
             (gameScene.getRoot().lookup("#publicity")).setVisible(true);
             (gameScene.getRoot().lookup("#hardGameMode")).setVisible(true);
             (gameScene.getRoot().lookup("#demoGame")).setVisible(true);
+
+
+
+
 
 
         } catch (Exception e) {

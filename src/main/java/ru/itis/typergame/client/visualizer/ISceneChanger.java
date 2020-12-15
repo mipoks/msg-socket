@@ -11,6 +11,8 @@ public interface ISceneChanger {
         Stage primaryStage = (Stage)((Node)inputEvent.getSource()).getScene().getWindow();
         ThemeContext.checkTheme(scene);
         primaryStage.setScene(scene);
+        primaryStage.setMinWidth(995);
+        primaryStage.setMinHeight(687);
         scene.getRoot().requestFocus();
     };
 }

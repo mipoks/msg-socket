@@ -6,6 +6,7 @@ import ru.itis.typergame.client.handler.handlerImpl.*;
 import ru.itis.typergame.client.logic.Client;
 import ru.itis.typergame.client.message.MessageCreater;
 import ru.itis.typergame.client.model.Room;
+import ru.itis.typergame.client.visualizer.ISceneChanger;
 import ru.itis.typergame.client.visualizer.eventListImpl.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -149,6 +150,8 @@ public class ClientStart extends Application {
                         Platform.exit();
                 System.exit(0);
             });
+
+
 
 
            /* textStatus = (Text) scene.lookup("#textStatus");*/
