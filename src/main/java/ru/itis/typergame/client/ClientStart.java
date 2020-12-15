@@ -48,6 +48,7 @@ public class ClientStart extends Application {
     private GameStartHandler gameStartHandler;
     private GamePlayHandler gamePlayHandler;
     private RecordGetHandler recordGetHandler;
+    private RoomOwnerHandler roomOwnerHandler;
     private RoomCodePrinter roomCodePrinter;
     private RoomConnectPrinter roomConnectPrinter;
     private RivalPrinter rivalPrinter;
@@ -121,8 +122,10 @@ public class ClientStart extends Application {
             gameStartHandler = new GameStartHandler(client);
             gamePlayHandler = new GamePlayHandler(client);
             recordGetHandler = new RecordGetHandler(client);
+            roomOwnerHandler = new RoomOwnerHandler(client);
 
             room = Room.getActualRoom();
+            client.registerListener(roomOwnerHandler);
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);
             client.registerListener(rivalConnectHandler);
@@ -151,7 +154,7 @@ public class ClientStart extends Application {
             colorMixPrinter = new ColorMixPrinter(controller1);
             recordsCodePrinter = new RecordsCodePrinter(controller5.getChart());
             buttonsPrinter = new ButtonsPrinter(controller1);
-            roomCreateHandler.addEventListener(buttonsPrinter);
+            roomOwnerHandler.addEventListener(buttonsPrinter);
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);

@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import lombok.Data;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import ru.itis.typergame.client.ClockFX;
 import ru.itis.typergame.client.logic.Client;
@@ -116,7 +117,7 @@ public class MainGameController implements Initializable {
     public void checkSensor(MouseEvent mouseEvent) {
         log.info("Sensor mouse checked");
     }
-
+    @SneakyThrows
     public void handleTypedCode(KeyEvent keyEvent) {
         try {
 
@@ -156,7 +157,7 @@ public class MainGameController implements Initializable {
 
 
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+
         }
 
 

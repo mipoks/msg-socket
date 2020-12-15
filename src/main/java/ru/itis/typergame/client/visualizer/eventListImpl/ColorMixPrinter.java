@@ -44,54 +44,68 @@ public class ColorMixPrinter implements EventListener<Pair> {
        log.info("Pair object key {}, value {}",object.getKey(),object.getValue());
         room.getGamers().ifPresent(x -> {
             x.stream().forEach(gamer -> {
+                log.info("position:{} filed text size: {},gamer id :{}",position,filed.size(),gamer.getId());
+
                 if(gamer.getId() == (int) object.getKey()) {
+                    /*if (position < filed.size()) {*/
 
-                    symb = (Text) filed.get(position);
-                    symb.setStyle("-fx-stroke: #353535");
-                    log.info("symb fills {}", symb.getFill().toString().substring(2, 8));
-                    switch (symb.getFill().toString().substring(2, 8)) {
-                        case "778899" -> {
-                            symb.setFill(Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
-                            log.info("case 778899  gamers color: {}", Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
-                        }
-                        case "000000" -> {
-                            symb.setFill(Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
-                            log.info("case 000000  gamers color: {}", Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
-                        }
-                        case "ff2376" -> {symb.setFill(Paint.valueOf("f5b03b"));
-                        log.info("case FF2376");}
+                        symb = (Text) filed.get(position);
+                        symb.setStyle("-fx-stroke: #353535");
+                        log.info("symb fills {}", symb.getFill().toString().substring(2, 8));
+                        switch (symb.getFill().toString().substring(2, 8)) {
+                            case "778899" -> {
+                                symb.setFill(Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
+                                log.info("case 778899  gamers color: {}", Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
+                            }
+                            case "000000" -> {
+                                symb.setFill(Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
+                                log.info("case 000000  gamers color: {}", Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
+                            }
+                            case "ff2376" -> {
+                                symb.setFill(Paint.valueOf("f5b03b"));
+                                log.info("case FF2376");
+                            }
 
 
+                            case "ff0000", "000fff" -> {
+                                symb.setFill(Paint.valueOf("d4c80b"));
+                            } // смешивание красного с синим ?
+                            case "00ff33", "E13CF0" -> {
+                                switch (ColorMixer.getLibraryColor().get(gamer)) {
+                                    case "000fff" -> {
+                                        symb.setFill(Paint.valueOf("ffef08"));
+                                    }//желтый
+                                    case "ff0000" -> {
+                                        symb.setFill(Paint.valueOf("053742"));
+                                    }
+                                }
 
-                        case "ff0000", "000fff" ->{symb.setFill(Paint.valueOf("d4c80b"));} // смешивание красного с синим ?
-                        case "00ff33", "E13CF0" ->{
-                            switch (ColorMixer.getLibraryColor().get(gamer)){
-                                case "000fff"->{ symb.setFill(Paint.valueOf("ffef08"));}//желтый
-                                case "ff0000"->{symb.setFill(Paint.valueOf("053742"));}
+                            }
+                            case "d4c80b" -> {
+                                symb.setFill(Paint.valueOf("ec7544"));
+                            }
+                            case "ec7544" -> {
+                                symb.setFill(Paint.valueOf("852A26"));
+                            }
+
+                            default -> {
+                                symb.setFill(Paint.valueOf("ff2376"));
+                                log.info("case default");
                             }
 
                         }
-                        case "d4c80b"->{symb.setFill(Paint.valueOf("ec7544"));}
-                        case "ec7544"->{symb.setFill(Paint.valueOf("852A26"));}
 
-                        default -> {symb.setFill(Paint.valueOf("ff2376"));
-                        log.info("case default");}
+                       /* ((Text) filed.get(position)).setFill(Paint.valueOf("ff0000"));*/
 
-                    }
-
-                     ((Text) filed.get(position)).setFill(Paint.valueOf("ff0000"));
-
-                    ((Text) filed.get(position)).setFont(Font.font(48));
-
-                    log.info("Устанавливаю красный стиль в элемент : {}",(Text) filed.get(position));
-                    ((Text) filed.get(position)).setFill(Paint.valueOf("ff0000"));
+                        ((Text) filed.get(position)).setFont(Font.font(48));
 
 
+                        log.info("Устанавливаю красный стиль в элемент : {}", (Text) filed.get(position));
+                        ((Text) filed.get(position)).setFont(Font.font(40));
+                        /*((Text) filed.get(position)).setFill(Paint.valueOf("ff0000"));*/
 
 
-
-
-
+                   /* }*/
                 }
             });
         });

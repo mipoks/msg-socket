@@ -38,8 +38,8 @@ public class GameTexter {
 
 //            Document doc = Jsoup.connect("http://rooltime.com/service/typingspeed/typing.php").get();
             Element textElem = doc.getElementById("text");
-            return textElem.text();
-//             return "Это текст для отладки";
+           /* return textElem.text();*/
+             return "Это тек";
         } catch (IOException e) {
             e.printStackTrace();
         }
