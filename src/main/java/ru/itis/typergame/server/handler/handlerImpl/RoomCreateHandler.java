@@ -26,6 +26,10 @@ public class RoomCreateHandler implements Handler {
         try {
             Room room = new Room(Room.createRoomUniqueString());
             room.addClient(client);
+            if (client.getRoom().isPresent()) {
+                Room roomTmp = client.getRoom().get();
+                roomTmp.removeClient(client);
+            }
             client.setRoom(room);
             log.info("room.getRoomUniqueString() result :  {}",room.getRoomUniqueString());
             byte[] bytes = ObjectSerializer.toByteArray(room.getRoomUniqueString());
