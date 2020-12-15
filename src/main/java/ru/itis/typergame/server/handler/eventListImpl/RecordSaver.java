@@ -1,11 +1,11 @@
 package ru.itis.typergame.server.handler.eventListImpl;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.itis.typergame.server.repository.RecordRepository;
 import ru.itis.typergame.protocol.Record;
 import ru.itis.typergame.server.handler.EventListener;
 import ru.itis.typergame.server.model.Client;
 import ru.itis.typergame.server.model.Game;
+import ru.itis.typergame.server.repository.RecordRepository;
 import ru.itis.typergame.server.repository.impl.RecordRepoImpl;
 
 @Slf4j

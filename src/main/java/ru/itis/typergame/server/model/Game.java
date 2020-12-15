@@ -13,7 +13,7 @@ public class Game {
     private HashMap<Client, Integer> gameState;
     private Room room;
     private boolean started;
-    private ArrayList<ru.itis.typergame.server.handler.EventListener> listeners;
+    private ArrayList<EventListener> listeners;
 
     public Game(String gameText, Room room) {
         this.gameText = gameText.toLowerCase();
@@ -100,7 +100,7 @@ public class Game {
     }
 
 
-    public void addEventListener(ru.itis.typergame.server.handler.EventListener eventListener) {
+    public void addEventListener(EventListener eventListener) {
         listeners.add(eventListener);
     }
 

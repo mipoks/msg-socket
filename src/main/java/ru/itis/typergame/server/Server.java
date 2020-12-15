@@ -1,13 +1,13 @@
 package ru.itis.typergame.server;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.itis.typergame.protocol.Message;
+import ru.itis.typergame.protocol.Type;
 import ru.itis.typergame.server.exception.ServerException;
 import ru.itis.typergame.server.handler.Handler;
 import ru.itis.typergame.server.handler.handlerImpl.helper.ObjectSerializer;
 import ru.itis.typergame.server.model.Client;
-import ru.itis.typergame.protocol.Message;
 import ru.itis.typergame.server.model.Room;
-import ru.itis.typergame.protocol.Type;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 @Slf4j
 public class Server {
     protected ServerSocket serverSocket;

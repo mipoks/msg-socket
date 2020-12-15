@@ -14,6 +14,7 @@ import ru.itis.typergame.server.model.Game;
 import ru.itis.typergame.server.model.Room;
 
 import java.util.Optional;
+
 @Slf4j
 public class GamePlayHandler implements Handler {
 

@@ -1,7 +1,7 @@
 package ru.itis.typergame.server.repository.impl;
 
-import ru.itis.typergame.server.model.EntityCreater;
 import ru.itis.typergame.protocol.Record;
+import ru.itis.typergame.server.model.EntityCreater;
 import ru.itis.typergame.server.model.implementation.RecordCreater;
 import ru.itis.typergame.server.repository.RecordRepository;
 import ru.itis.typergame.server.repository.database.ConnectionGiver;

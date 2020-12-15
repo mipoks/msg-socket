@@ -1,14 +1,15 @@
 package ru.itis.typergame.server.handler.handlerImpl;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.itis.typergame.protocol.Message;
+import ru.itis.typergame.protocol.Type;
 import ru.itis.typergame.server.Server;
 import ru.itis.typergame.server.exception.ServerException;
 import ru.itis.typergame.server.handler.Handler;
 import ru.itis.typergame.server.handler.handlerImpl.helper.ObjectDeserializer;
 import ru.itis.typergame.server.model.Client;
 import ru.itis.typergame.server.model.Room;
-import ru.itis.typergame.protocol.Message;
-import ru.itis.typergame.protocol.Type;
+
 @Slf4j
 public class RoomPublicityChangeHandler implements Handler {
     private Server server;

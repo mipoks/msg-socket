@@ -117,7 +117,7 @@ public class Room {
                 ex.printStackTrace();
             }
         }
-        System.out.println("SENDED TO " + clients.size() + " CLIENTS OF ROOM " + roomUniqueString);
+        log.info("SENDED TO " + clients.size() + " CLIENTS OF ROOM " + roomUniqueString);
     }
 
     public void sendMessageExcept(Client except, Message message) {

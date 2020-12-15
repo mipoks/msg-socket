@@ -2,18 +2,19 @@ package ru.itis.typergame.server.handler.handlerImpl;
 
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
+import ru.itis.typergame.protocol.Message;
+import ru.itis.typergame.protocol.Type;
 import ru.itis.typergame.server.Server;
 import ru.itis.typergame.server.exception.ServerException;
 import ru.itis.typergame.server.handler.Handler;
-import ru.itis.typergame.server.handler.handlerImpl.helper.ObjectSerializer;
 import ru.itis.typergame.server.handler.handlerImpl.helper.ObjectDeserializer;
+import ru.itis.typergame.server.handler.handlerImpl.helper.ObjectSerializer;
 import ru.itis.typergame.server.model.Client;
-import ru.itis.typergame.protocol.Message;
 import ru.itis.typergame.server.model.Room;
-import ru.itis.typergame.protocol.Type;
 
 import java.util.Collection;
 import java.util.Optional;
+
 @Slf4j
 public class RoomConnectHandler implements Handler {
 

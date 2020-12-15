@@ -1,7 +1,7 @@
 package ru.itis.typergame.server.repository.database.implementation;
 
-import ru.itis.typergame.server.repository.database.RowMapper;
 import ru.itis.typergame.server.model.EntityCreater;
+import ru.itis.typergame.server.repository.database.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

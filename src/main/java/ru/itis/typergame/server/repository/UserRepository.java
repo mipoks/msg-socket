@@ -1,4 +1,4 @@
-//package server.repository;
+package ru.itis.typergame.server.repository;//package server.repository;
 //
 //import server.model.Record;
 //

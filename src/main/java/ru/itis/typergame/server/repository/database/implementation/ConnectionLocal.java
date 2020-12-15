@@ -1,7 +1,5 @@
 package ru.itis.typergame.server.repository.database.implementation;
 
-import org.jetbrains.annotations.NotNull;
-
 import ru.itis.typergame.server.repository.database.ConnectionGiver;
 
 import java.sql.Connection;
@@ -11,11 +9,11 @@ import java.sql.SQLException;
 public class ConnectionLocal implements ConnectionGiver {
 
 
-    private  final String JDBC_DRIVER ="org.PostgreSQL.Driver";
-    private  final String DATABASE_URL ="jdbc:postgresql://localhost:5432/Kursach";
+    private  final String JDBC_DRIVER ="org.postgresql.Driver";
+    private  final String DATABASE_URL ="jdbc:postgresql://localhost:5432/postgres";
 //    private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/Kursach";
     private  final String DATABASE_USER ="postgres";
-    private  final String DATABASE_PASSWORD ="123456789";
+    private  final String DATABASE_PASSWORD ="postgres";
 
     public Connection getConnection() throws SQLException {
         try {
