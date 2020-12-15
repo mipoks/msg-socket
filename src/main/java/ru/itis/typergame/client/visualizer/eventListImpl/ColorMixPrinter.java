@@ -53,6 +53,7 @@ public class ColorMixPrinter implements EventListener<Pair> {
                         symb.setStyle("-fx-stroke: #353535");
                         log.info("symb fills {}", symb.getFill().toString().substring(2, 8));
                         switch (symb.getFill().toString().substring(2, 8)) {
+
                             case "778899" -> {
                                 symb.setFill(Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));
                                 log.info("case 778899  gamers color: {}", Paint.valueOf(ColorMixer.getLibraryColor().get(gamer)));

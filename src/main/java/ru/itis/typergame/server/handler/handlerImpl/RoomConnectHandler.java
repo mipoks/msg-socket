@@ -49,12 +49,15 @@ public class RoomConnectHandler implements Handler {
                     new Pair<Integer, String>(client.getId(), client.getName())));
             room.get().sendMessageExcept(client, msg);
 
+            Message roomCode = Message.createMessage(Type.ROOM_CREATE_ANSWER, ObjectSerializer.toByteArray(room.get().getRoomUniqueString()));
+            server.sendMessage(client, roomCode);
+
+
             msg.setType(Type.ROOM_CONNECT_ANSWER);
             msg.setData(ObjectSerializer.toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
             server.sendMessage(client, msg);
 
-            Message roomCode = Message.createMessage(Type.ROOM_CREATE_ANSWER, ObjectSerializer.toByteArray(room.get().getRoomUniqueString()));
-            server.sendMessage(client, roomCode);
+
 
             Collection<Client> clients = room.get().getClients();
             msg.setType(Type.ROOM_CONNECT);
@@ -63,6 +66,7 @@ public class RoomConnectHandler implements Handler {
                     msg.setData(ObjectSerializer.toByteArray(
                             new Pair<Integer, String>(client1.getId(), client1.getName())));
                     server.sendMessage(client, msg);
+                    log.info("Отправлену клиенту " + client.getId() + " что в комнате " + client1.getId());
                 }
             }
         } catch (ServerException ex) {
