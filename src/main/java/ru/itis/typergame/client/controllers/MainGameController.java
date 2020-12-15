@@ -71,6 +71,7 @@ public class MainGameController implements Initializable {
 
     @FXML
     public void prepare(String text) {
+
         n = 0;
         body.setStyle(ThemeContext.DEFAULT_THEME);
         if (ThemeContext.currentTheme.equals(ThemeContext.DARK_THEME)) {
@@ -82,6 +83,7 @@ public class MainGameController implements Initializable {
     }
 
     private void dupplMapper(String text, String style) {
+
         log.info("Удалено букв {}", gameScreen.getChildren().size());
         gameScreen.getChildren().remove(0, gameScreen.getChildren().size());
         textArray = (text + " ").split("");
@@ -105,11 +107,13 @@ public class MainGameController implements Initializable {
     @Override
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         publicity.setVisible(false);
         hardGameMode.setVisible(false);
         demoGame.setVisible(false);
         clockFX = new ClockFX();
         clockFX.drawOn(clock);
+        clock.getGraphicsContext2D().clearRect(0,0,1000,1000);
 
 
     }
@@ -164,6 +168,11 @@ public class MainGameController implements Initializable {
     }
 
     public void startDemo(MouseEvent mouseEvent) {
+
+        log.info("оздаю новые часики");
+        clockFX = new ClockFX();
+        clockFX.drawOn(clock);
+
         Message message = null;
         message = MessageCreater.createStartGameMsg(hardGameMode.isSelected()?1:0);
         client.sendMessage(message);
@@ -183,6 +192,9 @@ public class MainGameController implements Initializable {
         gamerThreeName.setText("Gamer 3");
         gamerFourName.setText("Gamer 4");
         demoGame.setVisible(true);
+        clockFX.stopTimer();
+        clock.getGraphicsContext2D().clearRect(0,0,1000,1000);
+
     }
 
     public void sendPublicityStatus(MouseEvent mouseEvent) {
