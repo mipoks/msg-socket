@@ -43,6 +43,7 @@ public class Controller implements Initializable {
     private Scene settingsScene;
     private Message message;
     private Stage stage;
+    private MainGameController gameController;
 
 
     @Override
@@ -59,10 +60,12 @@ public class Controller implements Initializable {
 
 
             ISceneChanger.changeScene(gameScene,mouseEvent);
-
-            (gameScene.getRoot().lookup("#publicity")).setVisible(true);
+            gameController.getPublicity().setVisible(true);
+            gameController.getHardGameMode().setVisible(true);
+            gameController.getDemoGame().setVisible(true);
+           /* (gameScene.getRoot().lookup("#publicity")).setVisible(true);
             (gameScene.getRoot().lookup("#hardGameMode")).setVisible(true);
-            (gameScene.getRoot().lookup("#demoGame")).setVisible(true);
+            (gameScene.getRoot().lookup("#demoGame")).setVisible(true);*/
 
 
 

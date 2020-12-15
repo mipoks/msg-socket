@@ -108,7 +108,7 @@ public class ClientStart extends Application {
             controller.setSettingsScene(settingsScene);
             controller1.setWinScene(new Scene(wint));
             controller1.setLostScene(new Scene(loose));
-
+            controller.setGameController(controller1);
             controller3.setScene(scene);
             controller4.setScene(scene);
             controller5.setMainScene(scene);
@@ -145,6 +145,8 @@ public class ClientStart extends Application {
 
             primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
+            primaryStage.setMinWidth(995);
+            primaryStage.setMinHeight(687);
             primaryStage.show();
             primaryStage.setOnCloseRequest((event)->{
                         Platform.exit();

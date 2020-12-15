@@ -162,7 +162,7 @@ public class MainGameController implements Initializable {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //ignore
         }
 
 
@@ -170,7 +170,7 @@ public class MainGameController implements Initializable {
 
     public void startDemo(MouseEvent mouseEvent) {
 
-        log.info("оздаю новые часики");
+        log.info("create new clocks");
         clockFX = new ClockFX();
         clockFX.drawOn(clock);
 
