@@ -33,11 +33,11 @@ public class SettingsController implements Initializable {
 
     public void changeTheme(MouseEvent mouseEvent) {
         if (ThemeContext.currentTheme.equals(ThemeContext.DEFAULT_THEME)) {
-            ThemeContext.currentTheme =ThemeContext.DARK_THEME;
+            ThemeContext.currentTheme = ThemeContext.DARK_THEME;
 
             body.setStyle(ThemeContext.DARK_THEME);
-        }else {
-            ThemeContext.currentTheme =ThemeContext.DEFAULT_THEME;
+        } else {
+            ThemeContext.currentTheme = ThemeContext.DEFAULT_THEME;
             body.setStyle(ThemeContext.DEFAULT_THEME);
         }
     }
@@ -50,14 +50,16 @@ public class SettingsController implements Initializable {
 
     public void getMainScene(MouseEvent mouseEvent) {
 
-        ISceneChanger.changeScene(mainScene,mouseEvent);
+        ISceneChanger.changeScene(mainScene, mouseEvent);
     }
 
     public void saveName(MouseEvent mouseEvent) {
-        if(newName.getText().matches("^(?=.{1,15}$)[a-zA-Z][a-zA-Z0-9]*(?: [a-zA-Z0-9]+)*$")){
+        if (newName.getText().matches("^(?=.{1,15}$)[a-zA-Z][a-zA-Z0-9]*(?: [a-zA-Z0-9]+)*$")) {
             client.sendMessage(MessageCreater.createNickNameChangeMsg(newName.getText()));
 
-        }else {newName.setText("Попробуйте другое имя");}
+        } else {
+            newName.setText("Попробуйте другое имя");
+        }
 
     }
 }

@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.util.Pair;
-import lombok.extern.slf4j.Slf4j;
 
 
 class SecClock {
@@ -15,17 +14,17 @@ class SecClock {
         this.setSecond(second);
     }
 
-    public void setSecond(int second) {
-        this.second = second % 60;
-    }
-
     public int getSecond() {
         return second;
+    }
+
+    public void setSecond(int second) {
+        this.second = second % 60;
     }
 }
 
 
-public class ClockFX  {
+public class ClockFX {
     private static final int CENTER_CLOCK = 150;
     private static final int SEC_ARROW = 50;
     private static final int CLOCK_RADIUS = 70;
@@ -83,11 +82,11 @@ public class ClockFX  {
     }
 
     class MyAnimTimer extends AnimationTimer {
-        private SecClock secClock;
-        private int radius;
-        private GraphicsContext gc;
+        private final SecClock secClock;
+        private final int radius;
+        private final GraphicsContext gc;
         private long lastUpdate = 0;
-        private ClockRunnable clockRunnable;
+        private final ClockRunnable clockRunnable;
 
         public MyAnimTimer(SecClock secClock, int radius, GraphicsContext gc) {
             this.secClock = secClock;
@@ -114,9 +113,9 @@ public class ClockFX  {
 
     class ClockRunnable implements Runnable {
 
-        private SecClock secClock;
-        private int radiusSec;
-        private GraphicsContext gc;
+        private final SecClock secClock;
+        private final int radiusSec;
+        private final GraphicsContext gc;
 
         public ClockRunnable(SecClock secClock, int radiusSec, GraphicsContext gc) {
             this.secClock = secClock;

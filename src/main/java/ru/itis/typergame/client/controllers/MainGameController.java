@@ -113,7 +113,7 @@ public class MainGameController implements Initializable {
         demoGame.setVisible(false);
         clockFX = new ClockFX();
         clockFX.drawOn(clock);
-        clock.getGraphicsContext2D().clearRect(0,0,1000,1000);
+        clock.getGraphicsContext2D().clearRect(0, 0, 1000, 1000);
 
 
     }
@@ -121,6 +121,7 @@ public class MainGameController implements Initializable {
     public void checkSensor(MouseEvent mouseEvent) {
         log.info("Sensor mouse checked");
     }
+
     @SneakyThrows
     public void handleTypedCode(KeyEvent keyEvent) {
         try {
@@ -161,7 +162,7 @@ public class MainGameController implements Initializable {
 
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
 
@@ -174,7 +175,7 @@ public class MainGameController implements Initializable {
         clockFX.drawOn(clock);
 
         Message message = null;
-        message = MessageCreater.createStartGameMsg(hardGameMode.isSelected()?1:0);
+        message = MessageCreater.createStartGameMsg(hardGameMode.isSelected() ? 1 : 0);
         client.sendMessage(message);
         Stage primaryStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
     }
@@ -193,7 +194,7 @@ public class MainGameController implements Initializable {
         gamerFourName.setText("Gamer 4");
         demoGame.setVisible(true);
         clockFX.stopTimer();
-        clock.getGraphicsContext2D().clearRect(0,0,1000,1000);
+        clock.getGraphicsContext2D().clearRect(0, 0, 1000, 1000);
 
     }
 

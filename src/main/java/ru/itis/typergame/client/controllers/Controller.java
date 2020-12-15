@@ -38,6 +38,8 @@ public class Controller implements Initializable {
     @Setter
     private Scene gameScene;
     private Scene recordScene;
+
+
     private Scene settingsScene;
     private Message message;
     private Stage stage;
@@ -45,6 +47,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
     @FXML
     public void createRoom(MouseEvent mouseEvent){

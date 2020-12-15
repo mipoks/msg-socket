@@ -82,7 +82,7 @@ public class Server {
                             }
                         }
                     } catch (IOException e) {
-                        //ToDo сделать таймаут
+
                         Optional<Room> optionalRoom = client.getRoom();
                         if (optionalRoom.isPresent()) {
                             Room room = optionalRoom.get();
