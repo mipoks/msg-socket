@@ -17,6 +17,7 @@ public class GameTextPrinter implements EventListener<String> {
     public synchronized void onEventAction(String object) {
         log.info("Подготавливаю текст");
         Platform.runLater(() -> {
+            mainGameController.getClockFX().startTimer();
             mainGameController.prepare(object);
         });
 

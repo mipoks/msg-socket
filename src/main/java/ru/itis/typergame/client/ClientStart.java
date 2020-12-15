@@ -54,6 +54,7 @@ public class ClientStart extends Application {
     private GameTextPrinter gameTextPrinter;
     private ColorMixPrinter colorMixPrinter;
     private RecordsCodePrinter recordsCodePrinter;
+    private ButtonsPrinter buttonsPrinter;
 
     private volatile Room room;
 
@@ -149,6 +150,8 @@ public class ClientStart extends Application {
             rivalPrinter = new RivalPrinter(controller1.getGamerOneName(),controller1.getGamerTwoName(),controller1.getGamerThreeName(),controller1.getGamerFourName());//Выводит принтер в контроллер
             colorMixPrinter = new ColorMixPrinter(controller1);
             recordsCodePrinter = new RecordsCodePrinter(controller5.getChart());
+            buttonsPrinter = new ButtonsPrinter(controller1);
+            roomCreateHandler.addEventListener(buttonsPrinter);
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);
             roomCreateHandler.addEventListener(roomCodePrinter);

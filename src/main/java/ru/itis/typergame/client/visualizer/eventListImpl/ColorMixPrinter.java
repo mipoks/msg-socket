@@ -35,7 +35,6 @@ public class ColorMixPrinter implements EventListener<Pair> {
 
     @Override
     public void onEventAction(Pair object) {
-       mainGameController.getClockFX().startTimer();
        log.info("library of colors(hash) {}",ColorMixer.getLibraryColor().toString());
        /*filed.stream().map(x->(Text)x).forEach(x->log.info("Fill of text in text flow {}",x.getFill()));*/
 
@@ -80,11 +79,13 @@ public class ColorMixPrinter implements EventListener<Pair> {
 
                     }
 
-                     ((Text) filed.get(position)).setFont(Font.font(40));
+                     ((Text) filed.get(position)).setFill(Paint.valueOf("ff0000"));
 
                     ((Text) filed.get(position)).setFont(Font.font(48));
 
-                    log.info("Устанавливаю красный стиль");
+                    log.info("Устанавливаю красный стиль в элемент : {}",(Text) filed.get(position));
+                    ((Text) filed.get(position)).setFill(Paint.valueOf("ff0000"));
+
 
 
 
