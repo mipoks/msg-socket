@@ -23,8 +23,12 @@ public class Room implements EventListener<Pair> {
         return actualRoom;
     }
     public synchronized static Room getActualRoom() {
-        if (actualRoom == null)
+        log.info("Возвращаю существующую комнату : {}",actualRoom);
+
+        if (actualRoom == null) {
+            log.info("Возвращаю новую комнату");
             actualRoom = new Room();
+        }
         return actualRoom;
     }
     private Room() {

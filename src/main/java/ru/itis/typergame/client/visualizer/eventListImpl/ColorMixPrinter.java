@@ -30,6 +30,9 @@ public class ColorMixPrinter implements EventListener<Pair> {
    public  ColorMixPrinter(MainGameController controller){
        this.mainGameController = controller;
        filed = controller.getGameScreen().getChildren();
+   /*    new Thread(()->{
+           room = Room.getActualRoom();
+       });*/
 
    }
 
@@ -39,7 +42,7 @@ public class ColorMixPrinter implements EventListener<Pair> {
        /*filed.stream().map(x->(Text)x).forEach(x->log.info("Fill of text in text flow {}",x.getFill()));*/
 
        room = Room.getActualRoom();
-       log.info("room gamers {}",room.getGamers().get());
+       log.info("actual room  {}",room);
        position = (int)object.getValue()-1;
        log.info("Pair object key {}, value {}",object.getKey(),object.getValue());
         room.getGamers().ifPresent(x -> {
@@ -47,7 +50,8 @@ public class ColorMixPrinter implements EventListener<Pair> {
                 log.info("position:{} filed text size: {},gamer id :{}",position,filed.size(),gamer.getId());
 
                 if(gamer.getId() == (int) object.getKey()) {
-                    /*if (position < filed.size()) {*/
+                    log.info("Player with typed keyboard have id {}",gamer.getId());
+                    if (position < filed.size()) {
 
                         symb = (Text) filed.get(position);
                         symb.setStyle("-fx-stroke: #353535");
@@ -106,7 +110,7 @@ public class ColorMixPrinter implements EventListener<Pair> {
                         /*((Text) filed.get(position)).setFill(Paint.valueOf("ff0000"));*/
 
 
-                   /* }*/
+                    }
                 }
             });
         });
