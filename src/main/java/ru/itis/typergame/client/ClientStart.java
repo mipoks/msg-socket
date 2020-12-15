@@ -1,8 +1,10 @@
 package ru.itis.typergame.client;
 
+import javafx.application.Platform;
 import ru.itis.typergame.client.controllers.*;
 import ru.itis.typergame.client.handler.handlerImpl.*;
 import ru.itis.typergame.client.logic.Client;
+import ru.itis.typergame.client.message.MessageCreater;
 import ru.itis.typergame.client.model.Room;
 import ru.itis.typergame.client.visualizer.eventListImpl.*;
 import javafx.application.Application;
@@ -143,6 +145,10 @@ public class ClientStart extends Application {
             primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
             primaryStage.show();
+            primaryStage.setOnCloseRequest((event)->{
+                        Platform.exit();
+                System.exit(0);
+            });
 
 
            /* textStatus = (Text) scene.lookup("#textStatus");*/
