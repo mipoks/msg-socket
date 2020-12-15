@@ -49,6 +49,7 @@ public class GamePlayHandler implements Handler {
                 Message msgGameEnd = Message.createMessage(Type.GAME_END, ObjectSerializer.
                         toByteArray(new MExtendedPair<Integer, String>(client.getId(), client.getName(), client.getCpersec())));
                 room.sendMessage(msgGameEnd);
+                room.removeClient(client);
                 log.info("Игра окончена" );
             }
         }
