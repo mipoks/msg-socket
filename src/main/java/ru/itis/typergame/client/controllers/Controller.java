@@ -1,6 +1,7 @@
 package ru.itis.typergame.client.controllers;
 
 import javafx.scene.control.RadioButton;
+import org.jetbrains.annotations.NotNull;
 import ru.itis.typergame.client.logic.Client;
 import ru.itis.typergame.client.message.MessageCreater;
 import ru.itis.typergame.client.visualizer.ISceneChanger;
@@ -87,10 +88,10 @@ public class Controller implements Initializable {
             Message message = MessageCreater.createRoomConnectMsg(roomCode.getText());
             log.info("message text {}",roomCode.getText());
 
-            client.sendMessage(message);
+             client.sendMessage(message);
 
-            ISceneChanger.changeScene(gameScene,mouseEvent);
-
+        /*    ISceneChanger.changeScene(gameScene, mouseEvent);
+*/
 
 
         } catch (Exception e) {

@@ -59,6 +59,7 @@ public class ClientStart extends Application {
     private ColorMixPrinter colorMixPrinter;
     private RecordsCodePrinter recordsCodePrinter;
     private ButtonsPrinter buttonsPrinter;
+    private SendConnectScenePrinter sendConnectScenePrinter;
 
     private volatile Room room;
 
@@ -165,6 +166,9 @@ public class ClientStart extends Application {
             colorMixPrinter = new ColorMixPrinter(controller1);
             recordsCodePrinter = new RecordsCodePrinter(controller5.getChart());
             buttonsPrinter = new ButtonsPrinter(controller1);
+            sendConnectScenePrinter = new SendConnectScenePrinter(gameScene,primaryStage);
+
+            roomConnectHandler.addEventListener(sendConnectScenePrinter);
             roomOwnerHandler.addEventListener(buttonsPrinter);
             gameStartHandler.addEventListener(gameTextPrinter);
             roomConnectHandler.addEventListener(roomConnectPrinter);
