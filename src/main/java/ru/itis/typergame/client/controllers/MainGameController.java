@@ -136,7 +136,7 @@ public class MainGameController implements Initializable {
                     getTextArray()[n].equals(" ") && keyEvent.getCharacter().toLowerCase().equals("space")) {
 
                 n++;
-                Message message = MessageCreater.createPlayGameMsg(keyEvent.getCharacter());
+                Message message = MessageCreater.createPlayGameMsg(keyEvent.getCharacter().toLowerCase());
 
 
                 try {
