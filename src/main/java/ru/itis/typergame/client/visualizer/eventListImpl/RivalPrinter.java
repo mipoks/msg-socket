@@ -40,6 +40,17 @@ public class RivalPrinter implements EventListener<Pair> {
       @Override
         public void onEventAction(Pair object) {
         log.info("Pair: {}",object);
+        if ((Integer)object.getKey()==-1){
+            gamer = (Gamer)object.getValue();
+            gamersNames.
+                    forEach(x->{
+                        if(x.getFill().toString().substring(2,8).equals(ColorMixer.getLibraryColor().get(gamer))){
+                            x.setText("Waiting");
+                        }
+
+                    });
+
+        }
         if( (Integer)object.getKey()==1) {
 
             gamer = (Gamer) object.getValue();

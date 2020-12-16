@@ -19,9 +19,10 @@ import javafx.stage.Stage;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import ru.itis.typergame.client.ClockFX;
+
 import ru.itis.typergame.client.logic.Client;
 import ru.itis.typergame.client.message.MessageCreater;
+import ru.itis.typergame.client.util.ClockFX;
 import ru.itis.typergame.client.visualizer.ThemeContext;
 import ru.itis.typergame.protocol.Message;
 

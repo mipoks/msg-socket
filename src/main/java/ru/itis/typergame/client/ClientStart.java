@@ -6,6 +6,7 @@ import ru.itis.typergame.client.handler.handlerImpl.*;
 import ru.itis.typergame.client.logic.Client;
 import ru.itis.typergame.client.message.MessageCreater;
 import ru.itis.typergame.client.model.Room;
+import ru.itis.typergame.client.util.ClockFX;
 import ru.itis.typergame.client.visualizer.ISceneChanger;
 import ru.itis.typergame.client.visualizer.eventListImpl.*;
 import javafx.application.Application;

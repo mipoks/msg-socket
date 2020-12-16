@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 import lombok.extern.slf4j.Slf4j;
-import ru.itis.typergame.client.ClockFX;
+
 import ru.itis.typergame.client.controllers.MainGameController;
 import ru.itis.typergame.client.model.Room;
 import ru.itis.typergame.client.util.ColorMixer;
