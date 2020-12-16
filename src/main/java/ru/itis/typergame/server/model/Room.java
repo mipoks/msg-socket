@@ -11,6 +11,9 @@ import java.util.*;
 public class Room {
     public static final int ROOM_UNIQUE_LENGTH = 4;
     public static final int MAX_CLIENT = 4;
+    private String roomUniqueString;
+    private ArrayList<Client> clients;
+    private boolean publicity;
 
     private static HashMap<String, Room> uniqueString = new HashMap<>();
     private static final String CHARACTERS = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
@@ -51,9 +54,7 @@ public class Room {
         return clients.size();
     }
 
-    private String roomUniqueString;
-    private ArrayList<Client> clients;
-    private boolean publicity;
+
     public Room(String roomUniqueString) {
         this.roomUniqueString = roomUniqueString;
         this.clients = new ArrayList<>();

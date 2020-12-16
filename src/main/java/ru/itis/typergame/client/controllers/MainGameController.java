@@ -194,7 +194,11 @@ public class MainGameController implements Initializable {
         gamerTwoName.setText("Gamer 2");
         gamerThreeName.setText("Gamer 3");
         gamerFourName.setText("Gamer 4");
-        demoGame.setVisible(true);
+
+       /* demoGame.setVisible(true);*/
+        publicity.setVisible(false);
+        hardGameMode.setVisible(false);
+        demoGame.setVisible(false);
         clockFX.stopTimer();
         clock.getGraphicsContext2D().clearRect(0, 0, 1000, 1000);
 

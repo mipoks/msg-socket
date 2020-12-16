@@ -10,10 +10,10 @@ public class ConnectionLocal implements ConnectionGiver {
 
 
     private  final String JDBC_DRIVER ="org.postgresql.Driver";
-    private  final String DATABASE_URL ="jdbc:postgresql://localhost:5432/postgres";
+    private  final String DATABASE_URL ="jdbc:postgresql://localhost:5432/Kursach";
 //    private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/Kursach";
     private  final String DATABASE_USER ="postgres";
-    private  final String DATABASE_PASSWORD ="postgres";
+    private  final String DATABASE_PASSWORD ="123456789";
 
     public Connection getConnection() throws SQLException {
         try {
