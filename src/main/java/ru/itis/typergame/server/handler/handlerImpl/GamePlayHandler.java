@@ -50,6 +50,9 @@ public class GamePlayHandler implements Handler {
                         toByteArray(new MExtendedPair<Integer, String>(client.getId(), client.getName(), client.getCpersec())));
                 room.sendMessage(msgGameEnd);
                 room.removeClient(client);
+                Message clientLeft = Message.createMessage(Type.DISCONNECTED,
+                        ObjectSerializer.toByteArray(new Integer(client.getId())));
+                room.sendMessageExcept(client, clientLeft);
                 log.info("Игра окончена" );
                 Room.cleanEmptyRooms();
             }

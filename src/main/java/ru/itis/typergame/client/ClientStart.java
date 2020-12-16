@@ -53,6 +53,7 @@ public class ClientStart extends Application {
     private GamePlayHandler gamePlayHandler;
     private RecordGetHandler recordGetHandler;
     private RoomOwnerHandler roomOwnerHandler;
+    private RivalDisconnectHandler rivalDisconnectHandler;
     private RoomCodePrinter roomCodePrinter;
     private RoomConnectPrinter roomConnectPrinter;
     private RivalPrinter rivalPrinter;
@@ -121,6 +122,7 @@ public class ClientStart extends Application {
 
             client.connect();
 
+            rivalDisconnectHandler = new RivalDisconnectHandler(client);
             roomCreateHandler = new RoomCreateHandler(client);
             roomConnectHandler = new RoomConnectHandler(client);
             rivalConnectHandler = new RivalConnectHandler(client);
@@ -130,6 +132,7 @@ public class ClientStart extends Application {
             roomOwnerHandler = new RoomOwnerHandler(client);
 
             room = Room.getActualRoom();
+            client.registerListener(rivalDisconnectHandler);
             client.registerListener(roomOwnerHandler);
             client.registerListener(roomConnectHandler);
             client.registerListener(roomCreateHandler);

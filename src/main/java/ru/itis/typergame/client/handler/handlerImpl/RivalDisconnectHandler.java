@@ -30,17 +30,17 @@ public class RivalDisconnectHandler implements Handler {
         try(ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(message.getData())) {
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             Object object = objectInputStream.readObject();
-            if (object instanceof Pair) {
-                Pair<Integer, String> pair = (Pair<Integer, String>) object; //id of disconnected rival
+            if (object instanceof Integer) {
+                Integer id = (Integer) object; //id of disconnected rival
 
                 //new code
                 Room room = Room.getActualRoom();
-                room.removeGamer(new Gamer(pair.getKey(), pair.getValue()));
-                log.info("GAMERS IN ROOM:" + room.getGamers().get().toString());
+                room.removeGamer(new Gamer(id, "temp"));
+                log.info("GAMER LEFT FROM ROOM:" + id);
 
                 //old code
                 for (EventListener eventListener : listeners) {
-                    eventListener.onEventAction(pair);
+                    eventListener.onEventAction(new Pair<Integer, Integer>(id, 0));
                 }
             }
             objectInputStream.close();
