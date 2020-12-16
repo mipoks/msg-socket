@@ -81,8 +81,8 @@ public class Server {
                                 listener.handleMessage(client, message);
                             }
                         }
-                    } catch (IOException e) {
-
+                    } catch (Exception e) {
+                        log.info("Connection closed");
                         Optional<Room> optionalRoom = client.getRoom();
                         if (optionalRoom.isPresent()) {
                             Room room = optionalRoom.get();
@@ -91,9 +91,11 @@ public class Server {
                             room.sendMessageExcept(client, clientLeft);
 
                             room.removeClient(client);
+                            log.info("CLIENTS IN ROOM: " + room.getClients().size());
                             Room.cleanEmptyRooms();
                         }
                         e.printStackTrace();
+                        break;
                     }
                 }
 

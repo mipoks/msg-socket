@@ -51,6 +51,7 @@ public class GamePlayHandler implements Handler {
                 room.sendMessage(msgGameEnd);
                 room.removeClient(client);
                 log.info("Игра окончена" );
+                Room.cleanEmptyRooms();
             }
         }
     }
