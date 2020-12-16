@@ -1,4 +1,4 @@
-package ru.itis.typergame.client;
+package ru.itis.typergame.client.util;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -51,19 +51,8 @@ public class ClockFX {
     }
 
     public void drawOn(Canvas canvas) {
-
-//        Pane root = new Pane();
-
-//        Canvas canvas = new Canvas(CLOCK_RADIUS * 2.5, CLOCK_RADIUS * 2.5);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         doDrawing(gc);
-
-//        root.getChildren().add(canvas);
-
-//        Scene scene = new Scene(root, CLOCK_RADIUS * 2 + 10, CLOCK_RADIUS * 2 + 10, Color.WHITESMOKE);
-//
-//        stage.setScene(scene);
-//        stage.show();
     }
 
     public void startTimer() {

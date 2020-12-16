@@ -65,7 +65,7 @@ public class Client {
     }
 
     public static String generateName() {
-        return "Anonimus" + idCounter;
+        return "Anonymous" + idCounter;
     }
 
     public String getName() {

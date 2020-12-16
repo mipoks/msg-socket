@@ -41,6 +41,11 @@ public class RoomCreateHandler implements Handler {
             answer = Message.createMessage(Type.ROOM_CONNECT_ANSWER,
                     ObjectSerializer.toByteArray(new Pair<Integer, String>(client.getId(), client.getName())));
             server.sendMessage(client, answer);
+
+            if (room.getRoomOwner().get() == client) {
+                Message roomOwner = Message.createMessage(Type.ROOM_OWNER_ANSWER, ObjectSerializer.toByteArray(client.getId()));
+                server.sendMessage(client, roomOwner);
+            }
         } catch (ServerException ex) {
             log.info(ex.getMessage());
         }

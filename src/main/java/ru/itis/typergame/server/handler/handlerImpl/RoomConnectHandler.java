@@ -69,6 +69,11 @@ public class RoomConnectHandler implements Handler {
                     log.info("Отправлену клиенту " + client.getId() + " что в комнате " + client1.getId());
                 }
             }
+
+            if (room.get().getRoomOwner().get() == client) {
+                Message roomOwner = Message.createMessage(Type.ROOM_OWNER_ANSWER, ObjectSerializer.toByteArray(client.getId()));
+                server.sendMessage(client, roomOwner);
+            }
         } catch (ServerException ex) {
             log.info(ex.getMessage());
         }
