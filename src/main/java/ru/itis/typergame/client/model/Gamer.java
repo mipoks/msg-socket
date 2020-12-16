@@ -1,5 +1,6 @@
 package ru.itis.typergame.client.model;
 
+import lombok.EqualsAndHashCode;
 import ru.itis.typergame.client.visualizer.EventListener;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Slf4j
 @ToString
+
 public class Gamer {
     private int progress; //in symbols
     private int id;
