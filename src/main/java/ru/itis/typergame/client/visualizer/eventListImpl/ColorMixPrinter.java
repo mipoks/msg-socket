@@ -52,7 +52,7 @@ public class ColorMixPrinter implements EventListener<Pair> {
                 if(gamer.getId() == (int) object.getKey()) {
                     log.info("Player with typed keyboard have id {}",gamer.getId());
                     if (position < filed.size()) {
-
+                        if (position==-1){position=0;};
                         symb = (Text) filed.get(position);
                         symb.setStyle("-fx-stroke: #353535");
                         log.info("symb fills {}", symb.getFill().toString().substring(2, 8));

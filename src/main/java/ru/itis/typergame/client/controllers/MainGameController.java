@@ -158,11 +158,13 @@ public class MainGameController implements Initializable {
 
 
             }
-            ((Text) getGameScreen().getChildren().get(n)).setFont(Font.font(55));
+            if (getGameScreen().getChildren().size()>0) {
+                ((Text) getGameScreen().getChildren().get(n)).setFont(Font.font(55));
+            }
 
 
         } catch (Exception e) {
-            //ignore
+            e.printStackTrace();
         }
 
 
